@@ -126,6 +126,19 @@
   </ul> -->
 
 
+
+  <!-- Introduction to browser events -->
+  <!-- <input type="button" id="hideSelfBtn" value="Click to hide"> -->
+
+
+
+  <!-- Dispatching custom events -->
+  <!-- <button id="elem" onclick="alert('Click!');">Autoclick</button> -->
+
+
+  <h1 id="elem">Hello from the script!</h1>
+
+
   <script>
     'use strict'
 
@@ -348,9 +361,9 @@
     // let foo = (() => this)
 
     // the value of 'this' is determined by how a function is called (runtime binding)
-    let foo = function () { return this }
+    /* let foo = function () { return this }
     console.log(foo() === globalObject)
-    console.log(globalObject)
+    console.log(globalObject) */
 
     // check strict mode
     // let foo = function () { return !this }
@@ -726,6 +739,49 @@
     army[5](); // and number 5 also outputs 10...
     // ... all shooters show 10 instead of their 0, 1, 2, 3... */
 
+
+
+    // Introduction to browser events
+    /* hideSelfBtn.addEventListener('click', this.hideSelf)
+
+    function hideSelf() {
+      this.hidden = true
+    } */
+
+    /* let hideSelf = () => {
+      this.hidden = true
+    } */
+
+
+    /* function handler() {
+      alert("1")
+    }
+    hideSelfBtn.addEventListener("click", this.handler);
+
+    // hideSelfBtn.removeEventListener("click", this.handler);
+
+    hideSelfBtn.onclick = () => alert(2); */
+
+
+
+    // Interaction: alert, prompt, confirm
+    /* let test = prompt("what's your name");
+    alert(test) */
+
+
+
+    // Dispatching custom events
+    /* let event = new Event("click")
+    console.log(event.isTrusted)
+    elem.dispatchEvent(event) */
+
+
+    document.addEventListener('hello', e => {
+      alert('hello from ' + e.target.tagName)
+    })
+
+    let hello = new Event('hello', { bubbles: true })
+    elem.dispatchEvent(hello)
 
 
   </script>
