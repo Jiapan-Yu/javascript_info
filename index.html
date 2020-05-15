@@ -103,6 +103,12 @@
       ball.style.top = `${event.clientY - ball.width / 2}px`;
     }
 
+    window.addEventListener('DOMContentLoaded', () => {
+      console.log('content loaded')
+      ball.style.left = `${field.getBoundingClientRect().left + 10}px`
+      ball.style.top = `${field.getBoundingClientRect().top + 10}px`
+    })
+
   /* console.log(ball.width)
   console.log(ball.height)
   console.log(field.clientWidth)
