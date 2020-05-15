@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    #field {
+      width: 200px;
+      height: 150px;
+      border: 10px solid black;
+      background-color: #00FF00;
+      overflow: hidden;
+    }
+    #field:hover {
+      cursor: pointer;
+    }
+    #ball {
+      position: absolute;
+      transition: top 1s ease, left 1s ease;
+    }
+  </style>
+</head>
+
+<body style="height:2000px">
+
+  Click on a field to move the ball there.
+  <br> The ball should never leave the field.
+
+
+  <div id="field">
+    <img src="https://en.js.cx/clipart/ball.svg" id="ball"> . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+  </div>
+
+<script>
+  field.onclick = function (event) {    
+    console.log('clientX: ', event.clientX)
+    console.log('clientY: ', event.clientY)
+
+    console.log(field.getBoundingClientRect())
+    // event.clientX
+    let xMin = field.getBoundingClientRect().left + 10 + ball.width / 2
+    console.log('xMin: ', xMin)
+    let xMax = field.getBoundingClientRect().right - 10 - ball.width / 2
+    console.log('xMax: ', xMax)
+    // event.clientY
+    let yMin = field.getBoundingClientRect().top + 10 + ball.width / 2
+    console.log('yMin: ', yMin)
+    let yMax = field.getBoundingClientRect().bottom - 10 - ball.width / 2
+    console.log('yMax: ', yMax)
+
+    if (event.clientX < xMin) {
+      ball.style.left = `${xMin - ball.width / 2}px`
+      ball.style.top = `${event.clientY - ball.width / 2}px`
+      return
+    }
+    if (event.clientX > xMax) {
+      ball.style.left = `${xMax - ball.width / 2}px`
+      ball.style.top = `${event.clientY - ball.width / 2}px`
+      return
+    }
+    if (event.clientY < yMin) {
+      ball.style.top = `${yMin - ball.width / 2}px`
+      ball.style.left = `${event.clientX - ball.height / 2}px`
+      return
+    }
+    if (event.clientY > yMax) {
+      ball.style.top = `${yMax - ball.width / 2}px`
+      ball.style.left = `${event.clientX - ball.height / 2}px`
+      return
+    }
+
+    ball.style.left = `${event.clientX - ball.height / 2}px`;
+    ball.style.top = `${event.clientY - ball.width / 2}px`;
+  }
+
+  /* console.log(ball.width)
+  console.log(ball.height)
+  console.log(field.clientWidth)
+  console.log(field.clientHeight) */
+</script>
+
+</body>
+</html>
