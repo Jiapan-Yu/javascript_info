@@ -10,6 +10,7 @@
       border: 10px solid black;
       background-color: #00FF00;
       overflow: hidden;
+      position: relative;
     }
 
     #field:hover {
@@ -18,7 +19,11 @@
 
     #ball {
       position: absolute;
-      transition: top 1s ease, left 1s ease;
+      top: 0;
+      right: auto;
+      bottom: auto;
+      left: 0;
+      transition: top 1s ease, right 1s ease, bottom 1s ease, left 1s ease;
     }
   </style>
 </head>
@@ -42,7 +47,7 @@
       console.log('clientX: ', event.clientX)
       console.log('clientY: ', event.clientY)
 
-      console.log(field.getBoundingClientRect())
+      console.log('field rect: ', field.getBoundingClientRect())
       // event.clientX
       let xMin = field.getBoundingClientRect().left + 10 + ball.width / 2
       console.log('xMin: ', xMin)
@@ -54,29 +59,39 @@
       let yMax = field.getBoundingClientRect().bottom - 10 - ball.width / 2
       console.log('yMax: ', yMax)
 
+      // 左上角
       if (event.clientX < xMin && event.clientY < yMin) {
-        ball.style.left = `${xMin - ball.width / 2}px`
-        ball.style.top = `${yMin - ball.width / 2}px`
+        ball.style.left = '0px'
+        ball.style.right = 'auto'
+        ball.style.top = '0px'
+        ball.style.bottom = 'auto'
         return
       }
-
+      // 左下角
       if (event.clientX < xMin && event.clientY > yMax) {
-        ball.style.left = `${xMin - ball.width / 2}px`
-        ball.style.top = `${yMax - ball.width / 2}px`
+        ball.style.left = '0px'
+        ball.style.right = 'auto'
+        ball.style.bottom = '0px'
+        ball.style.top = 'auto'
         return
       }
-
+      // 右上角
       if (event.clientX > xMax && event.clientY < yMin) {
-        ball.style.left = `${xMax - ball.width / 2}px`
-        ball.style.top = `${yMin - ball.width / 2}px`
+        ball.style.right = '0px'
+        ball.style.left = `auto`
+        ball.style.top = '0px'
+        ball.style.bottom = `auto`
+        return
+      }
+      // 右下角
+      if (event.clientX > xMax && event.clientY > yMax) {
+        ball.style.right = '0px'
+        ball.style.left = `auto`
+        ball.style.bottom = '0px'
+        ball.style.top = `auto`
         return
       }
 
-      if (event.clientX > xMax && event.clientY > yMax) {
-        ball.style.left = `${xMax - ball.width / 2}px`
-        ball.style.top = `${yMax - ball.width / 2}px`
-        return
-      }
 
       if (event.clientX < xMin) {
         ball.style.left = `${xMin - ball.width / 2}px`
@@ -99,15 +114,9 @@
         return
       }
 
-      ball.style.left = `${event.clientX - ball.height / 2}px`;
-      ball.style.top = `${event.clientY - ball.width / 2}px`;
+      ball.style.left = `${event.clientX - xMin}px`;
+      ball.style.top = `${event.clientY -yMin}px`;
     }
-
-    window.addEventListener('DOMContentLoaded', () => {
-      console.log('content loaded')
-      ball.style.left = `${field.getBoundingClientRect().left + 10}px`
-      ball.style.top = `${field.getBoundingClientRect().top + 10}px`
-    })
 
   /* console.log(ball.width)
   console.log(ball.height)
