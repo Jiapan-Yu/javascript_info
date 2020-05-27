@@ -20,10 +20,8 @@
     #ball {
       position: absolute;
       top: 0;
-      right: auto;
-      bottom: auto;
       left: 0;
-      transition: top 1s ease, right 1s ease, bottom 1s ease, left 1s ease;
+      transition: 1s all;
     }
   </style>
 </head>
@@ -43,7 +41,7 @@
   </div>
 
   <script>
-    field.onclick = function (event) {
+    field.onclick = function (event) {/* 
       console.log('clientX: ', event.clientX)
       console.log('clientY: ', event.clientY)
 
@@ -104,18 +102,42 @@
         return
       }
       if (event.clientY < yMin) {
-        ball.style.top = `${yMin - ball.width / 2}px`
-        ball.style.left = `${event.clientX - ball.height / 2}px`
+        ball.style.top = `${yMin - ball.height / 2}px`
+        ball.style.left = `${event.clientX - ball.width / 2}px`
         return
       }
       if (event.clientY > yMax) {
-        ball.style.top = `${yMax - ball.width / 2}px`
-        ball.style.left = `${event.clientX - ball.height / 2}px`
+        ball.style.top = `${yMax - field.getBoundingClientRect().top - 10 - ball.height / 2}px`
+        // ball.style.bottom = `auto`
+        ball.style.left = `${event.clientX - field.getBoundingClientRect().left - 10 - ball.width / 2}px`
+        // ball.style.right = `auto`
         return
       }
 
       ball.style.left = `${event.clientX - xMin}px`;
-      ball.style.top = `${event.clientY -yMin}px`;
+      ball.style.top = `${event.clientY -yMin}px`; */
+
+
+      let fieldCoords = field.getBoundingClientRect()
+
+      const ballCoords = {
+        top: event.clientY - field.clientTop - ball.clientHeight / 2 - fieldCoords.top,
+        left: event.clientX - field.clientLeft - ball.clientWidth / 2 - fieldCoords.left,
+      }
+      
+      if (ballCoords.top < 0) ballCoords.top = 0
+      if (ballCoords.left < 0) ballCoords.left = 0
+
+      if (ballCoords.top > field.clientHeight - ball.clientHeight) {
+        ballCoords.top = field.clientHeight - ball.clientHeight
+      }
+
+      if (ballCoords.left > field.clientWidth - ball.clientWidth) {
+        ballCoords.left = field.clientWidth - ball.clientWidth
+      }
+
+      ball.style.left = ballCoords.left + 'px'
+      ball.style.top = ballCoords.top + 'px'
     }
 
   /* console.log(ball.width)
