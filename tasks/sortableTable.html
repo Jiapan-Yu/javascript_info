@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      border: 1px solid black;
+      padding: 4px;
+    }
+
+    th {
+      cursor: pointer;
+    }
+
+    th:hover {
+      background: yellow;
+    }
+  </style>
+</head>
+
+<body>
+
+  <table id="grid">
+    <thead>
+      <tr>
+        <th data-type="number">Age</th>
+        <th data-type="string">Name</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody">
+      <tr>
+        <td>5</td>
+        <td>John</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Pete</td>
+      </tr>
+      <tr>
+        <td>12</td>
+        <td>Ann</td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td>Eugene</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>Ilya</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+    // ...your code...
+    let tBodyRowsArr = [...tableBody.querySelectorAll('tr')]
+    document.querySelector('thead').onclick = (e) => {
+      if (e.target.dataset.type === 'number') {
+        tBodyRowsArr.sort((a, b) => {
+          return Number(a.firstElementChild.textContent) - Number(b.firstElementChild.textContent)
+        })
+
+
+        /* let tbodyElm = document.createElement('tbody')
+
+        // 不知道怎么将array转化为nodeList然后放到 innerHTML 值里面。nodeList不能放到 innerHTML 里面
+        tBodyRowsArr.forEach((v, i) => tbodyElm.appendChild(v))
+        tableBody.replaceWith(tbodyElm) */
+
+
+        tableBody.innerHTML = ''
+        tableBody.append(...tBodyRowsArr)
+      }
+
+      if (e.target.dataset.type === 'string') {
+        tBodyRowsArr.sort((a, b) => {
+          if (a.lastElementChild.textContent > b.lastElementChild.textContent) return 1
+          if (a.lastElementChild.textContent < b.lastElementChild.textContent) return -1
+
+          return 0
+        })
+
+        tableBody.innerHTML = ''
+        tableBody.append(...tBodyRowsArr)
+      }
+    }
+
+    /* if ([] == false) {
+      console.log(111);
+    } */
+  </script>
+
+</body>
+
+</html>
