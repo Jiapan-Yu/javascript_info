@@ -37,20 +37,47 @@
 
   <script>
     // ...your code...
+    // 创建 tooltip 元素，并添加一个类名
     let tooltipBox = document.createElement('div')
     tooltipBox.classList.add('tooltip')
 
     document.onmouseover = e => {
+      // 获取对应 hover 元素的 tooltip data
       let targetElm = e.target
       let tooltip = targetElm.dataset.tooltip
-      tooltipBox.innerHTML = tooltip
-      document.body.append(tooltipBox)
+
+      if (tooltip) {
+        tooltipBox.innerHTML = tooltip
+        targetElm.insertAdjacentElement('afterend', tooltipBox)
+
+        let tooltipBoxCoords = tooltipBox.getBoundingClientRect()
+        let targetElmCoords = targetElm.getBoundingClientRect()
+
+
+        let tooltipBoxOffsetTop = targetElmCoords.top - tooltipBoxCoords.height - 5
+        // tooltip 的 offsetTop 小于 0 时移到 targetElement 的下方
+        if (tooltipBoxOffsetTop > 0) {
+          tooltipBox.style.top = targetElmCoords.top - tooltipBoxCoords.height - 5 + 'px'
+        } else {
+          tooltipBox.style.top = targetElmCoords.bottom + 5 + 'px'
+        }
+
+
+        let targetElmOffsetHCenter = targetElmCoords.x + targetElmCoords.width / 2
+        let tooltipBoxOffsetHCenter = tooltipBoxCoords.x + tooltipBoxCoords.width / 2
+        // tooltip 的左侧中心距离大于 targetElement 的左侧中心距离时， tooltip 的 left 设置为 0
+        if (tooltipBoxOffsetHCenter > targetElmOffsetHCenter) {
+          tooltipBox.style.left = '0px'
+        } else {
+          tooltipBox.style.left = targetElmOffsetHCenter - tooltipBoxCoords.width / 2 + 'px'
+        }
+      }
     }
 
 
     document.onmouseout = e => {
-      let targetElm = e.target
-      let tooltip = targetElm.dataset.tooltip
+      let tooltipElm = document.querySelector('.tooltip')
+      tooltipElm && tooltipElm.remove()
     }
   </script>
 
