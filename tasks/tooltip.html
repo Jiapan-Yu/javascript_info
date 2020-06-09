@@ -14,6 +14,7 @@
       position: fixed;
       padding: 10px 20px;
       border: 1px solid #b3c9ce;
+      /* border-right-width: 100px; */
       border-radius: 4px;
       text-align: center;
       font: italic 14px/1.3 sans-serif;
@@ -51,28 +52,22 @@
 
       if (tooltip) {
         tooltipBox.innerHTML = tooltip
-        targetElm.insertAdjacentElement('afterend', tooltipBox)
+        document.body.append(tooltipBox)
 
-        let tooltipBoxCoords = tooltipBox.getBoundingClientRect()
         let targetElmCoords = targetElm.getBoundingClientRect()
+        let hOffset = targetElmCoords.x + (targetElmCoords.width - tooltipBox.offsetWidth) / 2
 
-
-        let tooltipBoxOffsetTop = targetElmCoords.top - tooltipBoxCoords.height - 5
-        // tooltip 的 offsetTop 小于 0 时移到 targetElement 的下方
-        if (tooltipBoxOffsetTop > 0) {
-          tooltipBox.style.top = targetElmCoords.top - tooltipBoxCoords.height - 5 + 'px'
-        } else {
-          tooltipBox.style.top = targetElmCoords.bottom + 5 + 'px'
+        // For any CSS property value that requires a unit of measure, remember 
+        // to include the appropriate unit
+        tooltipBox.style.left = hOffset + 'px'
+        if (hOffset < 0) {
+          tooltipBox.style.left = 0 + 'px'
         }
 
-
-        let targetElmOffsetHCenter = targetElmCoords.x + targetElmCoords.width / 2
-        let tooltipBoxOffsetHCenter = tooltipBoxCoords.x + tooltipBoxCoords.width / 2
-        // tooltip 的左侧中心距离大于 targetElement 的左侧中心距离时， tooltip 的 left 设置为 0
-        if (tooltipBoxOffsetHCenter > targetElmOffsetHCenter) {
-          tooltipBox.style.left = '0px'
-        } else {
-          tooltipBox.style.left = targetElmOffsetHCenter - tooltipBoxCoords.width / 2 + 'px'
+        let vOffset = targetElmCoords.y - tooltipBox.offsetHeight - 5
+        tooltipBox.style.top = vOffset + 'px'
+        if (vOffset < 0) {
+          tooltipBox.style.top = targetElmCoords.y + targetElmCoords.height + 5 + 'px'
         }
       }
     }
