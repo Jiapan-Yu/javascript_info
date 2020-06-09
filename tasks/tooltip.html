@@ -38,10 +38,13 @@
   <script>
     // ...your code...
     // 创建 tooltip 元素，并添加一个类名
-    let tooltipBox = document.createElement('div')
-    tooltipBox.classList.add('tooltip')
+    let tooltipBox
 
     document.onmouseover = e => {
+      // 创建 tooltip 元素，并添加一个类名
+      tooltipBox = document.createElement('div')
+      tooltipBox.className = 'tooltip'
+
       // 获取对应 hover 元素的 tooltip data
       let targetElm = e.target
       let tooltip = targetElm.dataset.tooltip
@@ -76,8 +79,10 @@
 
 
     document.onmouseout = e => {
-      let tooltipElm = document.querySelector('.tooltip')
-      tooltipElm && tooltipElm.remove()
+      if (tooltipBox) {
+        tooltipBox.remove()
+        tooltipBox = null
+      }
     }
   </script>
 
