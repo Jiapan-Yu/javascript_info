@@ -645,4 +645,26 @@ elem.dispatchEvent(hello) */
 
 
 // Hello, world!
-alert("I’m JavaScript!")
+// alert("I’m JavaScript!")
+
+
+
+// Variables
+/* let admin
+let name
+name = 'John'
+admin = name
+alert(admin)
+
+
+let earth
+let currentVisitorName */
+
+
+
+// Data types
+/* let name = 'Ilya'
+
+alert(`hello ${1}`)
+alert(`hello ${"name"}`)
+alert(`hello ${name}`) */
