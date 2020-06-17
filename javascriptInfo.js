@@ -779,7 +779,7 @@ if (i > 5) {
 
 
 // label
-outer:
+/* outer:
 for (let i = 0; i < 3; i++) {
   for (let j = 0; j < 3; j++) {
     let input = prompt(`Value at coords (${i},${j})`, '')
@@ -788,4 +788,22 @@ for (let i = 0; i < 3; i++) {
     if (!input) break outer;
   }
 }
-alert('Done!')
+alert('Done!') */
+
+
+
+// p5.js
+function setup() {
+  createCanvas(400, 400)
+}
+
+function draw() {
+  // background(220)
+
+  if (mouseIsPressed) {
+    fill(0)
+  } else {
+    fill(255)
+  }
+  ellipse(mouseX, mouseY, 80, 80)
+}
