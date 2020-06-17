@@ -668,3 +668,124 @@ let currentVisitorName */
 alert(`hello ${1}`)
 alert(`hello ${"name"}`)
 alert(`hello ${name}`) */
+
+
+
+// Conditional operators: if, '?'
+// task: The name of JavaScript
+/* let userInput = prompt(`what's the "official" name of JavaScript?`, ``)
+
+if (userInput && (userInput.toLowerCase() === 'ecmascript')) {
+  alert(`Right`)
+} else {
+  alert(`You don't know? "ECMAScript"!`)
+} */
+
+
+// task: Show the sign
+/* let userInput = prompt('please input a number: ', '')
+if (userInput > 0) {
+  alert(1)
+} else if (userInput < 0) {
+  alert(-1)
+} else {
+  alert(0)
+} */
+
+
+// let result = a + b < 4 ? 'Below' : 'Over'
+
+
+/* let message = (login == 'Employee') ? 'Hello' :
+  (login == 'Director') ? 'Greetings' :
+    (login == '') ? 'No login' :
+      '' */
+
+
+
+// Logical operators
+/* if (age >= 14 && age <= 90) {}
+
+if (!(age >= 14 && age <= 90)) {}
+if (age < 14 || age > 90) {} */
+
+
+/* let userInput = prompt("Who's there?", "")
+
+if (userInput === "Admin") {
+  let pwd = prompt("Password?", "")
+  if (pwd === "" || pwd === null) {
+    alert("Canceled")
+  } else if (pwd === "TheMaster") {
+    alert("Welcome")
+  } else {
+    alert("Wrong password")
+  }
+} else if (userInput === "" || userInput === null) {
+  alert("Canceled")
+} else {
+  alert("I don’t know you")
+} */
+
+
+
+// MDN: optional chaining
+/* let foo = { someFooProp: "hi" }
+
+console.log(foo.someFooProp?.toUpperCase())
+console.log(foo.someBarProp?.toUpperCase()) */
+
+
+/* let obj = {
+  func() {
+    alert("I'm a function inside an obj")
+  },
+  funcLong: function() {
+    alert("I'm another function inside an obj")
+  }
+}
+
+const { func, funcLong, funk } = obj
+func()
+funcLong()
+funk && funk()
+funk?.() */
+
+
+/* let customer = {
+  name: "Carl",
+  details: { age: 82 }
+}
+
+let city = customer?.city ?? 'unknown city'
+console.log(city) */
+
+
+
+// Loops: while and for
+/* let i = 0
+for(; i < 3;) {
+  alert(i++)
+} */
+
+
+// this way, 'continue' not working either
+/* let i = 6
+if (i > 5) {
+  alert(i);
+} else {
+  continue;
+} */
+
+
+// label
+outer:
+for (let i = 0; i < 3; i++) {
+  for (let j = 0; j < 3; j++) {
+    let input = prompt(`Value at coords (${i},${j})`, '')
+
+    // if an empty string or canceled, then break out of both loops
+    if (!input) break outer;
+  }
+}
+alert('Done!')
