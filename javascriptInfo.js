@@ -791,9 +791,69 @@ for (let i = 0; i < 3; i++) {
 alert('Done!') */
 
 
+/* for (let i = 2; i <= 10; i++) {
+  if (i % 2) continue
+
+  alert(i)
+} */
+
+
+/* let i = 0
+while(i < 3) {
+  alert( `number ${i}!` )
+  i++
+} */
+
+
+/* let flag = true
+while(flag) {
+  let userInput = prompt('Enters a number', '')
+  if (userInput > 100 || !userInput) flag = false
+} */
+
+/* let userInput
+do {
+  userInput = prompt("Enters a number that's greater than 100", 0)
+} while (userInput <= 100 && userInput) */
+
+
+/* let n = 20
+for (let i = 2; i < n; i++) {
+  let flag = true
+  for (let j = 2; j < i; j++) {
+    if (i === 2) console.log(i)
+
+    while (i % j === 0) {
+      flag = false
+      break
+    }
+  }
+  if (flag) console.log(i)
+} */
+
+/* let n = 20
+for (let i = 2; i < n; i++) {
+  let flag = true
+  for (let j = 2; j < i; j++) {
+    if (!(i % j)) flag = false
+  }
+  if (flag) console.log(i)
+} */
+
+let n = 10
+nextPrime:
+for (let i = 2; i <= n; i++) {
+  for (let j = 2; j < i; j++) {
+    // if (!(i % j)) continue nextPrime
+    if (i % j == 0) continue nextPrime
+  }
+  alert(`${n}以内（含）的质数： ` + i)
+}
+
+
 
 // p5.js
-function setup() {
+/* function setup() {
   createCanvas(400, 400)
 }
 
@@ -806,4 +866,4 @@ function draw() {
     fill(255)
   }
   ellipse(mouseX, mouseY, 80, 80)
-}
+} */
