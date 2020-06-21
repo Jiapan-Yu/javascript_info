@@ -840,7 +840,7 @@ for (let i = 2; i < n; i++) {
   if (flag) console.log(i)
 } */
 
-let n = 10
+/* let n = 10
 nextPrime:
 for (let i = 2; i <= n; i++) {
   for (let j = 2; j < i; j++) {
@@ -848,7 +848,7 @@ for (let i = 2; i <= n; i++) {
     if (i % j == 0) continue nextPrime
   }
   alert(`${n}以内（含）的质数： ` + i)
-}
+} */
 
 
 
@@ -867,3 +867,21 @@ function draw() {
   }
   ellipse(mouseX, mouseY, 80, 80)
 } */
+
+
+
+// d3.js
+let poemVerses = ["Always",
+  "in the middle",
+  "of our bloodiest battles",
+  "you lay down your arms",
+  "like flowering mines",
+  "to conquer me home."
+]
+
+let selection = d3.select("#viz")
+  .selectAll("p")
+  .data(poemVerses)
+  .enter()
+  .append("p")
+  .text("Click Me!")
