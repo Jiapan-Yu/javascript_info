@@ -871,7 +871,7 @@ function draw() {
 
 
 // d3.js
-let poemVerses = ["Always",
+/* let poemVerses = ["Always",
   "in the middle",
   "of our bloodiest battles",
   "you lay down your arms",
@@ -884,4 +884,96 @@ let selection = d3.select("#viz")
   .data(poemVerses)
   .enter()
   .append("p")
-  .text("Click Me!")
+  .text("Click Me!"); */
+
+
+
+// The "switch" statement
+/* if (browser === 'Edge') {
+  alert('')
+} else if (browser === 'Chrome'
+  || browser === 'Firefox'
+  || browser === 'Safari'
+  || browser === 'Opera') {
+  alert('')
+} else {
+  alert('')
+} */
+
+
+/* let a = +prompt('a?', '');
+
+switch (a) {
+  case 0:
+    alert(0)
+    break
+
+  case 1:
+    alert(1)
+    break
+
+  case 2:
+  case 3:
+    alert('2,3')
+    break
+} */
+
+
+
+// Functions
+/* function showMessage(from, text = 'no text') {
+  alert(from + ': ' + text)
+}
+showMessage('Ann') */
+
+
+/* function showCount(count) {
+  alert(count ?? 'unknown')
+}
+showCount(0)
+showCount(null)
+showCount() */
+
+
+/* let obj = {
+  name: 'derek',
+  gender: 'male'
+}
+console.log(obj)
+
+function getName(obj) {
+  obj.name = 'joshua'
+  return obj.name
+}
+
+alert(getName(obj))
+console.log(obj) */
+
+
+/* function checkAge(age) {
+  return age > 18 ? true : confirm('Did parents allow you?')
+
+  // return age > 18 || confirm('Did parents allow you?')
+} */
+
+
+/* function min(a, b) {
+  return a > b ? b : a
+}
+console.log(min(2, 5))
+console.log(min(3, -1))
+console.log(min(1, 1)) */
+
+
+/* let x = +prompt('x?', '')
+let n = +prompt('n?', '')
+
+function pow(x, n) {
+  if (n > 1) {
+    x *= x
+    n--
+  }
+  return x
+}
+
+alert(pow(x, n)) */
