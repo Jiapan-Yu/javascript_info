@@ -848,6 +848,9 @@ for (let i = 2; i <= n; i++) {
     if (i % j == 0) continue nextPrime
   }
   alert(`${n}以内（含）的质数： ` + i)
+  if (i === 5) {
+    console.log(unde)
+  }
 } */
 
 
@@ -977,3 +980,40 @@ function pow(x, n) {
 }
 
 alert(pow(x, n)) */
+
+
+/* ask(
+  "Do you agree?",
+  () => alert("You agreed."),
+  () => alert("You canceled the execution.")
+) */
+
+
+
+// Coding Style
+/**
+ * Returns x raised to the n-th power
+ * 
+ * multiplies x by n times
+ * @param {number} x - The number to multiply
+ * @param {number} n - The number of times x should be multiplied by itself
+ */
+/* function pow(x, n) {
+  let result = 1;
+
+  for (let i = 0; i < n; i++) {
+    result *= x;
+  }
+
+  return result;
+}
+
+let x = prompt("x?", '');
+let n = prompt("n?", '');
+
+if (n <= 0) {
+  alert(`Power ${n} is not supported, please enter an integer number greater 
+         than zero`);
+} else {
+  alert( pow(x, n) );
+} */
