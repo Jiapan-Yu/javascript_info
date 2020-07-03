@@ -215,7 +215,7 @@ let globalObject = this
 
 // No matter what, foo's 'this' is set to what it was when it was created, here the 'global' object.
 // The same applies to arrow functions created inside other functions: their 'this' remains that of 
-// the enclosing lexical context
+// the enclosing lexical context (Arrow functions have no “this”)
 // let foo = (() => this)
 
 // the value of 'this' is determined by how a function is called (runtime binding)
@@ -1060,7 +1060,7 @@ for (let salary in salaries) {
 alert(sum) */
 
 
-let menu = {
+/* let menu = {
   width: 200,
   height: 300,
   title: "My menu"
@@ -1076,4 +1076,71 @@ function multiplyNumeric(obj) {
   }
 }
 
-console.log(menu)
+console.log(menu) */
+
+
+// Object copying, references
+// Object.assign(dest, [obj1, obj2]) // return dest
+
+/* let user = { name: "John" }
+
+let permissions1 = { canView: true }
+let permissions2 = { canEdit: true }
+
+Object.assign(user, permissions1, permissions2)
+console.log(user) */
+
+
+
+// Object methods, "this"
+/* function makeUser() {
+  return {
+    name: "John",
+    ref() {
+      return this
+    }
+  }
+}
+
+let user = makeUser()
+
+alert( user.ref().name ) */
+
+
+/* let calculator = {
+  read() {
+    let val1 = +prompt("Enter the first number", "")
+    let val2 = +prompt("Enter the second number", "")
+    this.value1 = val1
+    this.value2 = val2
+  },
+  sum() {
+    return this.value1 + this.value2
+  },
+  mul() {
+    return this.value1 * this.value2
+  },
+}
+
+calculator.read()
+alert( calculator.sum() )
+alert( calculator.mul() ) */
+
+
+let ladder = {
+  step: 0,
+  up() {
+    this.step++;
+    return this
+  },
+  down() {
+    this.step--;
+    return this
+  },
+  showStep: function() { // shows the current step
+    alert( this.step );
+    return this
+  }
+}
+
+ladder.up().up().down().showStep()
