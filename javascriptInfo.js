@@ -874,7 +874,7 @@ function draw() {
 
 
 // d3.js
-/* let poemVerses = ["Always",
+let poemVerses = ["Always",
   "in the middle",
   "of our bloodiest battles",
   "you lay down your arms",
@@ -887,7 +887,12 @@ let selection = d3.select("#viz")
   .data(poemVerses)
   .enter()
   .append("p")
-  .text("Click Me!"); */
+  .text("Click Me!")
+  .on("click", d => {
+    console.log(d)
+    console.log(this)
+    this.innerText = d
+  })
 
 
 
@@ -1127,7 +1132,7 @@ alert( calculator.sum() )
 alert( calculator.mul() ) */
 
 
-let ladder = {
+/* let ladder = {
   step: 0,
   up() {
     this.step++;
@@ -1143,4 +1148,45 @@ let ladder = {
   }
 }
 
-ladder.up().up().down().showStep()
+ladder.up().up().down().showStep() */
+
+
+
+// Constructor, operator "new"
+/* function Calculator() {
+  this.read = function() {
+    this.a = +prompt("a?", "0")
+    this.b = +prompt("b?", "0")
+  }
+
+  this.sum = function() {
+    return this.a + this.b
+  }
+
+  this.mul = function() {
+    return this.a * this.b
+  }
+}
+
+let calculator = new Calculator()
+calculator.read()
+
+alert( "Sum=" + calculator.sum() )
+alert( "Mul=" + calculator.mul() ) */
+
+
+function Accumulator(startingValue = null) {
+  this.value = startingValue
+
+  this.read = function() {
+    let userInput = +prompt("new number?", "0")
+    this.value += userInput
+  }
+}
+
+let accumulator = new Accumulator()
+
+accumulator.read()
+accumulator.read()
+
+alert(accumulator.value)
