@@ -1175,7 +1175,7 @@ alert( "Sum=" + calculator.sum() )
 alert( "Mul=" + calculator.mul() ) */
 
 
-function Accumulator(startingValue = null) {
+/* function Accumulator(startingValue = null) {
   this.value = startingValue
 
   this.read = function() {
@@ -1189,4 +1189,44 @@ let accumulator = new Accumulator()
 accumulator.read()
 accumulator.read()
 
-alert(accumulator.value)
+alert(accumulator.value) */
+
+
+
+// Optional chaining '?.'
+// user.address?.street
+
+
+
+// Object to primitive conversion
+let user = {
+  name: "John",
+  money: 1000,
+
+  [Symbol.toPrimitive](hint) {
+    alert(`hint: ${hint}`)
+    // return hint == "string" ? `{name: "${this.name}"}` : this.money
+    return {
+      [this.name]: "Joshua"
+    }
+  }
+}
+
+alert(user.valueOf())
+console.log(user.toString())
+console.log(user)
+// alert(+user)
+// alert(user + 500)
+
+
+// In the absence of Symbol.toPrimitive and valueOf, toString will handle all primitive conversions
+/* let user = {
+  name: "John",
+
+  toString() {
+    return this.name
+  }
+}
+
+alert(user)
+alert(user + 500) */
