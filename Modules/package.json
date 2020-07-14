@@ -1,0 +1,16 @@
+{
+  "name": "Modules",
+  "version": "1.0.0",
+  "description": "",
+  "main": "say.js",
+  "scripts": {
+    "start": "webpack"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12"
+  }
+}
