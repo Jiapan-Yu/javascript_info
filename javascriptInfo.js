@@ -1199,7 +1199,7 @@ alert(accumulator.value) */
 
 
 // Object to primitive conversion
-let user = {
+/* let user = {
   name: "John",
   money: 1000,
 
@@ -1216,7 +1216,7 @@ alert(user.valueOf())
 console.log(user.toString())
 console.log(user)
 // alert(+user)
-// alert(user + 500)
+// alert(user + 500) */
 
 
 // In the absence of Symbol.toPrimitive and valueOf, toString will handle all primitive conversions
@@ -1230,3 +1230,80 @@ console.log(user)
 
 alert(user)
 alert(user + 500) */
+
+
+
+// Methods of primitives
+/* let str = "Hello"
+
+str.test = 5
+
+alert(str.test) */
+
+
+
+// Numbers
+// alert(7e2)
+
+/* alert(0b11)
+alert(0o11)
+alert(0x11) */
+
+/* alert( 6.35.toFixed(1) )
+
+alert( Math.round(6.35 * 10) / 10 ) */
+
+/* function readNumber() {
+  // let userInput = prompt("Please enter a value", "")
+
+  // if (userInput === "" || userInput === null) {
+  //   return null
+  // }
+
+  // while (Number.isNaN(+userInput)) {
+  //   userInput = prompt("Please enter a value", "")
+  // }
+
+  // return +userInput
+
+
+  let userInput = prompt("Please enter a value", "")
+
+  if (userInput === "" || userInput === null) {
+    return null
+  }
+
+  while (!isFinite(userInput)) {
+    userInput = prompt("Please enter a value", "")
+  }
+
+  return +userInput
+}
+
+console.log(readNumber()) */
+
+
+/* let i = 0
+while (i != 2.4) {
+  i += 0.2
+}
+
+console.log("i = 2.4") */
+
+
+/* function random(min, max) {
+  return Math.random() * (max - min) + min
+}
+
+alert( random(1, 5) )
+alert( random(1, 5) )
+alert( random(1, 5) ) */
+
+
+function random(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
+alert( random(3, 5) )
+// alert( random(1, 5) )
+// alert( random(1, 5) )
