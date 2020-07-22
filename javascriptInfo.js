@@ -874,7 +874,7 @@ function draw() {
 
 
 // d3.js
-let poemVerses = ["Always",
+/* let poemVerses = ["Always",
   "in the middle",
   "of our bloodiest battles",
   "you lay down your arms",
@@ -892,7 +892,7 @@ let selection = d3.select("#viz")
     console.log(d)
     console.log(this)
     this.innerText = d
-  })
+  }) */
 
 
 
@@ -1300,10 +1300,58 @@ alert( random(1, 5) )
 alert( random(1, 5) ) */
 
 
-function random(min, max) {
+/* function random(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
 alert( random(3, 5) )
 // alert( random(1, 5) )
-// alert( random(1, 5) )
+// alert( random(1, 5) ) */
+
+
+
+// Strings
+// let guestLists = `Guests:
+//   * John
+//   * Pete
+//   * Marry
+// `
+
+let guestLists = "Guests: \n * John \n * Pete \n * Mary"
+
+// alert(guestLists)
+
+// alert("the backslash: \\")
+
+// let str = `Hello`
+
+// the first character
+// alert(str[0])
+// alert(str.charAt(0))
+
+// the last character
+// alert(str[str.length - 1])
+
+// for (let char of str) alert(char)
+
+
+// let str = `Widget with id`
+
+// alert(str.indexOf('id', 2))
+
+/* let fromIndex = 0
+while (str.indexOf('id', fromIndex) !== -1) {
+  alert(str.indexOf('id', fromIndex))
+
+  fromIndex = str.indexOf('id', fromIndex) + 1
+} */
+
+// let pos = -1
+// alert(pos = str.indexOf('id', 2))
+
+
+let str = "stringify"
+
+alert( str.slice(2) )
+
+alert( str.substr(-1, 1) )
