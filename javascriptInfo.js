@@ -1317,7 +1317,7 @@ alert( random(3, 5) )
 //   * Marry
 // `
 
-let guestLists = "Guests: \n * John \n * Pete \n * Mary"
+// let guestLists = "Guests: \n * John \n * Pete \n * Mary"
 
 // alert(guestLists)
 
@@ -1350,8 +1350,64 @@ while (str.indexOf('id', fromIndex) !== -1) {
 // alert(pos = str.indexOf('id', 2))
 
 
-let str = "stringify"
+// let str = "stringify"
 
-alert( str.slice(2) )
+// alert( str.slice(2) )
 
-alert( str.substr(-1, 1) )
+// alert( str.substr(-1, 1) )
+
+
+// alert( 'Österreich'.localeCompare('Zealand') )
+
+// alert( typeof '𝒳'.charCodeAt(0) );
+// alert( '𝒳'.charCodeAt(0).toString(16) );
+
+
+/* alert( 'S\u0307\u0323' )
+alert( '\u1e68' ) */
+
+// alert( "hello\nworld" )
+
+
+/* function ucFirst(str) {
+  if (!str) return ''
+
+  let result = str[0].toUpperCase() + str.slice(1)
+  return result
+}
+
+alert(ucFirst("john")) */
+
+
+/* function checkSpam(str) {
+  let lowercaseStr = str.toLowerCase()
+
+  if (lowercaseStr.includes('viagra') || lowercaseStr.includes('xxx')) {
+    return true
+  }
+
+  return false
+}
+
+alert( checkSpam('buy ViAgRA now') )
+alert( checkSpam('free xxxxx') )
+alert( checkSpam("innocent rabbit") ) */
+
+
+/* function truncate(str, maxlength) {
+  if (str.length <= maxlength) {
+    return str
+  }
+
+  return str.slice(0, maxlength - 1) + '...'
+}
+
+alert( truncate("What I'd like to tell on this topic is:", 20) )
+alert( truncate("Hi everyone!", 20) ) */
+
+
+function extractCurrencyValue(str) {
+  return +str.slice(1)
+}
+
+alert( extractCurrencyValue('$120') === 120 )
