@@ -117,7 +117,7 @@ p {
 
 
 /* box-shadow property from MDN */
-div {
+/* div {
   width: 20em;
   height: 20em;
   text-align: center;
@@ -129,6 +129,23 @@ p {
   width: 10em;
   box-shadow: 0 0 0 2rem #F4AAB9,
               0 0 0 4rem #66CCFF;
-  /* margin: 4em; */
   padding: 1em;
+} */
+
+
+/* BFC from MDN */
+.blue, .red-inner {
+  height: 50px;
+  margin: 10px 0;
+}
+
+.blue {
+  background: blue;
+}
+
+.red-outer {
+  /* overflow: hidden; */
+  margin: 10px 0;
+  display: inline-block;
+  background: red;
 }

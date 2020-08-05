@@ -27,19 +27,24 @@
   <ul id="thumbs" hidden>
     <!-- the browser shows a small built-in tooltip on hover with the text from "title" attribute -->
     <li>
-      <a href="https://en.js.cx/gallery/img2-lg.jpg" title="Image 2"><img src="https://en.js.cx/gallery/img2-thumb.jpg"></a>
+      <a href="https://en.js.cx/gallery/img2-lg.jpg" title="Image 2"><img
+          src="https://en.js.cx/gallery/img2-thumb.jpg"></a>
     </li>
     <li>
-      <a href="https://en.js.cx/gallery/img3-lg.jpg" title="Image 3"><img src="https://en.js.cx/gallery/img3-thumb.jpg"></a>
+      <a href="https://en.js.cx/gallery/img3-lg.jpg" title="Image 3"><img
+          src="https://en.js.cx/gallery/img3-thumb.jpg"></a>
     </li>
     <li>
-      <a href="https://en.js.cx/gallery/img4-lg.jpg" title="Image 4"><img src="https://en.js.cx/gallery/img4-thumb.jpg"></a>
+      <a href="https://en.js.cx/gallery/img4-lg.jpg" title="Image 4"><img
+          src="https://en.js.cx/gallery/img4-thumb.jpg"></a>
     </li>
     <li>
-      <a href="https://en.js.cx/gallery/img5-lg.jpg" title="Image 5"><img src="https://en.js.cx/gallery/img5-thumb.jpg"></a>
+      <a href="https://en.js.cx/gallery/img5-lg.jpg" title="Image 5"><img
+          src="https://en.js.cx/gallery/img5-thumb.jpg"></a>
     </li>
     <li>
-      <a href="https://en.js.cx/gallery/img6-lg.jpg" title="Image 6"><img src="https://en.js.cx/gallery/img6-thumb.jpg"></a>
+      <a href="https://en.js.cx/gallery/img6-lg.jpg" title="Image 6"><img
+          src="https://en.js.cx/gallery/img6-thumb.jpg"></a>
     </li>
   </ul>
 
@@ -146,7 +151,15 @@
 
 
   <!-- box-shadow property from MDN -->
-  <div><p>Hello Word</p></div>
+  <!-- <div><p>Hello Word</p></div> -->
+
+
+  <!-- BFC from MDN -->
+  <div class="blue"></div>
+  <div class="red-outer">
+    <div class="red-inner" onclick="startLoop()" style="cursor: pointer;">red inner</div>
+    <button class="info" onclick="handleBtnOnClick()">click me</button>
+  </div>
 
 
   <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
