@@ -1411,3 +1411,56 @@ function extractCurrencyValue(str) {
 }
 
 alert( extractCurrencyValue('$120') === 120 )
+
+
+// event loop from JSConf of youtube （21:55 starts talk about render and he 
+// refers to an example about blocking at 7:45)
+// 看视频的时候，一些细节方面的还是没捕捉到
+/* console.log('hi')
+
+setTimeout(function() {
+  console.log('following')
+}, 0)
+
+console.log('JSConfEU') */
+
+
+/* function asyncForEach(array, cb) {
+  array.forEach(function (v, i, array) {
+    setTimeout(cb(v), 0)
+  })
+}
+
+asyncForEach([1, 2, 3, 4], function (i) {
+  console.log(i)
+}) */
+
+function startLoop() {
+  for (let i = 0; i < 10e9; i++) {
+    if (false) console.log(' ')
+  }
+  console.log('finish loop')
+}
+
+function handleBtnOnClick() {
+  console.log('...321')
+  setTimeout(() => {
+    alert('async timeout')
+  }, 12000)
+}
+
+/* setTimeout(function() {
+  console.log('hi1')
+}, 0)
+
+setTimeout(function() {
+  console.log('hi2')
+}, 0)
+
+setTimeout(function() {
+  console.log('hi3')
+}, 0)
+
+setTimeout(function() {
+  console.log('hi4')
+}, 0) */
