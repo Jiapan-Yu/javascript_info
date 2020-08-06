@@ -1504,6 +1504,29 @@ if (arr.length)
 alert( sumInput() ) */
 
 
+// A maximal subarray
+function getMaxSubSum(arr) {
+  let subArr = []
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] <= 0) continue
+
+    for (let j = i; j < arr.length; j++) {
+      if (arr[j] > Math.abs(arr[j+1])) {
+        subArr.push(arr[j])
+      }
+    }
+  }
+
+  let sum = 0
+  for (let i of subArr) {
+    sum += i
+  }
+
+  return sum
+}
+
+console.log(getMaxSubSum([100, -9, 2, -3, 5]))
 
 
 // event loop from JSConf of youtube （21:55 starts talk about render and he 
