@@ -211,7 +211,7 @@ foo.call(7)
 foo.call('bar') */
 
 
-let globalObject = this
+// let globalObject = this
 
 // No matter what, foo's 'this' is set to what it was when it was created, here the 'global' object.
 // The same applies to arrow functions created inside other functions: their 'this' remains that of 
@@ -1406,11 +1406,104 @@ alert( truncate("What I'd like to tell on this topic is:", 20) )
 alert( truncate("Hi everyone!", 20) ) */
 
 
-function extractCurrencyValue(str) {
+/* function extractCurrencyValue(str) {
   return +str.slice(1)
 }
 
-alert( extractCurrencyValue('$120') === 120 )
+alert( extractCurrencyValue('$120') === 120 ) */
+
+
+
+// Arrays
+/* let person = ['Apple', { name: 'John' }, true, function() { return 'hello' }]
+
+alert(person[1].name)
+alert(person[3]()) */
+
+/* let fruits = ['Apple', 'Orange', 'Pear']
+alert( fruits.shift() )
+alert( fruits ) */
+
+
+/* let arr = []
+arr[123] = 'John'
+alert( arr.length ) */
+
+
+/* let arr = [1, 2, 3]
+
+alert( arr )
+alert( String(arr) === '1,2,3') */
+
+
+/* let styles = ['Jazz', 'Blues']
+alert( styles )
+
+styles.push('Rock-n-Roll')
+alert( styles )
+styles[Math.floor(styles.length / 2)] = 'Classics'
+alert( styles )
+
+let firstValue = styles.shift()
+// alert(firstValue)
+alert( styles )
+
+styles.unshift('Rap', 'Reggae')
+alert( styles ) */
+
+
+/* let arr = ['a', 'b']
+
+arr.push(function() {
+  alert( this )
+})
+
+arr[2]() */
+
+
+/* let arr = []
+function sumInput() {
+  let userInput = prompt('Enter a value:', '')
+  
+  while (
+    !(userInput === ''
+    || userInput === null
+    || +userInput === NaN)
+  ) {
+    arr.push(+userInput)
+    userInput = prompt('Enter a value:', '')
+  }
+}
+
+console.log(arr)
+
+sumInput()
+
+if (arr.length)
+  alert(arr.reduce((acc, val) => acc + val)) */
+
+/* function sumInput() {
+  let arr = []
+
+  while (true) {
+    let userInput = prompt('Enter a value:', 0)
+
+    if (userInput === '' || userInput === null || +userInput === NaN) break
+
+    arr.push(+userInput)
+  }
+
+  let sum = 0
+  for (let i of arr) {
+    sum += i
+  }
+
+  return sum
+}
+
+alert( sumInput() ) */
+
+
 
 
 // event loop from JSConf of youtube （21:55 starts talk about render and he 
