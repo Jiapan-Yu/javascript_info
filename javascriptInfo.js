@@ -1508,13 +1508,39 @@ alert( sumInput() ) */
 function getMaxSubSum(arr) {
   let subArr = []
 
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] <= 0) continue
+  /* for (let i = 0; i < arr.length; i++) {
+    if (arr[i] < 0) continue
 
-    for (let j = i; j < arr.length; j++) {
-      if (arr[j] > Math.abs(arr[j+1])) {
-        subArr.push(arr[j])
+    subArr.push(arr[i])
+
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[j] >= 0) subArr.push(arr[j])
+
+      if (arr[j] < 0 && Math.abs(b) <= arr[j+1]) subArr.push[arr[j]]
+
+      if (arr[j] < 0 && arr[i] >= Math.abs(arr[j])) subArr.push(j)
+    }
+  } */
+
+  let i = 0
+
+  outer:
+  while (arr[i] >= 0) {
+    subArr.push(arr[i])
+
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[j] >= 0) {
+        subArr.push(arr[j]) 
+        continue
       }
+
+      if (arr[j] < 0 && Math.abs(arr[j]) <= arr[j+1]) {
+        subArr.push[arr[j]]
+        continue
+      }
+
+      i = j + 1
+      continue outer
     }
   }
 
@@ -1526,7 +1552,13 @@ function getMaxSubSum(arr) {
   return sum
 }
 
-console.log(getMaxSubSum([100, -9, 2, -3, 5]))
+// console.log(getMaxSubSum([100, -9, 2, -3, 5]))
+
+// console.log(getMaxSubSum([-1, 2, 3, -9]))
+// console.log(getMaxSubSum([2, -1, 2, 3, -9]))
+// console.log(getMaxSubSum([-1, 2, 3, -9, 11]))
+// console.log(getMaxSubSum([-2, -1, 1, 2]))
+console.log(getMaxSubSum([1, 2, 3]))
 
 
 // event loop from JSConf of youtube （21:55 starts talk about render and he 
