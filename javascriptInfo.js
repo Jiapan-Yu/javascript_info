@@ -1530,11 +1530,11 @@ function getMaxSubSum(arr) {
 
     for (let j = i + 1; j < arr.length; j++) {
       if (arr[j] >= 0) {
-        subArr.push(arr[j]) 
+        subArr.push(arr[j])
         continue
       }
 
-      if (arr[j] < 0 && Math.abs(arr[j]) <= arr[j+1]) {
+      if (arr[j] < 0 && Math.abs(arr[j]) <= arr[j + 1]) {
         subArr.push[arr[j]]
         continue
       }
@@ -1558,7 +1558,183 @@ function getMaxSubSum(arr) {
 // console.log(getMaxSubSum([2, -1, 2, 3, -9]))
 // console.log(getMaxSubSum([-1, 2, 3, -9, 11]))
 // console.log(getMaxSubSum([-2, -1, 1, 2]))
-console.log(getMaxSubSum([1, 2, 3]))
+// console.log(getMaxSubSum([1, 2, 3]))
+
+
+
+// Array methods
+/* let arr = ['I', 'study', 'javascript', 'right', 'now']
+
+arr.splice(0, 3, "Let's", "dance")
+
+console.log(arr) */
+
+/* let arr = [1, 2, 5]
+
+arr.splice(-1, 0, 3, 4)
+
+alert(arr) */
+
+/* let arr = [1, 2]
+
+let arrayLike = {
+  0: "something",
+  1: "else",
+  [Symbol.isConcatSpreadable]: true,
+  length: 2
+}
+
+console.log(arr.concat(arrayLike)) */
+
+// not working, don't know why
+// because JavaScript does not assume a semicolon before 
+// square brackets, see https://javascript.info/structure#semicolon
+// ["Bilbo", "Gandalf", "Nazgul"].forEach(alert);
+
+/* let arr = ["Bilbo", "Gandalf", "Nazgul"]
+arr.forEach(alert); */
+
+/* let users = [
+  {id: 1, name: "John"},
+  {id: 2, name: "Pete"},
+  {id: 3, name: "Mary"},
+]
+
+let someUsers = users.filter(v => v.id < 3)
+
+alert(someUsers.length) */
+
+
+/* let arr = [1, 2, 15]
+
+// let result = arr.sort()
+let result = arr.reverse()
+
+// alert(result === arr)
+console.log(result === arr) */
+
+
+/* let arr = ['Bilbo', 'Gandalf', 'Nazgul']
+
+let str = arr.join(';')
+
+console.log(str) */
+
+
+/* let arr = []
+
+// TypeError: Reduce of empty array with no initial value
+let result = arr.reduce((acc, current) => acc + current)
+
+console.log(result) */
+
+
+/* let army = {
+  minAge: 18,
+  maxAge: 27,
+  canJoin(user) {
+    return user.age >= this.minAge && user.age < this.maxAge
+  },
+}
+
+let users = [
+  {age: 17},
+  {age: 27},
+  {age: 22},
+  {age: 18},
+]
+
+let result = users.filter(army.canJoin, army)
+console.log(result) */
+
+
+// Tasks
+/* function camelize(str) {
+  // let camelizedArr = str.split('-').map((v, index) => {
+  //   if (index === 0) return v
+
+  //   return v[0].toUpperCase() + v.slice(1)
+  // })
+
+  // return camelizedArr.join("")
+
+
+  return str
+    .split('-')
+    .map((v, index) => index === 0 ? v : v[0].toUpperCase() + v.slice(1))
+    .join("")
+}
+
+console.log(camelize("background-color"))
+console.log(camelize("list-style-image"))
+console.log(camelize("-webkit-transition")) */
+
+
+/* function filterRange(arr, a, b) {
+  return arr.filter(v => v >= a && v <= b)
+}
+
+let arr = [5, 3, 8, 1];
+let filtered = filterRange(arr, 1, 4);
+console.log( filtered );
+console.log( arr ); */
+
+
+/* let arr = [5, 3, 8, 1]
+
+function filterRangeInPlace(arr, a, b) {
+  arr.forEach((v, index) => v < a || v > b ? arr.splice(index, 1) : '')  
+}
+
+filterRangeInPlace(arr, 1, 4)
+
+console.log( arr ) */
+
+
+/* let arr = [5, 2, 1, -10, 8]
+
+arr.sort((a, b) => b - a)
+
+console.log( arr ) */
+
+
+/* function copySorted(arr) {
+  let arrCopy = arr.slice()
+  arrCopy.sort()
+  
+  return arrCopy
+}
+
+let arr = ["HTML", "JavaScript", "CSS"]
+let sorted = copySorted(arr)
+
+console.log( sorted )
+console.log( arr ) */
+
+
+function Calculator() {
+  // this = {}
+
+  this.calculate = function (str) {
+    let resultArr = str.split(" ")
+
+    switch (resultArr[1]) {
+      case "+":
+        return +resultArr[0] + +resultArr[2]
+        break;
+      case "-":
+        return +resultArr[0] - +resultArr[2]
+        break;
+      default: break;     
+    }
+  }
+
+  // return this
+}
+
+let calc = new Calculator()
+console.log(calc.calculate("3 + 7"))
+
 
 
 // event loop from JSConf of youtube （21:55 starts talk about render and he 
