@@ -1712,21 +1712,25 @@ console.log( sorted )
 console.log( arr ) */
 
 
-function Calculator() {
+/* function Calculator() {
   // this = {}
 
-  this.calculate = function (str) {
-    let resultArr = str.split(" ")
+  this.methods = {
+    "+": (a, b) => a + b,
+    "-": (a, b) => a - b,
+  }
 
-    switch (resultArr[1]) {
-      case "+":
-        return +resultArr[0] + +resultArr[2]
-        break;
-      case "-":
-        return +resultArr[0] - +resultArr[2]
-        break;
-      default: break;     
-    }
+  this.calculate = function (str) {
+    let resultArr = str.split(" "),
+      a = +resultArr[0],
+      op = resultArr[1],
+      b = +resultArr[2];
+
+    return this.methods[op](a, b)
+  }
+
+  this.addMethod = function(name, func) {
+    this.methods[name] = func
   }
 
   // return this
@@ -1734,6 +1738,56 @@ function Calculator() {
 
 let calc = new Calculator()
 console.log(calc.calculate("3 + 7"))
+
+let powerCalc = new Calculator;
+powerCalc.addMethod("*", (a, b) => a * b);
+powerCalc.addMethod("/", (a, b) => a / b);
+powerCalc.addMethod("**", (a, b) => a ** b);
+
+let result = powerCalc.calculate("2 ** 3");
+console.log( result ); // 8 */
+
+
+/* let john = { name: "John", age: 25 };
+let pete = { name: "Pete", age: 30 };
+let mary = { name: "Mary", age: 28 };
+
+let users = [ john, pete, mary ];
+
+let names = users.map(v => v.name)
+
+console.log( names ); // John, Pete, Mary */
+
+
+/* let john = { name: "John", surname: "Smith", id: 1 };
+let pete = { name: "Pete", surname: "Hunt", id: 2 };
+let mary = { name: "Mary", surname: "Key", id: 3 };
+
+let users = [ john, pete, mary ];
+
+let usersMapped = users.map(v => {
+  return {
+    fullName: v.name + " " + v.surname,
+    id: v.id
+  }
+})
+
+console.log(usersMapped) */
+
+
+let john = { name: "John", age: 25 };
+let pete = { name: "Pete", age: 30 };
+let mary = { name: "Mary", age: 28 };
+
+let arr = [ pete, john, mary ];
+
+function sortByAge(users) {
+  users.sort((a, b) => a.age - b.age)
+}
+
+sortByAge(arr);
+
+console.log(arr)
 
 
 
