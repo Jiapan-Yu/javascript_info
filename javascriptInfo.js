@@ -1842,3 +1842,61 @@ setTimeout(function() {
 setTimeout(function() {
   console.log('hi4')
 }, 0) */
+
+
+
+// Big O -- Cracking the Coding Interview
+/* function sum(n) {
+  if (n <= 0) {
+    return 0
+  }
+
+  return n + sum(n - 1)
+}
+alert(sum(1)) */
+
+
+/* function pairSumSequence(n) {
+  let sum = 0
+  for (let i = 0; i < n; i++) {
+    sum += pairSum(i, i + 1)
+  }
+
+  return sum
+}
+
+function pairSum(a, b) {
+  return a + b
+}
+
+alert(pairSumSequence(2)) */
+
+
+/* // n = 1
+function f() {
+  if (n <= 1) return 1
+}
+
+// n = 2
+function f() {
+  return f(1) + f(1) // return 2
+}
+
+// n = 3
+function f() {
+  return f(2) + f(2) // return 4
+}
+
+// n = 4
+function f() {
+  return f(3) + f(3) // return 8
+}
+
+
+function f(n) {
+  if (n <= 1) return 1
+
+  return f(n-1) + f(n-1)
+}
+
+console.log(f(4)) */
