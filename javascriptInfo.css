@@ -134,6 +134,8 @@ p {
 
 
 /* BFC from MDN */
+/* Creating a new BFC to avoid the margin collapsing between two neighbor div */
+/* "neighbor div" 可以是相邻的也可以是嵌套的 */
 .blue, .red-inner {
   height: 50px;
   margin: 10px 0;
@@ -144,8 +146,9 @@ p {
 }
 
 .red-outer {
-  /* overflow: hidden; */
-  margin: 10px 0;
-  display: inline-block;
+  overflow: hidden;
+  margin: 15px 0;
+  width: 200px;
+  /* display: inline-block; */
   background: red;
 }
