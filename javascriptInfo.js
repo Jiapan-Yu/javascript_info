@@ -225,7 +225,7 @@ foo.call('bar') */
 
 // check strict mode
 // let foo = function () { return !this } // if 'strict' mode, this wil be undefined,
-// otherwise the global object
+// otherwise the global object. But not applying to arrow functions
 // console.log(foo())
 
 // let obj = {func: foo}
