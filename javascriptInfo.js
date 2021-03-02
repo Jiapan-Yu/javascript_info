@@ -1775,7 +1775,7 @@ let usersMapped = users.map(v => {
 console.log(usersMapped) */
 
 
-let john = { name: "John", age: 25 };
+/* let john = { name: "John", age: 25 };
 let pete = { name: "Pete", age: 30 };
 let mary = { name: "Mary", age: 28 };
 
@@ -1787,7 +1787,126 @@ function sortByAge(users) {
 
 sortByAge(arr);
 
-console.log(arr)
+console.log(arr) */
+
+
+
+// Map and Set
+/* let map = new Map()
+
+map.set('1', 'str1')
+map.set(1, 'num1')
+map.set(true, 'bool1')
+
+console.log(map.get('1'))
+console.log(map.get(1))
+console.log(map.get(true)) */
+
+// create a map from an object
+/* let obj = {
+  name: "John",
+  age: 30
+};
+
+let map = new Map(Object.entries(obj));
+
+console.log(map.get("name")) */
+
+// Tasks
+/* function unique(arr) {
+  return [...new Set(arr)]
+}
+
+let values = ["Hare", "Krishna", "Hare", "Krishna",
+  "Krishna", "Krishna", "Hare", "Hare", ":-O"
+];
+
+alert( unique(values) ); */
+
+let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
+
+function aclean(arr) {
+  let sortedNewArr = []
+  for (let i = 0; i < arr.length; i++) {
+    // 数组的元素全部转为小写
+    let elm = arr[i].toLowerCase();
+
+    // convert an iterable object to an array and sort them alphabetically
+    let elmArr = [...elm].sort();
+
+    // alphabetically sorted string
+    let sortedElmStr = elmArr.join("");
+
+    sortedNewArr.push(sortedElmStr)
+  }
+
+  console.log("sortedNewArr: ", sortedNewArr);
+  let set = new Set(sortedNewArr);
+
+  return set;
+}
+
+let set = aclean(arr);
+console.log("set: ", set);
+
+console.log("===============================")
+// 将数组按照 anagrams 转换成 map
+function arrToMap(arr) {
+  let map = new Map();
+  // iterate over the set
+  for(let value of set) {
+    let newArr = []
+    for(let i = 0; i < arr.length; i++) {
+      if (value === [...arr[i].toLowerCase()].sort().join("")) {
+        newArr.push(arr[i])
+      }
+    }
+    map.set(value, newArr);
+  }
+
+  return map;
+}
+
+function arrayClean(arr) {
+  let map = arrToMap(arr);
+
+  console.log("arrToMap: ", map)
+  console.log("map to array's values: ", [...map.values()])
+  let mapValuesArr = [...map.values()];
+
+  let resultArr = [];
+
+  for (let i = 0; i < mapValuesArr.length; i++) {
+    console.log("mapValuesArr[i].length: ", mapValuesArr[i].length);
+    let randomIndex = Math.floor(Math.random() * mapValuesArr[i].length)
+    console.log(Math.floor(Math.random() * mapValuesArr[i].length));
+
+    resultArr.push(mapValuesArr[i][randomIndex]);
+  }
+
+  console.log("map: ", map);
+  return resultArr;
+}
+
+console.log(arrayClean(arr))
+
+/* object from map:Object.fromEntries()
+map from object:Object.entries() */
+
+// alert( aclean(arr) ); // "nap,teachers,ear" or "PAN,cheaters,era"
+
+/* let map = new Map();
+
+map.set("name", "John");
+
+let keys = [...map.keys()];
+
+// Error: keys.push is not a function
+keys.push("more");
+
+alert(keys) */
+
+
 
 
 
