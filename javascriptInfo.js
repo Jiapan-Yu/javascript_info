@@ -1823,7 +1823,7 @@ let values = ["Hare", "Krishna", "Hare", "Krishna",
 
 alert( unique(values) ); */
 
-let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
+/* let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
 
 function aclean(arr) {
   let sortedNewArr = []
@@ -1888,7 +1888,7 @@ function arrayClean(arr) {
   return resultArr;
 }
 
-console.log(arrayClean(arr))
+console.log(arrayClean(arr)) */
 
 /* object from map:Object.fromEntries()
 map from object:Object.entries() */
@@ -1905,6 +1905,28 @@ let keys = [...map.keys()];
 keys.push("more");
 
 alert(keys) */
+
+
+
+// WeakMap and WeakSet
+/* let john = { name: "John" };
+
+let array = [ john ];
+
+john = null
+
+console.log(array[0]) */
+
+/* let weakMap = new WeakMap();
+
+let obj = {};
+
+weakMap.set(obj, "ok");
+
+console.log(weakMap.get(obj));
+
+weakMap.set("obj", "ok"); */
+
 
 
 
