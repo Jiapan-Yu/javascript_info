@@ -1505,60 +1505,47 @@ alert( sumInput() ) */
 
 
 // A maximal subarray
+// 可不可以用 Math.max() 方法
 function getMaxSubSum(arr) {
-  let subArr = []
+  let resultArr = [];
 
-  /* for (let i = 0; i < arr.length; i++) {
-    if (arr[i] < 0) continue
+  let firstNonNegativeElmIndex = arr.findIndex((v) => v >= 0);
 
-    subArr.push(arr[i])
+  if (firstNonNegativeElmIndex !== -1) {
+    let initialValue = 0;
 
-    for (let j = i + 1; j < arr.length; j++) {
-      if (arr[j] >= 0) subArr.push(arr[j])
+    while (firstNonNegativeElmIndex < arr.length) {
+      initialValue += arr[firstNonNegativeElmIndex];
 
-      if (arr[j] < 0 && Math.abs(b) <= arr[j+1]) subArr.push[arr[j]]
+      // 如果之和小于0那么就没有意义去加后面的那个数了，应该重新
+      // 以后面那个正数开始
+      while (initialValue < 0) {
+        if (firstNonNegativeElmIndex === arr.length - 1) {
+          break;
+        }
 
-      if (arr[j] < 0 && arr[i] >= Math.abs(arr[j])) subArr.push(j)
-    }
-  } */
-
-  let i = 0
-
-  outer:
-  while (arr[i] >= 0) {
-    subArr.push(arr[i])
-
-    for (let j = i + 1; j < arr.length; j++) {
-      if (arr[j] >= 0) {
-        subArr.push(arr[j])
-        continue
+        let nextIteration = arr[++firstNonNegativeElmIndex];
+        initialValue = nextIteration;
       }
 
-      if (arr[j] < 0 && Math.abs(arr[j]) <= arr[j + 1]) {
-        subArr.push[arr[j]]
-        continue
-      }
+      resultArr.push(initialValue);
 
-      i = j + 1
-      continue outer
+      firstNonNegativeElmIndex++;
     }
+  } else {
+    resultArr = [0];
   }
-
-  let sum = 0
-  for (let i of subArr) {
-    sum += i
-  }
-
-  return sum
+  
+  console.log(Math.max(...resultArr));
 }
 
-// console.log(getMaxSubSum([100, -9, 2, -3, 5]))
-
-// console.log(getMaxSubSum([-1, 2, 3, -9]))
-// console.log(getMaxSubSum([2, -1, 2, 3, -9]))
-// console.log(getMaxSubSum([-1, 2, 3, -9, 11]))
-// console.log(getMaxSubSum([-2, -1, 1, 2]))
-// console.log(getMaxSubSum([1, 2, 3]))
+/* getMaxSubSum([-1, 2, 3, -9])
+getMaxSubSum([2, -1, 2, 3, -9])
+getMaxSubSum([-1, 2, 3, -9, 11])
+getMaxSubSum([-2, -1, 1, 2])
+getMaxSubSum([100, -9, 2, -3, 5])
+getMaxSubSum([1, 2, 3])
+getMaxSubSum([-1, -2, -3]) */
 
 
 
