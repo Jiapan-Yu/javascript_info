@@ -1916,6 +1916,53 @@ weakMap.set("obj", "ok"); */
 
 
 
+// Object.keys, values, entries
+/* let user = {
+  name: "John",
+  age: 30
+};
+
+user[Symbol('login')] = "login";
+
+console.log(Object.keys(user));
+console.log(Reflect.ownKeys(user))
+console.log(Object.getOwnPropertySymbols(user)) */
+
+
+/* let salaries = {
+  "John": 100,
+  "Pete": 300,
+  "Mary": 250
+};
+
+function sumSalaries(salaries) {
+  let allSalariesArr = Object.values(salaries);
+
+  let sum = 0;
+
+  for (let salary of allSalariesArr) {
+    sum += salary;
+  }
+
+  return sum;
+}
+
+alert( sumSalaries(salaries) ); */
+
+
+let user = {
+  name: 'John',
+  age: 30
+};
+
+function count(obj) {
+  return Object.keys(obj).length;
+}
+
+alert( count(user) );
+
+
+
 
 
 
