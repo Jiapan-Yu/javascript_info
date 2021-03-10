@@ -1950,7 +1950,7 @@ function sumSalaries(salaries) {
 alert( sumSalaries(salaries) ); */
 
 
-let user = {
+/* let user = {
   name: 'John',
   age: 30
 };
@@ -1959,10 +1959,215 @@ function count(obj) {
   return Object.keys(obj).length;
 }
 
-alert( count(user) );
+alert( count(user) ); */
 
 
 
+// Recursion and stack
+/* function pow(x, n) {
+  let result = 1;
+
+  for (let i = 0; i < n; i++) {
+    result *= x;
+  }
+
+  return result;
+}
+
+console.log(pow(2, 3)); */
+
+/* function pow(x, n) {
+  if (n === 1) {
+    return x;
+  } else {
+    return x * pow(x, n - 1)
+  }
+}
+
+console.log(pow(2, 3)); */
+
+/* let company = {
+  sales: [
+    { name: "John", salary: 1000 },
+    { name: "Alice", salary: 1600 },
+  ],
+  development: {
+    sites: [
+      { name: "Peter", salary: 2000 },
+      { name: "Alex", salary: 1800 },
+    ],
+    internals: [{ name: "Jack", salary: 1300 }],
+  },
+};
+
+function sumSalaries (obj) {
+  let sum = 0;
+
+  if (Array.isArray(obj)) {
+    return obj.reduce((acc, curVal) => acc + curVal.salary, 0)
+  } else {
+    let arr = Object.values(obj);
+    for (let i = 0; i < arr.length; i++) {
+      sum += sumSalaries(arr[i])
+    }
+  }
+
+  return sum;
+}
+
+console.log(sumSalaries(company)); */
+
+/* let sum = 0;
+
+console.log(company.sales)
+
+sum = company.sales.reduce((acc, curVal) => acc + curVal.salary, 0)
+
+console.log(sum) */
+
+/* // 自己的错误解决方案
+function sumSalaries (obj) {
+  let sum = 0;
+
+  if (Array.isArray(obj)) {
+    for (let value of obj) {
+      sum += value.salary;
+    }
+  } else {
+    let arr = Object.values(obj);
+    for (let i = 0; i < arr.length; i++) {
+      sumSalaries(arr[i])
+    }
+  }
+
+  return sum;
+} */
+
+// console.log(Object.values(company))
+
+/* console.log(Object.values(company.development))
+
+let arrs = Object.values(company.development);
+
+console.log([].concat(...arrs)) */
+
+// linked lists
+// let list = {
+//   value: 1,
+//   next: {
+//     value: 2,
+//     next: {
+//       value: 3,
+//       next: {
+//         value: 4,
+//         next: null,
+//       },
+//     },
+//   },
+// };
+
+
+// tasks
+/* // Using a for loop.
+function sumTo(n) {
+  let sum = 0;
+
+  for (let i = 1; i <= n; i++) {
+    sum += i;
+  }
+
+  return sum;
+}
+
+console.log(sumTo(100)) */
+
+/* // Using a recursion
+function sumTo(n) {
+  if (n == 1) {
+    return 1;
+  } else {
+    let sum = 0;
+    sum = n + sumTo(n - 1);
+    return sum;
+  }
+}
+
+console.log(sumTo(100)) */
+
+/* // Using the arithmetic progression formula
+function sumTo(n) {
+  return n * (1 + n)/2;
+}
+
+console.log(sumTo(100)) */
+
+/* // Calculate factorial
+function factorial(n) {
+  if (n === 1) {
+    return 1;
+  } else {
+    return n * factorial(n - 1);
+  }
+}
+
+console.log(factorial(5)) */
+
+// Fibonacci numbers
+/* function fib(n) {
+  if (n == 1 || n == 2) {
+    return 1;
+  } else {
+    return fib(n-1) + fib(n - 2)
+  }
+} */
+
+/* // 1, 1, 2, 3, 5, 8, 13, 21
+function fib(n) {
+  let a = 1;
+  let b = 1;
+  let c = a + b;
+  for (let i = 3; i < n; i++) {
+    a = b;
+    b = c;
+    c = a + b;
+  }
+  return c;
+}
+
+console.log(fib(3)); // 2
+console.log(fib(4)); // 3
+console.log(fib(7)); // 13
+console.log(fib(77)); */
+
+// Output a single-linked list
+/* let list = {
+  value: 1,
+  next: {
+    value: 2,
+    next: {
+      value: 3,
+      next: {
+        value: 4,
+        next: null,
+      },
+    },
+  },
+};
+
+function printList(list) {
+  console.log(Object.values(list));
+  console.log(Object.entries(list));
+  if (list.next == null) {
+    return list.value;
+  } else {
+    printList(list.next)
+  }
+
+  // return list;
+}
+
+// console.log(printList(list));
+printList(list); */
 
 
 
