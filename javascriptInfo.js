@@ -2226,6 +2226,72 @@ function printList(list) {
 
 printList(list);
 
+
+
+//Destructuring assignment
+/* let [name, surname] = "John Smith".split(" ");
+
+console.log(name);
+console.log(surname); */
+
+/* let guest = "Jane";
+let admin = "Mike";
+
+[guest, admin] = [admin, guest]
+
+console.log(guest);
+console.log(admin); */
+
+/* let [name = prompt("name?"), surname = prompt("surname?")] = ["Julie"];
+
+console.log(name);
+console.log(surname); */
+
+/* let height, width, title;
+
+({height, width, title} = { title: "Menu", height: 200, width: 100 })
+
+console.log(title);  // Menu
+console.log(width);  // 100
+console.log(height); // 200 */
+
+/* let user = {
+  name: "John",
+  years: 30
+};
+
+let {name, years: age, isAdmin = false} = user;
+
+console.log(name);
+console.log(age);
+console.log(isAdmin); */
+
+/* let salaries = {
+  John: 100,
+  Pete: 300,
+  Mary: 250,
+};
+
+function topSalary(salaries) {
+  let salaryPairArr = Object.entries(salaries);
+
+  let topPerson = null;
+  let tempSalary = 0;
+
+  for (let [person, salary] of salaryPairArr) {
+    if (tempSalary < salary) {
+      topPerson = person;
+      tempSalary = salary;
+    }
+  }
+
+  return topPerson;
+}
+
+console.log(topSalary(salaries)); */
+
+
+
 // event loop from JSConf of youtube （21:55 starts talk about render and he 
 // refers to an example about blocking at 7:45)
 // 看视频的时候，一些细节方面的还是没捕捉到
