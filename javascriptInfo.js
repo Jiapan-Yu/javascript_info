@@ -2139,8 +2139,8 @@ console.log(fib(4)); // 3
 console.log(fib(7)); // 13
 console.log(fib(77)); */
 
-// Output a single-linked list
-/* let list = {
+/* // Output a single-linked list
+let list = {
   value: 1,
   next: {
     value: 2,
@@ -2154,22 +2154,77 @@ console.log(fib(77)); */
   },
 };
 
+// using a loop
 function printList(list) {
-  console.log(Object.values(list));
-  console.log(Object.entries(list));
-  if (list.next == null) {
-    return list.value;
-  } else {
-    printList(list.next)
+  let tmp = list;
+  
+  while(tmp) {
+    console.log(tmp);
+    tmp = tmp.next;
   }
-
-  // return list;
 }
 
-// console.log(printList(list));
+// using recursion
+// function printList(list) {
+//   console.log({ value: list.value, next: list.next });
+//   if (list.next !== null) {
+//     printList(list.next);
+//   }
+// }
+
 printList(list); */
 
 
+// Output a single-linked list in the reverse order
+let list = {
+  value: 1,
+  next: {
+    value: 2,
+    next: {
+      value: 3,
+      next: {
+        value: 4,
+        next: null,
+      },
+    },
+  },
+};
+
+// using a loop
+// function printList(list) {
+//   let tmp = list;
+//   let count = 0;
+  
+//   while (tmp.next !== null) {
+//     tmp = tmp.next;
+//     count++;
+//   }
+
+//   console.log("count: ", count);
+
+//   while (count) {
+//     let anotherTmp = list;
+//     for (let i = 0; i < count; i++) {
+//       tmp = anotherTmp.next;
+//       anotherTmp = anotherTmp.next;
+//     }
+
+//     console.log(tmp.value);
+//     count--;
+//   }
+//   console.log(list.value)
+// }
+
+// using recursion
+function printList(list) {
+  if (list.next !== null) {
+    printList(list.next);
+  }
+  
+  console.log(list.value);
+}
+
+printList(list);
 
 // event loop from JSConf of youtube （21:55 starts talk about render and he 
 // refers to an example about blocking at 7:45)
