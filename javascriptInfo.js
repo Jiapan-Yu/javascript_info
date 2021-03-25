@@ -2216,15 +2216,15 @@ let list = {
 // }
 
 // using recursion
-function printList(list) {
-  if (list.next !== null) {
-    printList(list.next);
-  }
+// function printList(list) {
+//   if (list.next !== null) {
+//     printList(list.next);
+//   }
   
-  console.log(list.value);
-}
+//   console.log(list.value);
+// }
 
-printList(list);
+// printList(list);
 
 
 
@@ -2289,6 +2289,148 @@ function topSalary(salaries) {
 }
 
 console.log(topSalary(salaries)); */
+
+
+
+// Date and time
+/* let start = Date.now();
+
+for (let i = 0; i < 100000; i++) {
+  let m = i * i * i;
+}
+
+let end = Date.now();
+
+console.log(`it spent: ${end - start}ms`) */
+
+
+/* let date = new Date(2012, 1, 20, 3, 12);
+
+alert(date); */
+
+
+// let date = new Date(2012, 0, 3);  // 3 Jan 2012
+
+// function getWeekDay(date) {
+//   let days = ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA']
+
+//   return days[date.getDay()]
+// }
+
+// alert( getWeekDay(date) );        // should output "TU"
+
+
+/* let date = new Date(2012, 0, 3); // 3 Jan 2012
+
+function getLocalDay(date) {
+  console.log(date.getDay())
+  if (date.getDay() === 0) {
+    return 'Sunday, 7'
+  }
+
+  let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+  return `${days[date.getDay()]}, ${date.getDay()}`
+}
+
+console.log(getLocalDay(date)) */
+
+
+// Which day of month was many days ago?
+/* function getDateAgo(date, days) {
+  return new Date(date.getTime() - days * 24 * 60 * 60 * 1000).getDate();
+}
+
+let date = new Date(2015, 0, 2);
+
+alert( getDateAgo(date, 1) ); // 1, (1 Jan 2015)
+alert( getDateAgo(date, 2) ); // 31, (31 Dec 2014)
+alert( getDateAgo(date, 365) ); // 2, (2 Jan 2014) */
+
+
+// Last day of month?
+function getLastDayOfMonth(year, month) {
+  /* if (month === 11) {
+    let dateCopy = new Date(year + 1, 1);
+
+    dateCopy.setDate(dateCopy.getDate() - 1);
+
+    return dateCopy.getDate()
+  }
+
+  let dateCopy = new Date(year, month + 1);
+
+  dateCopy.setDate(dateCopy.getDate() - 1);
+
+  return dateCopy.getDate() */
+
+  return new Date(year, month + 1, 0).getDate();
+}
+
+// console.log(getLastDayOfMonth(2012, 1));
+
+
+/* // How many seconds have passed today?
+function getSecondsToday() {
+  let date = new Date();
+
+  let timePortion = date.toTimeString().substring(0, 8);
+
+  let timeArr = timePortion.split(":");
+  
+  return timeArr[0] * 60 * 60 + timeArr[1] * 60 + timeArr[2];
+}
+
+console.log(getSecondsToday()) */
+
+
+// How many seconds till tomorrow?
+/* function getSecondsToTomorrow() {
+  let now = new Date();
+  let tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+
+  let millisecondsToTomorrow = tomorrow - now;
+
+  return Math.round(millisecondsToTomorrow / 1000);
+} */
+
+/* function getSecondsToTomorrow() {
+  let now = new Date();
+  
+  // 返回距离到明天凌晨的秒数
+  return (23 - now.getHours()) * 60 * 60 + (59 - now.getMinutes()) * 60 + (60 - now.getSeconds());
+} */
+
+// console.log(getSecondsToTomorrow());
+
+
+// Format the relative date
+function formatDate(date) {
+  let diffFromNow = new Date() - date;
+
+  if (diffFromNow < 1000) {
+    return "right now";
+  } else if (diffFromNow < 1000 * 60) {
+    return `${Math.round(diffFromNow / 1000)} sec. ago`;
+  } else if (diffFromNow < 1000 * 60 * 60) {
+    return `${Math.round(diffFromNow / 1000 / 60)} min. ago`;
+  } else {
+    let day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+    let month = date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1);
+    let year = date.getFullYear().toString().substring(2);
+    let hours = date.getHours() < 10 ? '0' + date.getHours() : date.getHours();
+    let minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
+
+    return `${day}.${month}.${year} ${hours}:${minutes}`;
+  }
+}
+
+console.log(formatDate(new Date(new Date - 1)));
+console.log(formatDate(new Date(new Date - 30 * 1000)));
+console.log(formatDate(new Date(new Date - 5 * 60 * 1000)));
+
+console.log(formatDate(new Date(new Date - 86400 * 1000 * 20 - 60 * 60 * 1000 * 3)));
+
 
 
 
