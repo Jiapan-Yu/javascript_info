@@ -2405,7 +2405,7 @@ console.log(getSecondsToday()) */
 
 
 // Format the relative date
-function formatDate(date) {
+/* function formatDate(date) {
   let diffFromNow = new Date() - date;
 
   if (diffFromNow < 1000) {
@@ -2429,7 +2429,104 @@ console.log(formatDate(new Date(new Date - 1)));
 console.log(formatDate(new Date(new Date - 30 * 1000)));
 console.log(formatDate(new Date(new Date - 5 * 60 * 1000)));
 
-console.log(formatDate(new Date(new Date - 86400 * 1000 * 20 - 60 * 60 * 1000 * 3)));
+console.log(formatDate(new Date(new Date - 86400 * 1000 * 20 - 60 * 60 * 1000 * 3))); */
+
+
+
+// JSON methods, toJSON
+/* let room = {
+  number: 23
+};
+
+let meetup = {
+  title: "Conference",
+  participants: [{name: "John"}, {name: "Alice"}],
+  place: room
+}
+
+room.occupiedBy = meetup;
+
+// console.log( JSON.stringify(meetup, ['title', 'participants', 'name', 'place', 'number']) );
+
+console.log(
+  JSON.stringify(meetup, function replacer(key, value) {
+    // console.log("key: ", key, "value: ", value);
+    console.log("key: " + key);
+    console.log("value: " + value);
+
+    if (key == "occupiedBy") return undefined;
+
+    return value;
+  },
+  2)
+); */
+
+/* console.log( JSON.stringify(meetup, function replacer(key, value) {
+  console.log(`${key}: ${value}`);
+  return (key == 'occupiedBy') ? undefined : value;
+})); */
+
+
+/* let room = {
+  number: 23,
+  toJSON() {
+    return this.number;
+  }
+};
+
+let meetup = {
+  title: "Conference",
+  participants: [{name: "John"}, {name: "Alice"}],
+  room
+}
+
+console.log(JSON.stringify(room))
+console.log(JSON.stringify(meetup)) */
+
+
+// Tasks
+/* let user = {
+  name: "John Smith",
+  age: 35
+}
+
+let stringifiedUser = JSON.stringify(user);
+console.log(stringifiedUser);
+
+let newUser=  JSON.parse(stringifiedUser);
+console.log(newUser); */
+
+
+/* let room = {
+  number: 23
+};
+
+let meetup = {
+  title: "Conference",
+  occupiedBy: [{name: "John"}, {name: "Alice"}],
+  place: room
+};
+
+// circular references
+room.occupiedBy = meetup;
+meetup.self = meetup;
+
+// console.log( JSON.stringify(meetup, function replacer(key, value) {
+//   if (key === "self") return undefined;
+
+//   if (key === "occupiedBy") {
+//     if (value.hasOwnProperty("occupiedBy"))
+//       return undefined;
+//   }
+
+//   return value;
+// }));
+
+// remove properties that reference meetup
+console.log( JSON.stringify(meetup, function replacer(key, value) {
+  console.log(key)
+  return (key != "" && value == meetup) ? undefined : value;
+})); */
 
 
 
