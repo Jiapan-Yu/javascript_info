@@ -2530,6 +2530,10 @@ console.log( JSON.stringify(meetup, function replacer(key, value) {
 
 
 
+// The old "var"
+/* let arr = [function () { }];
+
+console.log(arr[0].name); */
 
 // event loop from JSConf of youtube （21:55 starts talk about render and he 
 // refers to an example about blocking at 7:45)
