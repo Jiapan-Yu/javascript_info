@@ -1506,7 +1506,7 @@ alert( sumInput() ) */
 
 // A maximal subarray
 // 可不可以用 Math.max() 方法
-function getMaxSubSum(arr) {
+/* function getMaxSubSum(arr) {
   let resultArr = [];
 
   let firstNonNegativeElmIndex = arr.findIndex((v) => v >= 0);
@@ -1537,7 +1537,7 @@ function getMaxSubSum(arr) {
   }
   
   console.log(Math.max(...resultArr));
-}
+} */
 
 /* getMaxSubSum([-1, 2, 3, -9])
 getMaxSubSum([2, -1, 2, 3, -9])
@@ -2176,7 +2176,7 @@ printList(list); */
 
 
 // Output a single-linked list in the reverse order
-let list = {
+/* let list = {
   value: 1,
   next: {
     value: 2,
@@ -2188,7 +2188,7 @@ let list = {
       },
     },
   },
-};
+}; */
 
 // using a loop
 // function printList(list) {
@@ -2535,6 +2535,101 @@ console.log( JSON.stringify(meetup, function replacer(key, value) {
 
 console.log(arr[0].name); */
 
+
+
+// Function object, NFE
+/* isYes = true
+alert('You said yes')
+alert(true)
+
+isYes = false
+alert(false) */
+
+
+// tasks: Set and decrease for counter
+// function property solution
+/* function makeCounter() {
+  function counter() {
+    console.log("counter.count: ", counter.count);
+    return counter.count++;
+  }
+
+  counter.count = 0;
+
+  counter.set = function(val) {
+    counter.count = val;
+  }
+
+  counter.decrease = function() {
+    counter.count--;
+  }
+
+  return counter;
+}
+
+let counter = makeCounter();
+
+console.log(counter()); // 0
+console.log(counter()); // 1
+
+counter.set(6)
+console.log(counter()); // 6
+
+counter.decrease();
+console.log(counter.count); // 6 */
+
+// closure solution
+/* function makeCounter() {
+  let count = 0;
+
+  function counter() {
+    return count++;
+  }
+
+  counter.set = function(val) {
+    count = val;
+  }
+
+  counter.decrease = function() {
+    count--;
+  }
+
+  return counter;
+}
+
+let counter = makeCounter();
+
+console.log(counter()); // 0
+console.log(counter()); // 1
+
+counter.set(6)
+console.log(counter()); // 6
+
+counter.decrease();
+console.log(counter()); // 6 */
+
+
+// Sum with an arbitrary amount of brackets
+/* function sum(a) {
+  let currentSum = a;
+
+  function f(b) {
+    currentSum += b;
+    return f;
+  }
+
+  f.toString = function() {
+    return currentSum;
+  }
+
+  return f;
+}
+
+sum(1)(2)
+sum(1)(2)(3)
+sum(5)(-1)(2)
+sum(6)(-1)(-2)(-3)
+sum(0)(1)(2)(3)(4)(5) */
 // event loop from JSConf of youtube （21:55 starts talk about render and he 
 // refers to an example about blocking at 7:45)
 // 看视频的时候，一些细节方面的还是没捕捉到
