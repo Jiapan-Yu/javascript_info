@@ -2630,6 +2630,42 @@ sum(1)(2)(3)
 sum(5)(-1)(2)
 sum(6)(-1)(-2)(-3)
 sum(0)(1)(2)(3)(4)(5) */
+
+
+
+// Scheduling: setTimeout and setInterval
+/* let timerID = setInterval(() => alert("tick"), 2000);
+setTimeout(() => {clearInterval(timerID); alert("stop");}, 5000); */
+
+/* setTimeout(() => alert("World"), 0);
+
+alert("Hello"); */
+
+/* function printNumbers(from, to) {
+  window.setTimeout(function f() {
+    console.log(from++)
+    let timerID = window.setTimeout(f, 1000);
+
+    if (from > to) {
+      clearTimeout(timerID);
+    }
+  }, 1000);
+} */
+
+/* function printNumbers(from, to) {
+  let timerID = window.setInterval(function() {
+    console.log(from++);
+
+    if (from > to) {
+      clearInterval(timerID);
+    }
+  }, 1000);
+} */
+
+// printNumbers(1, 3);
+
+
+
 // event loop from JSConf of youtube （21:55 starts talk about render and he 
 // refers to an example about blocking at 7:45)
 // 看视频的时候，一些细节方面的还是没捕捉到
