@@ -171,7 +171,7 @@ tree.addEventListener('click', function (event) {
 
 
 
-// from MDN
+// from MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this
 // An object can be passed as the first argument to call or apply and this will be bound to it.
 /* var obj = { a: 'Custom' };
 
@@ -2666,6 +2666,151 @@ alert("Hello"); */
 
 
 
+// Decorators and forwarding, call/apply
+// we'll make worker.slow caching
+/* let worker = {
+  someMethod() {
+    return 1;
+  },
+
+  slow(x) {
+    // scary CPU-heavy task here
+    alert("Called with " + x);
+    return x * this.someMethod(); // (*)
+  }
+};
+
+// same code as before
+function cachingDecorator(func) {
+  let cache = new Map();
+  return function(x) {
+    if (cache.has(x)) {
+      return cache.get(x);
+    }
+    let result = func.call(this, x); // (**)
+    cache.set(x, result);
+    return result;
+  };
+}
+
+alert( worker.slow(1) ); // the original method works
+
+worker.slow = cachingDecorator(worker.slow); // now make it caching
+
+alert( worker.slow(2) ); // Whoops! Error: Cannot read property 'someMethod' of undefined */
+
+// method borrowing
+/* function hash() {
+  alert( [].join.apply(arguments) ); // Error: arguments.join is not a function
+}
+
+hash(1, 2, 3); */
+
+
+// Tasks
+/* function work(a, b) {
+  alert( a + b ); // work is an arbitrary function or method
+}
+
+function spy(func) {
+  let cache = new Map();
+
+  return function interFunc() {
+    cache.set(arguments[0], arguments[1] );
+    
+    interFunc.calls = [...cache];
+    func(...arguments);
+  }
+}
+
+work = spy(work);
+
+work(1, 2); // 3
+work(4, 5); // 9
+
+for (let args of work.calls) {
+  alert( 'call:' + args.join() ); // "call:1,2", "call:4,5"
+} */
+
+
+/* function f(x) {
+  alert(x);
+}
+
+function delay(f, ms) {
+  function wrapper() {
+    setTimeout(() => {
+      console.log(this);
+      f.apply(this, arguments)
+    }, ms);
+  }
+  return wrapper;
+}
+
+// create wrappers
+let f1000 = delay(f, 1000);
+let f1500 = delay(f, 1500);
+
+f1000("test"); // shows "test" after 1000ms
+f1500("test"); // shows "test" after 1500ms */
+
+
+// tasks
+/* function f(x) {
+  alert("called after 1000ms");
+  alert(x);
+}
+
+function debounce(handler, delay) {
+  let timer;
+  return function() {
+    clearTimeout(timer);
+    timer = setTimeout(() => handler(...arguments), delay);
+  }
+}
+
+f = debounce(f, 1000);
+
+f(5);
+f(6); */
+
+
+function f(a) {
+  console.log(a);
+}
+
+function throttle(handler, delay) {
+  let savedId;
+  let timerId;
+  return function() {
+    if (!timerId) {
+      // 第一次立即执行
+      timerId = setTimeout(() => {
+        handler.apply(this, arguments);
+      }, 0);
+      savedId = timerId;
+    } else {
+      // 如果1秒内的id跟上次执行的id不一制，则不执行
+      if (savedId !== timerId){
+        clearTimeout(timerId);
+      }
+      timerId = setTimeout(() => {
+        handler.apply(this, arguments)
+      }, delay);
+    }
+  }
+}
+
+// f1000 passes calls to f at maximum once per 1000 ms
+let f1000 = throttle(f, 1000);
+
+f1000(1); // shows 1
+f1000(2); // (throttling, 1000ms not out yet)
+f1000(3); // (throttling, 1000ms not out yet)
+setTimeout(function() {f1000(4)}, 888);
+
+// when 1000 ms time out...
+// ...outputs 3, intermediate value 2 was ignored
 // event loop from JSConf of youtube （21:55 starts talk about render and he 
 // refers to an example about blocking at 7:45)
 // 看视频的时候，一些细节方面的还是没捕捉到
