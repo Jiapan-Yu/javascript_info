@@ -2857,6 +2857,78 @@ sayHiDeferred("John"); */
 let realArr = [...'abc'];
 
 console.log(realArr); */
+
+
+
+// Function binding
+/* let o = {
+  firstName: "Joshua",
+  f: function() {
+    console.log("hello ", this.firstName);
+  }
+}
+
+// o.f(); */
+
+/* let f = o.f.bind(o);
+
+let obj = {
+  foo() {
+    setTimeout(f, 0);  
+  }
+}
+
+// obj.foo(); */
+
+
+//tasks
+// null
+
+/* function askPassword(ok, fail) {
+  let password = prompt("Password?", '');
+  if (password == "rockstar") ok();
+  else fail();
+}
+
+let user = {
+  name: 'John',
+
+  loginOk() {
+    alert(`${this.name} logged in`);
+  },
+
+  loginFail() {
+    alert(`${this.name} failed to log in`);
+  },
+
+};
+
+// askPassword(user.loginOk, user.loginFail);
+// askPassword(user.loginOk.bind(user), user.loginFail.bind(user));
+// askPassword(() => user.loginOk(), () => user.loginFail());
+askPassword(function() {user.loginOk()}, function() {user.loginFail()}); */
+
+
+/* function askPassword(ok, fail) {
+  let password = prompt("Password?", '');
+  if (password == "rockstar") ok();
+  else fail();
+}
+
+let user = {
+  name: 'John',
+
+  login(result) {
+    alert( this.name + (result ? ' logged in' : ' failed to log in') );
+  }
+};
+
+// askPassword(() => user.login(true), () => user.login(false)); // ?
+askPassword(user.login.bind(user, true), user.login.bind(user, false)); // ? */
+
+
+
+
 // event loop from JSConf of youtube （21:55 starts talk about render and he 
 // refers to an example about blocking at 7:45)
 // 看视频的时候，一些细节方面的还是没捕捉到
@@ -2879,7 +2951,7 @@ asyncForEach([1, 2, 3, 4], function (i) {
   console.log(i)
 }) */
 
-function startLoop() {
+/* function startLoop() {
   for (let i = 0; i < 10e9; i++) {
     if (false) console.log(' ')
   }
@@ -2891,7 +2963,7 @@ function handleBtnOnClick() {
   setTimeout(() => {
     alert('async timeout')
   }, 12000)
-}
+} */
 
 /* setTimeout(function() {
   console.log('hi1')
