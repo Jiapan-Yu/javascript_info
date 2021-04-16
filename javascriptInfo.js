@@ -2811,6 +2811,52 @@ setTimeout(function() {f1000(4)}, 888);
 
 // when 1000 ms time out...
 // ...outputs 3, intermediate value 2 was ignored
+
+
+
+// Arrow functions revisited
+/* let group = {
+  title: 'our group',
+  names: ['Pete', 'Alice', 'Derek'],
+
+  showList() {
+    this.names.forEach(student => {
+      alert(`${this.title}: ${student}`);
+    });
+  }
+}
+
+group.showList(); */
+
+
+/* function sayHi(name) {
+  alert("Hello " + name);
+}
+
+function defer(f, ms) {
+  return function() {
+    setTimeout(() => {
+      console.log("this: ", this);
+      f.apply(this, arguments);
+    }, ms);
+  }
+}
+
+let sayHiDeferred = defer(sayHi, 2000);
+
+sayHiDeferred("John"); */
+
+
+/* let array_like = {
+  0: 'joshua',
+  1: 'derek',
+  length: 2
+};
+
+// let realArr = Array.from(array_like);
+let realArr = [...'abc'];
+
+console.log(realArr); */
 // event loop from JSConf of youtube （21:55 starts talk about render and he 
 // refers to an example about blocking at 7:45)
 // 看视频的时候，一些细节方面的还是没捕捉到
