@@ -2774,8 +2774,8 @@ f = debounce(f, 1000);
 f(5);
 f(6); */
 
-
-function f(a) {
+// Throttle decorator
+/* function f(a) {
   console.log(a);
 }
 
@@ -2808,6 +2808,50 @@ f1000(1); // shows 1
 f1000(2); // (throttling, 1000ms not out yet)
 f1000(3); // (throttling, 1000ms not out yet)
 setTimeout(function() {f1000(4)}, 888);
+
+// when 1000 ms time out...
+// ...outputs 3, intermediate value 2 was ignored */
+
+
+function f(a) {
+  let now = new Date();
+  console.log(now.toLocaleTimeString(), now.getMilliseconds());
+  console.log(a);
+}
+
+function throttle(func, delay) {
+  let isThrottled = false, savedThis, savedArgs;
+
+  return function wrapper() {
+    if (isThrottled) {
+      savedThis = this;
+      savedArgs = arguments; //为什么 args[0] 会报错，而 args 不报错。报错的是下面的 func.apply(this, savedArgs);
+      return;
+    }
+
+    func.apply(this, arguments);
+    isThrottled = true;
+    savedArgs = null;
+
+    setTimeout(() => {
+      if (savedArgs) {
+        isThrottled = false;
+        // func.apply(this, savedArgs);
+        wrapper([...savedArgs][0]);
+      }
+    }, delay);
+  }
+}
+
+// f1000 passes calls to f at maximum once per 1000 ms
+let f1000 = throttle(f, 1000);
+
+f1000(1); // shows 1
+setTimeout(() => f1000(2), 995);
+// f1000(2); // (throttling, 1000ms not out yet)
+
+setTimeout(() => f1000(3), 1234); // 在f1000(1)后的1234ms就打印出来了
+// f1000(3); // (throttling, 1000ms not out yet)
 
 // when 1000 ms time out...
 // ...outputs 3, intermediate value 2 was ignored
