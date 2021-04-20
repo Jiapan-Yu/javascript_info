@@ -2928,6 +2928,56 @@ askPassword(user.login.bind(user, true), user.login.bind(user, false)); // ? */
 
 
 
+// Object properties configuration
+// Object.getOwnPropertyDescriptor();
+
+/* let user = {
+  name: "John"
+};
+
+Object.defineProperty(user, "name", {
+  writable: false
+});
+
+user.name = "Derek"; */
+
+/* let descriptor = Object.getOwnPropertyDescriptor(Math, "PI");
+
+console.log( JSON.stringify(descriptor, null, 2) ); */
+
+/* let user = {
+  name: "John"
+};
+
+Object.defineProperty(user, "name", {
+  writable: false
+});
+
+// won't be able to change user.name or its flags
+// all this won't work:
+Object.defineProperty(user, "name", { value: "Pete" }); */
+
+
+/* function User(name, birthday) {
+  this.name = name;
+  this.birthday = birthday;
+
+  Object.defineProperty(this, "age", {
+    get() {
+      let nowYear = new Date().getFullYear();
+      return nowYear - birthday.getFullYear();
+    }
+  })
+}
+
+let john = new User("John", new Date(1992, 6, 1));
+
+console.log(john.name);
+console.log(john.birthday);
+console.log(john.age); */
+
+
+
 
 // event loop from JSConf of youtube （21:55 starts talk about render and he 
 // refers to an example about blocking at 7:45)
