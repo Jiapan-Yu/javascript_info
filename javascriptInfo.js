@@ -2813,7 +2813,7 @@ setTimeout(function() {f1000(4)}, 888);
 // ...outputs 3, intermediate value 2 was ignored */
 
 
-function f(a) {
+/* function f(a) {
   let now = new Date();
   console.log(now.toLocaleTimeString(), now.getMilliseconds());
   console.log("a:", a);
@@ -2864,7 +2864,7 @@ setTimeout(() => obj.f(3), 1234); // 在f1000(1)后的1234ms就打印出来了
 // f1000(3); // (throttling, 1000ms not out yet)
 
 // when 1000 ms time out...
-// ...outputs 3, intermediate value 2 was ignored
+// ...outputs 3, intermediate value 2 was ignored */
 
 
 
@@ -3030,6 +3030,91 @@ console.log(john.name);
 console.log(john.birthday);
 console.log(john.age); */
 
+
+
+// Prototypal inheritance
+// rabbit.__proto__ = animal;
+
+/* let animal = {
+  eats: true
+};
+
+let rabbit = {
+  jumps: true,
+  __proto__: animal
+};
+
+for (let prop in rabbit) {
+  let isOwn = rabbit.hasOwnProperty(prop);
+
+  if (isOwn) {
+    console.log("Our: ", prop);
+  } else {
+    console.log("Inherited: ", prop)
+  }
+} */
+
+// tasks
+/* true
+null
+undefined */
+
+/* let head = {
+  glasses: 1
+};
+
+let table = {
+  pen: 3,
+  __proto__: head
+};
+
+let bed = {
+  sheet: 1,
+  pillow: 2,
+  __proto__: table
+};
+
+let pockets = {
+  money: 2000,
+  __proto__: bed
+};
+
+// console.log(pockets.pen);
+// console.log(bed.glasses);
+
+let pocketStartTime = new Date();
+console.log(pockets.glasses);
+let pocketEndTime = new Date();
+console.log(pocketEndTime - pocketStartTime);
+
+let headStartTime = new Date();
+console.log(head.glasses);
+let headEndTime = new Date();
+console.log(headEndTime - headStartTime); */
+
+let hamster = {
+
+  eat(food) {
+    this.stomach.push(food);
+  }
+};
+
+let speedy = {
+  stomach: [],
+  __proto__: hamster
+};
+
+let lazy = {
+  stomach: [],
+  __proto__: hamster
+};
+
+// This one found the food
+speedy.eat("apple");
+alert( speedy.stomach ); // apple
+
+// This one also has it, why? fix please.
+alert( lazy.stomach ); // apple
 
 
 
