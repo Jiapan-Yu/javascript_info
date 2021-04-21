@@ -2816,28 +2816,28 @@ setTimeout(function() {f1000(4)}, 888);
 function f(a) {
   let now = new Date();
   console.log(now.toLocaleTimeString(), now.getMilliseconds());
-  console.log(a);
+  console.log("a:", a);
 }
 
 function throttle(func, delay) {
   let isThrottled = false, savedThis, savedArgs;
 
-  return function wrapper() {
+  return function wrapper(...args) {
+    // console.log("args: ", args);
     if (isThrottled) {
       savedThis = this;
-      savedArgs = arguments; //为什么 args[0] 会报错，而 args 不报错。报错的是下面的 func.apply(this, savedArgs);
+      savedArgs = args; //为什么 args[0] 会报错，而 args 不报错。报错的是下面的 func.apply(this, savedArgs);
       return;
     }
 
-    func.apply(this, arguments);
+    func.apply(this, args);
     isThrottled = true;
     savedArgs = null;
 
     setTimeout(() => {
       if (savedArgs) {
         isThrottled = false;
-        // func.apply(this, savedArgs);
-        wrapper([...savedArgs][0]);
+        wrapper(...savedArgs); // 传参跟官方答案不一样（因为 the context this passed to f1000 没有 pass to the original f）
       }
     }, delay);
   }
