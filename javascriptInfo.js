@@ -2822,22 +2822,22 @@ function f(a) {
 function throttle(func, delay) {
   let isThrottled = false, savedThis, savedArgs;
 
-  return function wrapper(...args) {
+  return function wrapper() {
     // console.log("args: ", args);
     if (isThrottled) {
       savedThis = this;
-      savedArgs = args; //为什么 args[0] 会报错，而 args 不报错。报错的是下面的 func.apply(this, savedArgs);
+      savedArgs = arguments; //为什么 args[0] 会报错，而 args 不报错。报错的是下面的 func.apply(this, savedArgs);
       return;
     }
 
-    func.apply(this, args);
+    func.apply(this, arguments);
     isThrottled = true;
     savedArgs = null;
 
     setTimeout(() => {
       if (savedArgs) {
         isThrottled = false;
-        wrapper(...savedArgs); // 传参跟官方答案不一样（因为 the context this passed to f1000 没有 pass to the original f）
+        wrapper.apply(savedThis, savedArgs);
       }
     }, delay);
   }
@@ -2846,11 +2846,21 @@ function throttle(func, delay) {
 // f1000 passes calls to f at maximum once per 1000 ms
 let f1000 = throttle(f, 1000);
 
-f1000(1); // shows 1
-setTimeout(() => f1000(2), 995);
+let obj = {
+  a: 'abc',
+  f: f1000
+}
+
+let obj2 = {
+  a: 'abc2',
+  f: f1000
+}
+
+obj.f(1); // shows 1
+setTimeout(() => obj2.f(2), 995);
 // f1000(2); // (throttling, 1000ms not out yet)
 
-setTimeout(() => f1000(3), 1234); // 在f1000(1)后的1234ms就打印出来了
+setTimeout(() => obj.f(3), 1234); // 在f1000(1)后的1234ms就打印出来了
 // f1000(3); // (throttling, 1000ms not out yet)
 
 // when 1000 ms time out...
