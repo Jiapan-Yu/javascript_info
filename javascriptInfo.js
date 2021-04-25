@@ -3092,7 +3092,7 @@ console.log(head.glasses);
 let headEndTime = new Date();
 console.log(headEndTime - headStartTime); */
 
-let hamster = {
+/* let hamster = {
 
   eat(food) {
     this.stomach.push(food);
@@ -3114,7 +3114,101 @@ speedy.eat("apple");
 alert( speedy.stomach ); // apple
 
 // This one also has it, why? fix please.
-alert( lazy.stomach ); // apple
+alert( lazy.stomach ); // apple */
+
+
+
+// F.prototype
+/* function Func() {}
+
+Func.prototype = {
+  a: '',
+  constructor: ''
+};
+
+// Func.prototype = {
+//   a: "abc"
+// };
+
+let obj = new Func(); // [[prototype]] or __proto__
+
+let obj2 = new obj.constructor();
+
+console.log(obj2.constructor === obj.constructor);
+
+// new obj.constructor()
+// new obj.constructor()
+// console.log(obj.constructor);
+
+// console.log(Func.prototype.constructor);
+
+// console.log(Func.prototype); */
+
+
+/* true
+true
+true
+undefined */
+
+/* function Rabbit() {}
+Rabbit.prototype = {
+  eats: true
+};
+
+let rabbit = new Rabbit();
+
+Rabbit.prototype = {};
+
+alert( rabbit.eats ); // ? */
+
+
+
+// Native prototypes
+/* let arr = [1, 2, 3];
+
+console.log(arr.__proto__) */
+
+// console.log(new Array(4).join('la'));
+
+// console.log(Function.prototype.__proto__ === Object.prototype);
+
+// tasks
+/* function f() {
+  console.log(this);
+  alert("Hello!");
+}
+
+Function.prototype.defer = function(delay) {
+  setTimeout(() => this(), delay);
+}
+
+f.defer(1000); // shows "Hello!" after 1 second */
+
+/* Function.prototype.defer = function (func) {
+  return function () {
+    let delay = arguments[0];
+    return function() {
+      setTimeout(() => {
+        func(...arguments);
+      }, delay);
+    }
+  };
+};
+
+f.defer = f.defer(f); */
+
+/* Function.prototype.defer = function(delay) {
+  let f = this;
+  return function() {
+    setTimeout(() => f.apply(this, arguments), delay);
+  }
+}
+
+function f(a, b) {
+  alert(a + b);
+}
+
+f.defer(1000)(1, 2);  */
 
 
 
