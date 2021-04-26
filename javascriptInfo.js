@@ -3212,6 +3212,52 @@ f.defer(1000)(1, 2);  */
 
 
 
+// Prototype methods, objects without __proto__
+/* let dictionary = Object.create(null, {
+  toString: {
+    configurable: true,
+    enumerable: false,
+    value() {
+      // return Object.getOwnPropertyNames(dictionary).join();
+      return Object.keys(dictionary).join();
+    }    
+  }
+}); */
+
+// add some data
+// dictionary.apple = "Apple";
+// dictionary.__proto__ = "test"; // __proto__ is a regular property key here
+
+// // only apple and __proto__ are in the loop
+// for(let key in dictionary) {
+//   alert(key); // "apple", then "__proto__"
+// }
+
+// // your toString in action
+// alert(dictionary); // "apple,__proto__"
+
+// The difference between calls
+function Rabbit(name) {
+  this.name = name;
+}
+
+Rabbit.prototype.sayHi = function() {
+  // this.name = name;
+  // console.log(this.name);
+  return this.name;
+}
+
+let rabbit = new Rabbit("Rabbit");
+
+console.log(rabbit.sayHi());
+console.log(Rabbit.prototype.sayHi());
+console.log(Object.getPrototypeOf(rabbit).sayHi());
+console.log(rabbit.__proto__.sayHi());
+
+
+
+
+
 // event loop from JSConf of youtube （21:55 starts talk about render and he 
 // refers to an example about blocking at 7:45)
 // 看视频的时候，一些细节方面的还是没捕捉到
