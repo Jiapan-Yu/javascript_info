@@ -3237,7 +3237,7 @@ f.defer(1000)(1, 2);  */
 // alert(dictionary); // "apple,__proto__"
 
 // The difference between calls
-function Rabbit(name) {
+/* function Rabbit(name) {
   this.name = name;
 }
 
@@ -3252,7 +3252,72 @@ let rabbit = new Rabbit("Rabbit");
 console.log(rabbit.sayHi());
 console.log(Rabbit.prototype.sayHi());
 console.log(Object.getPrototypeOf(rabbit).sayHi());
-console.log(rabbit.__proto__.sayHi());
+console.log(rabbit.__proto__.sayHi()); */
+
+
+
+// Class basic syntax
+/* class c {
+  constructor(name) {
+    this.name = name;
+  }
+
+  sayHi() {
+    alert(this.name);
+  }
+}
+
+let john = new c("John");
+john.sayHi();
+console.log(typeof c) */
+
+/* let User = class MyClass {
+  sayHi() {
+    console.log(MyClass); // MyClass name is visible only inside the class
+  }
+};
+
+new User().sayHi(); // works, shows MyClass definition */
+
+/* class Clock {
+  timer = null;
+  
+  constructor({template}) {
+    this.template = template;
+  }
+
+  render() {
+    let date = new Date();
+
+    let hours = date.getHours();
+    if (hours < 10) hours = '0' + hours;
+
+    let mins = date.getMinutes();
+    if (mins < 10) mins = '0' + mins;
+
+    let secs = date.getSeconds();
+    if (secs < 10) secs = '0' + secs;
+
+    let output = this.template
+      .replace('h', hours)
+      .replace('m', mins)
+      .replace('s', secs);
+
+    console.log(output);
+  }
+
+  stop = function() {
+    clearInterval(this.timer);
+  };
+
+  start = function() {
+    this.render();
+    this.timer = setInterval(() => this.render(), 1000);
+  };
+}
+
+let clock = new Clock({template: 'h:m:s'});
+clock.start(); */
 
 
 
