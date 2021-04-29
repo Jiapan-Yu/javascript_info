@@ -3339,7 +3339,7 @@ let rabbit = new Rabbit("White Rabbit"); // Error: this is not defined
 alert(rabbit.name); */
 
 
-class Clock {
+/* class Clock {
   constructor({ template }) {
     this.template = template;
     console.log(this.template);
@@ -3373,7 +3373,72 @@ class Clock {
     this.render();
     this.timer = setInterval(() => this.render(), 1000);
   }
+} */
+
+
+
+// Static properties and methods
+/* class Animal {
+  static planet = "Earth";
+
+  constructor(name, speed) {
+    this.name = name;
+    this.speed = speed;
+  }
+
+  static compare(animalA, animalB) {
+    return animalA.speed - animalB.speed;
+  }
 }
+
+class Rabbit extends Animal {
+  run(speed = 0) {
+    this.speed += speed;
+    console.log(`${this.name} runs with speed ${this.speed}`);
+  }
+}
+
+let rabbits = [
+  new Rabbit("White rabbit", 10),
+  new Rabbit("Black rabbit", 5)
+];
+
+rabbits.sort(Rabbit.compare);
+
+rabbits[1].run(); // Black Rabbit runs with speed 5.
+
+alert(Rabbit.planet); // Earth */
+
+/* class Rabbit extends Object {
+  constructor(name) {
+    super();
+    this.name = name;
+  }
+}
+
+let rabbit = new Rabbit("Rab");
+
+alert( rabbit.hasOwnProperty('name') ); // Error */
+
+
+/* function Asteroids(num) {
+  this.population = num;
+
+  this.printPopulation = function() {
+    console.log(this.population + 1000);
+  }
+}
+
+Asteroids.prototype = {
+  printPopulation() {
+    console.log(this.population);
+  }
+}
+
+let earth = new Asteroids(1000);
+
+earth.printPopulation();
+console.log(earth.hasOwnProperty("population")); */
 
 
 
