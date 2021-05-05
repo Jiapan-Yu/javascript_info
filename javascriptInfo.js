@@ -3442,6 +3442,123 @@ console.log(earth.hasOwnProperty("population")); */
 
 
 
+// Private and protected properties and methods
+/* class CoffeeMachine {
+  #waterLimit = 200;
+
+  #fixWaterAmount(value) {
+    if (value < 0) return 0;
+    if (value > this.#waterLimit) return this.#waterLimit;
+  }
+
+  setWaterAmount(value) {
+    this.#waterLimit = this.#fixWaterAmount(value);
+  }
+
+  getWaterAmount() {
+    return this.#waterLimit;
+  }
+
+}
+
+let coffeeMachine = new CoffeeMachine();
+
+// can't access privates from outside of the class
+// coffeeMachine.#fixWaterAmount(123); // Error
+// coffeeMachine.#waterLimit = 1000; // Error
+coffeeMachine.setWaterAmount(123);
+
+console.log(coffeeMachine.getWaterAmount()); */
+
+/* class User {
+  name = "joshua";
+
+  sayHi() {
+    let fieldName = "name";
+    alert(`Hello, ${this[fieldName]}`);
+  }
+}
+
+let user = new User();
+
+user.sayHi(); */
+
+
+/* function A() {}
+function B() {}
+
+A.prototype = B.prototype = {};
+
+let a = new A();
+
+alert( a instanceof B ); // true
+
+Object.assign(User.prototype, sayHiMixin); */
+
+
+
+// Mixins
+let eventMixin = {
+  /**
+   * Subscribe to event, usage:
+   *  menu.on('select', function(item) { ... }
+  */
+  on(eventName, handler) {
+    if (!this._eventHandlers) this._eventHandlers = {};
+    if (!this._eventHandlers[eventName]) {
+      this._eventHandlers[eventName] = [];
+    }
+    this._eventHandlers[eventName].push(handler);
+  },
+
+  /**
+   * Cancel the subscription, usage:
+   *  menu.off('select', handler)
+   */
+  off(eventName, handler) {
+    let handlers = this._eventHandlers?.[eventName];
+    if (!handlers) return;
+    for (let i = 0; i < handlers.length; i++) {
+      if (handlers[i] === handler) {
+        handlers.splice(i--, 1);
+      }
+    }
+  },
+
+  /**
+   * Generate an event with the given name and data
+   *  this.trigger('select', data1, data2);
+   */
+  trigger(eventName, ...args) {
+    if (!this._eventHandlers?.[eventName]) {
+      return; // no handlers for that event name
+    }
+
+    // call the handlers
+    this._eventHandlers[eventName].forEach(handler => handler.apply(this, args));
+  }
+};
+
+// Make a class
+class Menu {
+  choose(value) {
+    this.trigger("select", value);
+  }
+}
+// Add the mixin with event-related methods
+Object.assign(Menu.prototype, eventMixin);
+
+let menu = new Menu();
+
+// add a handler, to be called on selection:
+menu.on("select", value => alert(`Value selected: ${value}`));
+
+// triggers the event => the handler above runs and shows:
+// Value selected: 123
+menu.choose("123");
+
+
+
 
 
 // event loop from JSConf of youtube （21:55 starts talk about render and he 
