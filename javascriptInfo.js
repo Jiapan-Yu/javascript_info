@@ -3498,66 +3498,115 @@ Object.assign(User.prototype, sayHiMixin); */
 
 
 // Mixins
-let eventMixin = {
-  /**
-   * Subscribe to event, usage:
-   *  menu.on('select', function(item) { ... }
-  */
-  on(eventName, handler) {
-    if (!this._eventHandlers) this._eventHandlers = {};
-    if (!this._eventHandlers[eventName]) {
-      this._eventHandlers[eventName] = [];
-    }
-    this._eventHandlers[eventName].push(handler);
-  },
+// let eventMixin = {
+//   /**
+//    * Subscribe to event, usage:
+//    *  menu.on('select', function(item) { ... }
+//   */
+//   on(eventName, handler) {
+//     if (!this._eventHandlers) this._eventHandlers = {};
+//     if (!this._eventHandlers[eventName]) {
+//       this._eventHandlers[eventName] = [];
+//     }
+//     this._eventHandlers[eventName].push(handler);
+//   },
 
-  /**
-   * Cancel the subscription, usage:
-   *  menu.off('select', handler)
-   */
-  off(eventName, handler) {
-    let handlers = this._eventHandlers?.[eventName];
-    if (!handlers) return;
-    for (let i = 0; i < handlers.length; i++) {
-      if (handlers[i] === handler) {
-        handlers.splice(i--, 1);
-      }
-    }
-  },
+//   /**
+//    * Cancel the subscription, usage:
+//    *  menu.off('select', handler)
+//    */
+//   off(eventName, handler) {
+//     let handlers = this._eventHandlers?.[eventName];
+//     if (!handlers) return;
+//     for (let i = 0; i < handlers.length; i++) {
+//       if (handlers[i] === handler) {
+//         handlers.splice(i--, 1);
+//       }
+//     }
+//   },
 
-  /**
-   * Generate an event with the given name and data
-   *  this.trigger('select', data1, data2);
-   */
-  trigger(eventName, ...args) {
-    if (!this._eventHandlers?.[eventName]) {
-      return; // no handlers for that event name
-    }
+//   /**
+//    * Generate an event with the given name and data
+//    *  this.trigger('select', data1, data2);
+//    */
+//   trigger(eventName, ...args) {
+//     if (!this._eventHandlers?.[eventName]) {
+//       return; // no handlers for that event name
+//     }
 
-    // call the handlers
-    this._eventHandlers[eventName].forEach(handler => handler.apply(this, args));
-  }
+//     // call the handlers
+//     this._eventHandlers[eventName].forEach(handler => handler.apply(this, args));
+//   }
+// };
+
+// // Make a class
+// class Menu {
+//   choose(value) {
+//     this.trigger("select", value);
+//   }
+// }
+// // Add the mixin with event-related methods
+// Object.assign(Menu.prototype, eventMixin);
+
+// let menu = new Menu();
+
+// // add a handler, to be called on selection:
+// menu.on("select", value => alert(`Value selected: ${value}`));
+
+// // triggers the event => the handler above runs and shows:
+// // Value selected: 123
+// menu.choose("123");
+
+
+
+// Error handling, "try...catch"
+/* try {
+  blabla;
+} catch (err) {
+  console.log(err.name);
+  console.log(err.message);
+  console.log(err.stack);
+
+  console.log(err);
+} */
+
+// let json = '{"name": "derek"}'
+
+
+/* window.onerror = function(message, url, line, col, error) {
+  console.log(`${message}\n At ${line}:${col} of ${url}`);
 };
 
-// Make a class
-class Menu {
-  choose(value) {
-    this.trigger("select", value);
-  }
+function readData() {
+  badFunc(); // Whoops, something went wrong!
 }
-// Add the mixin with event-related methods
-Object.assign(Menu.prototype, eventMixin);
 
-let menu = new Menu();
-
-// add a handler, to be called on selection:
-menu.on("select", value => alert(`Value selected: ${value}`));
-
-// triggers the event => the handler above runs and shows:
-// Value selected: 123
-menu.choose("123");
+readData(); */
 
 
+/* function isFinal() {
+  try {
+    console.log("work");
+    return true;
+  } catch (err) {
+    console.log("handle errors");
+  } finally {
+    console.log("cleanup the working space");
+  }
+} */
+
+function isFinal() {
+  try {
+    console.log("work");
+    return true;
+  } catch (err) {
+    console.log("handle errors");
+  }
+
+  console.log("cleanup the working space");
+}
+
+console.log(isFinal());
 
 
 
