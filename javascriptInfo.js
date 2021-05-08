@@ -3703,6 +3703,27 @@ function showCircle(cx, cy, radius) {
 
 
 
+// Promises chaining
+/* class Thenable {
+  constructor(num) {
+    this.num = num;
+  }
+
+  then(resolve) {
+    console.log(resolve);
+
+    setTimeout(() => resolve(this.num * 2), 1000);
+  }
+}
+
+new Promise((resolve, reject) => {
+  resolve(1);
+}).then(val => {
+  return new Thenable(val);
+}).then(alert); */
+
+
+
 
 // event loop from JSConf of youtube （21:55 starts talk about render and he 
 // refers to an example about blocking at 7:45)
