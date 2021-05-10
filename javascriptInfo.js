@@ -3724,6 +3724,104 @@ new Promise((resolve, reject) => {
 
 
 
+// Error handling with promises
+/* new Promise((resolve, reject) => {
+  return resolve(1);
+}).then(
+  result => blabla()
+).catch(alert); */
+
+// the execution: catch -> catch
+/* new Promise((resolve, reject) => {
+  throw new Error("Whoops!");
+}).catch(error => {
+  if (error instanceof URIError) {
+    // handle the error
+  } else {
+    // else rethrow it
+    alert("can't handle this error")
+    throw error;
+  }
+}).then(function() {
+  // doesn't run
+}).catch(error => {
+  alert(`catch the error ${error}`)
+}).then(() => alert("Next successful handler runs")); */
+
+/* new Promise(function() {
+  noSuchFunction(); // Error here (no such function)
+})
+  .then(() => {
+    // successful promise handlers, one or more
+  }); // without .catch at the end! */
+
+  /* new Promise(function(resolve, reject) {
+    throw new Error("Whoops!");
+  }).catch(alert); */
+
+
+
+// Promise API
+/* let names = ['iliakan', 'remy', 'jeresig'];
+
+let requests = names.map(name => fetch(`https://api.github.com/users/${name}`));
+
+Promise.all(requests)
+  .then(responses => {
+    // all responses are resolved successfully
+    for(let response of responses) {
+      alert(`${response.url}: ${response.status}`); // shows 200 for every url
+    }
+
+    return responses;
+  })
+  // map array of responses into an array of response.json() to read their content
+  .then(responses => {
+    console.log("responses: ", responses);
+    return Promise.all(responses.map(r => r.json()));
+  })
+  // all JSON answers are parsed: "users" is the array of them
+  .then(users => {
+    console.log("users: ", users);
+    users.forEach(user => {
+      console.log(user);
+      console.log(user.name);
+      alert(user.name); // refresh 后只 alert 了第一个和第三个名字，不知道为什么？可能跟 server side 有关
+    })
+  }); */
+
+
+/* let urls = [
+  'https://api.github.com/users/iliakan',
+  'https://api.github.com/users/remy',
+  'https://no-such-url'
+];
+
+Promise.allSettled(urls.map(url => fetch(url)))
+  .then(results => { // (*)
+    results.forEach((result, num) => {
+      if (result.status == "fulfilled") {
+        console.log(result.value);
+        // alert(`${urls[num]}: ${result.value.status}`);
+      }
+      if (result.status == "rejected") {
+        // alert(`${urls[num]}: ${result.reason}`);
+      }
+    });
+  });
+ */
+
+
+
+ // Microtasks
+ let promise = Promise.reject(new Error("Promise Failed!"));
+setTimeout(() => promise.catch(err => alert('caught')), 1000);
+
+// Error: Promise Failed!
+window.addEventListener('unhandledrejection', event => alert(event.reason));
+
+
+
 
 // event loop from JSConf of youtube （21:55 starts talk about render and he 
 // refers to an example about blocking at 7:45)
