@@ -3863,7 +3863,7 @@ console.log(showAvatar()); */
 
 loadJson('no-such-user.json').catch(alert); */
 
-class HttpError extends Error {
+/* class HttpError extends Error {
   constructor(response) {
     super(`${response.status} for ${response.url}`);
     this.name = 'HttpError';
@@ -3871,39 +3871,61 @@ class HttpError extends Error {
   }
 }
 
-function loadJson(url) {
-  return fetch(url)
-    .then(response => {
-      if (response.status == 200) {
-        return response.json();
-      } else {
-        throw new HttpError(response);
-      }
-    });
+async function loadJson(url) {
+  let response = await fetch(url);
+
+  if (response.status == 200) {
+    return response.json();
+  } else {
+    throw new HttpError(response);
+  }
 }
 
 // Ask for a user name until github returns a valid user
-function demoGithubUser() {
-  let name = prompt("Enter a name?", "iliakan");
+async function demoGithubUser() {
 
-  return loadJson(`https://api.github.com/users/${name}`)
-    .then(user => {
-      console.log("user: ", user);
-      alert(`Full name: ${user.name}.`);
-      return user;
-    })
-    .catch(err => {
+  while(true) {
+    let name = prompt("Enter a name?", "iliakan");
+    try {
+      user = await loadJson(`https://api.github.com/users/${name}`);
+      break;
+    } catch (err) {
       if (err instanceof HttpError && err.response.status == 404) {
         alert("No such user, please reenter.");
-        return demoGithubUser();
       } else {
         throw err;
       }
-    });
+    } finally {
+      console.log("is output");
+    }
+  }
+
+  alert(`Full name: ${user.name}.`); // alert 后有时会自动消失，不知道为什么？
+  return user;
 }
 
-demoGithubUser();
+window.addEventListener("unhandledrejection", event => {
+  event.preventDefault(); // 不加这个的话将会有 “report unhandled promise rejections to the console”
+  // https://developer.mozilla.org/en-US/docs/Web/API/Window/unhandledrejection_event#preventing_default_handling
+  console.log("unhandledrejection event: ", event);
+});
 
+demoGithubUser(); */
+
+async function wait() {
+  await new Promise(resolve => setTimeout(resolve, 1000));
+
+  return 10;
+}
+
+function f() {
+  // ...what should you write here?
+  // we need to call async wait() and wait to get 10
+  // remember, we can't use "await"
+  wait().then(response => console.log(response));
+}
+
+f();
 
 
 
