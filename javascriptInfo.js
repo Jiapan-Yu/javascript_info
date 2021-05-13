@@ -3912,7 +3912,7 @@ window.addEventListener("unhandledrejection", event => {
 
 demoGithubUser(); */
 
-async function wait() {
+/* async function wait() {
   await new Promise(resolve => setTimeout(resolve, 1000));
 
   return 10;
@@ -3925,7 +3925,175 @@ function f() {
   wait().then(response => console.log(response));
 }
 
-f();
+f(); */
+
+
+
+// Generators
+/* function* generateSequence() {
+  yield 1;
+  yield 2;
+  return 3;
+}
+
+// "generator function" creates "generator object"
+let generator = generateSequence();
+alert(generator);
+
+let one = generator.next();
+let two = generator.next();
+let three = generator.next();
+let noFour = generator.next();
+
+console.log(one);
+console.log(two);
+console.log(three);
+console.log(noFour); */
+
+/* function* foo(){
+  yield 1;
+  yield 2;
+  yield 3;
+};
+
+for (const o of foo()) {
+  console.log(o);
+  break; // closes iterator, execution continues outside of the loop
+}
+console.log('done'); */
+
+
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of#iterating_over_generators
+/* let [prev, curr] = [0, 1];
+[prev, curr] = [curr, prev + curr];
+[prev, curr] = [curr, prev + curr];
+[prev, curr] = [curr, prev + curr];
+
+console.log(prev);
+console.log(curr); */
+
+
+/* function* generateSequence(start, end) {
+  for (let i = start; i <= end; i++) yield i;
+}
+
+function* generatePasswordCodes() {
+
+  // 0..9
+  yield* generateSequence(48, 57);
+
+  // A..Z
+  yield* generateSequence(65, 90);
+
+  // a..z
+  yield* generateSequence(97, 122);
+
+}
+
+let str = '';
+
+for(let code of generatePasswordCodes()) {
+  str += String.fromCharCode(code);
+}
+
+console.log(str); // 0..9A..Za..z */
+
+
+// 48-57  65-90  97-122 (第二天自己写了一遍)
+/* function* generateSequence(start, end) {
+  while (start <= end) {
+    yield start++;
+  }
+}
+
+// for (let i of generateSequence(48, 57)) {
+//   console.log(String.fromCharCode(i));
+// }
+
+let str = "";
+
+function* genComposition() {
+  yield* generateSequence(48, 57);
+  yield* generateSequence(65, 90);
+  yield* generateSequence(97, 122);
+}
+
+for (let i of genComposition()) {
+  // str = str.concat(String.fromCharCode(i));
+  str += String.fromCharCode(i);
+}
+
+console.log(str);
+
+// console.log(String.fromCharCode(generateSequence().next().value)); */
+
+
+/* function* gen() {
+  // Pass a question to the outer code and wait for an answer
+  let result = yield "2 + 2 = ?"; // (*)
+
+  alert(result);
+}
+
+let generator = gen();
+
+let question = generator.next().value; // <-- yield returns the value
+console.log(question);
+
+// generator.next(4); // --> pass the result into the generator */
+
+/* function* gen() {
+  let ask1 = yield "2 + 2 = ?";
+
+  alert(ask1); // 4
+
+  let ask2 = yield "3 * 3 = ?"
+
+  alert(ask2); // 9
+}
+
+let generator = gen();
+
+alert( generator.next().value ); // "2 + 2 = ?"
+
+alert( generator.next(4).value ); // "3 * 3 = ?"
+
+alert( generator.next(9).done ); // true */
+
+/* function* gen() {
+  try {
+    let result = yield "2 + 2 = ?";
+
+    alert(result);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+let generator = gen();
+
+let question = generator.next().value;
+
+console.log(question);
+
+generator.throw(new Error("The answer is not found on my database")); */
+
+
+// tasks
+/* function* pseudoRandom(seed) {
+  let value = seed * 16807 % 2147483647;
+  while(true) { // an infinite loop to generate infinite yields
+    yield value;
+    value =  value * 16807 % 2147483647; // 移到 while 语句的下面将不会被执行
+  }
+}
+
+let generator = pseudoRandom(1);
+
+console.log(generator.next().value); // 16807
+console.log(generator.next().value); // 282475249
+console.log(generator.next().value); // 1622650073 */
+
 
 
 
