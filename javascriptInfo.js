@@ -4174,7 +4174,7 @@ for(let value of range) {
 })(); */
 
 
-async function* fetchCommits(repo) {
+/* async function* fetchCommits(repo) {
   let url = `https://api.github.com/repos/${repo}/commits`;
 
   while (url) {
@@ -4211,7 +4211,22 @@ async function* fetchCommits(repo) {
     }
   }
 
-})();
+})(); */
+
+
+
+// Export and Import
+/* function sayHi(user) {
+  console.log("Hi, ", user);
+}
+
+function sayBye(user) {
+  console.log("Hi, ", user);
+}
+
+export {sayHi as hi, sayBye as Bye};
+
+import * as say from './say.js'; */
 
 
 
