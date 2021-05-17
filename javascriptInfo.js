@@ -4230,6 +4230,20 @@ import * as say from './say.js'; */
 
 
 
+// Dynamic imports
+function thumb() { // 名字改为click，不正常工作，不知道为什么？
+  import("./say.js")
+    .then((say) => {
+      let { hi, bye, default: load } = say; // 类似于 destructuring assignment
+      hi();
+      bye();
+      load();
+    })
+    .catch((err) => console.log(err));
+}
+
+
+
 
 // event loop from JSConf of youtube （21:55 starts talk about render and he 
 // refers to an example about blocking at 7:45)
