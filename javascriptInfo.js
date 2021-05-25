@@ -4231,7 +4231,7 @@ import * as say from './say.js'; */
 
 
 // Dynamic imports
-function thumb() { // 名字改为click，不正常工作，不知道为什么？
+/* function thumb() { // 名字改为click，不正常工作，不知道为什么？
   import("./say.js")
     .then((say) => {
       let { hi, bye, default: load } = say; // 类似于 destructuring assignment
@@ -4240,7 +4240,94 @@ function thumb() { // 名字改为click，不正常工作，不知道为什么�
       load();
     })
     .catch((err) => console.log(err));
-}
+} */
+
+
+
+// Proxy and Reflect
+/* let numbers = [0, 11, 22];
+
+numbers = new Proxy(numbers, {
+  get(target, prop) {
+    if (target[prop]) {
+      return target[prop];
+    } else {
+      return 0;  // default value
+    }
+  }
+});
+
+console.log(numbers[1]);
+console.log(numbers[5]); */
+
+
+/* let dictionary = {
+  'Hello': 'Hola',
+  'Bye': 'Adiós'
+};
+
+console.log( dictionary.Hello ); // Hola
+console.log( dictionary['Welcome'] ); // undefined */
+
+
+/* let user = {
+  name: "John",
+  age: 30,
+  _password: "***"
+};
+
+console.log(Object.keys(user).filter(key => !key.startsWith('_'))); */
+
+
+
+// Eval: run a code string
+/* let calculator = prompt("Please enter an expression", "2+2");
+
+let result = eval(calculator);
+console.log(result); */
+
+
+
+// Reference Type
+/* let user = {
+  name: "John",
+  hi() {
+    alert(`Hi, ${this.name}`);
+  },
+  bye() {
+    alert("bye");
+  }
+};
+
+// user.hi();
+
+// console.log(user.name === "John" ? user.hi : user.bye);
+// (user.name === "John" ? user.hi : user.bye)(); // 注释掉 user.hi(); 后跟官方报错不一致，不知道为什么？
+// because JavaScript doesn't assume a semicolon before IIFE
+(user.hi)(); */
+
+
+/* (function(a, b) {
+  console.log(a + b);
+})(1, 2); */
+
+
+/* let user = {
+  name: "John",
+  go: function() { alert(this.name) }
+};
+
+(user.go)() */
+
+
+/* let obj, method;
+
+obj = {
+  go: function() { console.log(this); }
+};
+
+obj.go(); 
+(obj.go)(); */
 
 
 
