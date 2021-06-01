@@ -1,7 +1,7 @@
 'use strict'
 
 // Browser default actions
-// why just 'elem' is ok?
+// why just 'elem' is ok? See https://javascript.info/searching-elements-dom
 /* elem.oncontextmenu = function (event) {
   event.preventDefault();
   // event.stopPropagation();
@@ -4328,6 +4328,40 @@ obj = {
 
 obj.go(); 
 (obj.go)(); */
+
+
+
+// Walking the DOM
+/* while (elm = elm.parentElement) {
+  alert(elm);
+} */
+
+/* document.body.firstElementChild
+document.body.lastElementChild
+document.body.lastElementChild.lastElementChild */
+
+
+/* true
+false */
+
+// column row
+
+/* console.log(document.getElementById("age-table"));
+
+console.log(document.getElementById("age-table").querySelectorAll('label'));
+// or
+console.log(document.getElementById("age-table").getElementsByTagName('label'));
+
+console.log(document.getElementById("age-table").querySelector('td'));
+
+console.log(document.querySelector('form[name="search"]'));
+
+console.log(document.querySelector('form[name="search"]').querySelector('input'));
+
+let inputsNum = document.querySelector('form[name="search"]').querySelectorAll('input').length;
+console.log(document.querySelector('form[name="search"]').querySelectorAll('input')[inputsNum-1]);
+// or
+// console.log(document.querySelector('form[name="search"]').querySelector('input:last-child')); // 这个不行 */
 
 
 
