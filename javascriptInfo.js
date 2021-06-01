@@ -4365,6 +4365,21 @@ console.log(document.querySelector('form[name="search"]').querySelectorAll('inpu
 
 
 
+// Node properties: type, tag and contents
+/* console.log( document.body instanceof HTMLBodyElement ); // true
+console.log( document.body instanceof HTMLElement ); // true
+console.log( document.body instanceof Element ); // true
+console.log( document.body instanceof Node ); // true
+console.log( document.body instanceof EventTarget ); // true
+console.log( document.body instanceof Object ); // true
+
+console.log( document.body );
+console.dir( document.body ); */
+
+console.dir(document.querySelector('form[name="search"]').querySelector('input'));
+
+
+
 
 // event loop from JSConf of youtube （21:55 starts talk about render and he 
 // refers to an example about blocking at 7:45)
