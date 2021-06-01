@@ -4480,7 +4480,20 @@ console.log( document.body instanceof Object ); // true
 console.log( document.body );
 console.dir( document.body ); */
 
-console.dir(document.querySelector('form[name="search"]').querySelector('input'));
+// console.dir(document.querySelector('form[name="search"]').querySelector('input'));
+
+
+// HTMLDocument
+// Object -> EventTarget -> Node -> Document -> HTMLDocument
+
+/* console.log(window.document.constructor.name);
+
+console.log(window.document.__proto__ === HTMLDocument.prototype);
+
+console.log(window.document.__proto__.constructor.name);
+console.log(window.document.__proto__.__proto__.constructor.name);
+console.log(window.document.__proto__.__proto__.__proto__.constructor.name); */
+
 
 
 
