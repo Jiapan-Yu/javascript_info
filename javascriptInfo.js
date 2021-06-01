@@ -4279,6 +4279,110 @@ console.log( dictionary['Welcome'] ); // undefined */
 console.log(Object.keys(user).filter(key => !key.startsWith('_'))); */
 
 
+/* let user = {
+  _name: "Guest",
+  get name() {
+    return this._name;
+  }
+};
+
+// let userProxy = new Proxy(user, {
+//   get(target, prop, receiver) {
+//     return target[prop]; // (*) target = user
+//   }
+// });
+
+let admin = {
+  __proto__: user,
+  _name: "Admin"
+};
+
+// Expected: Admin
+alert(admin.name); // outputs: Guest (?!?) */
+
+
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy
+/* let user = {
+  a: "Hello",
+  b: "message"
+};
+
+let handler1 = {
+  get(target, prop) {
+    return "world"
+  }
+}
+
+user = new Proxy(user, handler1);
+
+console.log(user.a);
+console.log(user.b); */
+
+
+/* const handler = {
+  get: function(obj, prop) {
+    return prop in obj ?
+      obj[prop] :
+      37;
+  }
+};
+
+const p = new Proxy({}, handler);
+p.a = 1;
+p.b = null;
+
+console.log(p.a, p.b);
+//  1, undefined
+
+console.log('c' in p, p.c);
+//  false, 37 */
+
+/*f unction extend(sup, base) {
+  var descriptor = Object.getOwnPropertyDescriptor(
+    base.prototype, 'constructor'
+  );
+  console.log("base.prototype 的 constructor descriptor", descriptor);
+  base.prototype = Object.create(sup.prototype);
+  console.log("base.prototype: ", base.prototype); // 为什么是 Person 对象，并且包含 'gender: "M"' property?
+  
+  let obj = Object.create({});
+  console.log(obj);
+
+  var handler = {
+    construct: function(target, args) {
+      var obj = Object.create(base.prototype);
+      this.apply(target, obj, args);
+      return obj;
+    },
+    apply: function(target, that, args) {
+      sup.apply(that, args);
+      base.apply(that, args);
+    }
+  };
+  var proxy = new Proxy(base, handler);
+  descriptor.value = proxy;
+  Object.defineProperty(base.prototype, 'constructor', descriptor);
+  console.log("base.prototype: ", base.prototype);
+  return proxy;
+}
+
+var Person = function(name) {
+  this.name = name;
+};
+
+var Boy = extend(Person, function(name, age) {
+  this.age = age;
+});
+
+Boy.prototype.gender = 'M';
+
+var Peter = new Boy('Peter', 13);
+
+console.log(Peter.gender);  // "M"
+console.log(Peter.name);    // "Peter"
+console.log(Peter.age);     // 13 */
+
+
 
 // Eval: run a code string
 /* let calculator = prompt("Please enter an expression", "2+2");
