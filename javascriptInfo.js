@@ -4514,11 +4514,6 @@ for (let attr of elem.attributes) { // (4) list all
 } */
 
 
-// Tasks
-/* let elem = document.querySelector("div[data-widget-name='menu'");
-elem.dataset.widgetName; */
-
-
 
 
 // event loop from JSConf of youtube （21:55 starts talk about render and he 
