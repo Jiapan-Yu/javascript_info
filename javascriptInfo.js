@@ -4337,7 +4337,7 @@ console.log(p.a, p.b);
 console.log('c' in p, p.c);
 //  false, 37 */
 
-/*f unction extend(sup, base) {
+/* function extend(sup, base) {
   var descriptor = Object.getOwnPropertyDescriptor(
     base.prototype, 'constructor'
   );
@@ -4345,12 +4345,12 @@ console.log('c' in p, p.c);
   base.prototype = Object.create(sup.prototype);
   console.log("base.prototype: ", base.prototype); // 为什么是 Person 对象，并且包含 'gender: "M"' property?
   
-  let obj = Object.create({});
-  console.log(obj);
+  console.log("base", base);
 
   var handler = {
     construct: function(target, args) {
       var obj = Object.create(base.prototype);
+      console.log("obj: ", obj);
       this.apply(target, obj, args);
       return obj;
     },
@@ -4360,7 +4360,7 @@ console.log('c' in p, p.c);
     }
   };
   var proxy = new Proxy(base, handler);
-  descriptor.value = proxy;
+  descriptor.value = proxy; // data descriptor
   Object.defineProperty(base.prototype, 'constructor', descriptor);
   console.log("base.prototype: ", base.prototype);
   return proxy;
@@ -4374,13 +4374,14 @@ var Boy = extend(Person, function(name, age) {
   this.age = age;
 });
 
-Boy.prototype.gender = 'M';
+// Boy.prototype.gender = 'M';
 
-var Peter = new Boy('Peter', 13);
+// var Peter = new Boy('Peter', 13);
 
-console.log(Peter.gender);  // "M"
-console.log(Peter.name);    // "Peter"
-console.log(Peter.age);     // 13 */
+// console.log(Peter.gender);  // "M"
+// console.log(Peter.name);    // "Peter"
+// console.log(Peter.age);     // 13 */
+
 
 
 
@@ -4494,6 +4495,23 @@ console.log(window.document.__proto__.constructor.name);
 console.log(window.document.__proto__.__proto__.constructor.name);
 console.log(window.document.__proto__.__proto__.__proto__.constructor.name); */
 
+
+
+// Attributes and properties
+// alert( elem.getAttribute('About') ); // (1) 'Elephant', reading
+
+// elem.setAttribute('Test', 123); // (2), writing
+
+// alert( elem.outerHTML ); // (3), see if the attribute is in HTML (yes)
+
+
+/* console.log(elem.attributes)
+
+for (let attr of elem.attributes) { // (4) list all
+  // alert( `${attr.name} = ${attr.value}` );
+  console.log(attr.constructor.name)
+  console.log(attr.__proto__ === Attr.prototype)
+} */
 
 
 
