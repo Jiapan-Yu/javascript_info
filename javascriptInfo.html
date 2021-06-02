@@ -1,175 +1,32 @@
-<!DOCTYPE html>
 <html>
-
-<head>
-  <meta charset="UTF-8" />
-  <link rel="stylesheet" href="./javascriptInfo.css" type="text/css">
-  <title>javascript.info learning</title>
-</head>
-
 <body>
 
-  <!-- Browser default actions -->
-  <!-- <p>Right-click here for the document context menu</p>
-  <button id="elem">Right-click here for the button context menu</button> -->
-
-  <!-- <a href="https://w3.org" onclick="handler(event)">the browser will go to w3.org</a> -->
-
-  <!-- <fieldset id="contents">
-    <legend>#contents</legend>
-    <p>
-      How about to read <a href="https://wikipedia.org">Wikipedia</a> or visit <a href="https://w3.org"><i>W3.org</i></a>
-      and learn about modern standards?
-    </p>
-  </fieldset> -->
-
-  <!-- <p><img id="largeImg" src="https://en.js.cx/gallery/img1-lg.jpg" alt="Large image"></p> -->
-  <ul id="thumbs" hidden>
-    <!-- the browser shows a small built-in tooltip on hover with the text from "title" attribute -->
-    <!-- <li>
-      <a href="https://en.js.cx/gallery/img2-lg.jpg" title="Image 2"><img
-          src="https://en.js.cx/gallery/img2-thumb.jpg"></a>
-    </li>
-    <li>
-      <a href="https://en.js.cx/gallery/img3-lg.jpg" title="Image 3"><img
-          src="https://en.js.cx/gallery/img3-thumb.jpg"></a>
-    </li>
-    <li>
-      <a href="https://en.js.cx/gallery/img4-lg.jpg" title="Image 4"><img
-          src="https://en.js.cx/gallery/img4-thumb.jpg"></a>
-    </li>
-    <li>
-      <a href="https://en.js.cx/gallery/img5-lg.jpg" title="Image 5"><img
-          src="https://en.js.cx/gallery/img5-thumb.jpg"></a>
-    </li>
-    <li>
-      <a href="https://en.js.cx/gallery/img6-lg.jpg" title="Image 6"><img
-          src="https://en.js.cx/gallery/img6-thumb.jpg"></a>
-    </li> -->
+  <a name="list">the list</a>
+  <ul>
+    <li><a href="http://google.com">http://google.com</a></li>
+    <li><a href="/tutorial">/tutorial.html</a></li>
+    <li><a href="local/path">local/path</a></li>
+    <li><a href="ftp://ftp.com/my.zip">ftp://ftp.com/my.zip</a></li>
+    <li><a href="http://nodejs.org">http://nodejs.org</a></li>
+    <li><a href="http://internal.com/test">http://internal.com/test</a></li>
   </ul>
 
+  <script>
+    // setting style for a single link
+    /* let links = document.querySelectorAll('ul a');
+
+    links.forEach((elem, index) => {
+      let attr = elem.getAttribute("href");
+      if (attr.includes("://") && !attr.startsWith("http://internal.com")) {
+        elem.style.color = "orange";
+      }
+    }); */
 
 
-  <!-- Event delegation -->
-  <!-- <div id="menu">
-    <button data-action="save">Save</button>
-    <button data-action="load">Load</button>
-    <button data-action="search">Search</button>
-  </div> -->
-
-  <!-- Counter: <input type="button" value="1" data-counter>
-  One more counter: <input type="button" value="2" data-counter> -->
-
-  <!-- <button data-toggle-id="subscribe-mail">
-    Show the subscription form
-  </button>
-  <form id="subscribe-mail" hidden>
-    Your mail: <input type="email">
-  </form> -->
-
-  <!-- <div id="container">
-    <div class="pane">
-      <h3>Horse</h3>
-      <p>The horse is one of two extant subspecies of Equus ferus. It is an odd-toed ungulate mammal belonging to the
-        taxonomic family Equidae. The horse has evolved over the past 45 to 55 million years from a small multi-toed
-        creature, Eohippus, into the large, single-toed animal of today.</p>
-      <button class="remove-button" data-animal="horse">[x]</button>
-    </div>
-    <div class="pane">
-      <h3>Donkey</h3>
-      <p>The donkey or ass (Equus africanus asinus) is a domesticated member of the horse family, Equidae. The wild
-        ancestor of the donkey is the African wild ass, E. africanus. The donkey has been used as a working animal for
-        at least 5000 years.</p>
-      <button class="remove-button" data-animal="donkey">[x]</button>
-    </div>
-    <div class="pane">
-      <h3>Cat</h3>
-      <p>The domestic cat (Latin: Felis catus) is a small, typically furry, carnivorous mammal. They are often called
-        house cats when kept as indoor pets or simply cats when there is no need to distinguish them from other felids
-        and felines. Cats are often valued by humans for companionship and for their ability to hunt vermin.
-      </p>
-      <button class="remove-button" data-animal="cat">[x]</button>
-    </div>
-  </div> -->
-
-
-  <!-- <ul class="tree" id="tree">
-    <li>Animals
-      <ul>
-        <li>Mammals
-          <ul>
-            <li>Cows</li>
-            <li>Donkeys</li>
-            <li>Dogs</li>
-            <li>Tigers</li>
-          </ul>
-        </li>
-        <li>Other
-          <ul>
-            <li>Snakes</li>
-            <li>Birds</li>
-            <li>Lizards</li>
-          </ul>
-        </li>
-      </ul>
-    </li>
-    <li>Fishes
-      <ul>
-        <li>Aquarium
-          <ul>
-            <li>Guppy</li>
-            <li>Angelfish</li>
-          </ul>
-        </li>
-        <li>Sea
-          <ul>
-            <li>Sea trout</li>
-          </ul>
-        </li>
-      </ul>
-    </li>
-  </ul> -->
-
-
-
-  <!-- Introduction to browser events -->
-  <!-- <input type="button" id="hideSelfBtn" value="Click to hide"> -->
-
-
-
-  <!-- Dispatching custom events -->
-  <!-- <button id="elem" onclick="alert('Click!');">Autoclick</button> -->
-
-
-  <!-- <h1 id="elem">Hello from the script!</h1> -->
-
-
-
-  <!-- d3 from codecademy -->
-  <!-- <h3>Love, Maybe by Audre Lorde</h3>
-  <div id="viz"></div> -->
-
-
-  <!-- box-shadow property from MDN -->
-  <!-- <div><p>Hello Word</p></div> -->
-
-
-  <!-- BFC from MDN -->
-  <!-- <div class="blue"></div>
-  <div class="red-outer">
-    <div class="red-inner" onclick="startLoop()" style="cursor: pointer;">red inner</div>
-    <button class="info" onclick="handleBtnOnClick()">click me</button>
-  </div> -->
-
-  <!-- javascript.info: Animated circle with callback -->
-  <!-- <button onclick="go()">Click me</button> -->
-  <button onclick="thumb()">Click e</button>
-
-
-  <!-- <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script> -->
-  <!-- <script src="https://d3js.org/d3.v5.min.js"></script> -->
-  <script src="javascriptInfo.js"></script>
-  <!-- <script src="extended-clock.js"></script> -->
+    // or
+    for (let elem of document.querySelectorAll("a[href*='://']:not([href^='http://internal.com'])")) {
+      elem.style.color = "orange";
+    }
+  </script>
 </body>
-
 </html>
