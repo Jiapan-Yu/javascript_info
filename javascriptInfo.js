@@ -4515,6 +4515,146 @@ for (let attr of elem.attributes) { // (4) list all
 
 
 
+// Modifying the document
+/* let div = document.createElement('div');
+
+console.dir(div); */
+
+// Tasks
+// let textNode = document.createTextNode("<b>Hello</b>");
+
+// document.body.append(textNode);
+
+// document.body.innerHTML = "<b>Hello</b>";
+
+// document.body.textContent = "<b>Hello</b>";
+
+
+/* function clear(elem) {
+  // elem.innerHTML = "";
+  elem.textContent = "";
+}
+
+clear(elem); */
+
+
+/* let content;
+
+while (
+  content = prompt("Please type in the content that goes into the item")
+) {
+  let ulElem = document.createElement("ul");
+  let liElem = document.createElement("li");
+
+  liElem.textContent = content;
+  ulElem.append(liElem);
+
+  document.body.append(ulElem);
+} */
+
+/* do {
+  content = prompt("Please type in the content that goes into the item");
+
+  let ulElem = document.createElement("ul");
+  let liElem = document.createElement("li");
+
+  liElem.textContent = content;
+  ulElem.append(liElem);
+
+  document.body.append(ulElem);
+} while (content) */
+
+
+let data = {
+  "Fish": {
+    "trout": {},
+    "salmon": {}
+  },
+
+  "Tree": {
+    "Huge": {
+      "sequoia": {},
+      "oak": {}
+    },
+    "Flowering": {
+      "apple tree": {},
+      "magnolia": {}
+    }
+  }
+};
+
+/* function createTree(container, data) {
+  let keyValArr = Object.entries(data);
+
+  if (!keyValArr.length) return;
+
+  let ulElem = document.createElement("ul");
+  for (let i = 0; i < keyValArr.length; i++) {
+    let outerLiElem = document.createElement("li");
+    outerLiElem.textContent = keyValArr[i][0]
+
+    createTree(outerLiElem, keyValArr[i][1])
+
+    ulElem.append(outerLiElem);
+  }
+
+  container.append(ulElem)
+} */
+
+/* function createTree(container, data) {
+  let keysArr = Object.entries(data);
+  console.log("keysArr: ", keysArr);
+
+  let htmlString = ""
+  for (let i = 0; i < keysArr.length; i++) {
+
+    console.log(keysArr[i][1]);
+
+    if (!Object.entries(keysArr[i][1]).length) {
+      console.log("keysArr[i][0]: ", keysArr[i][0]);
+      htmlString += `<li>${keysArr[i][0]}</li>`
+    } else {
+      htmlString += `<li>${keysArr[i][0]}<ul>${createTree(container, keysArr[i][1])}</ul></li>`;
+
+      container.innerHTML = "<ul>" + htmlString + "</ul>";
+    }
+  }
+  return htmlString;
+}
+
+let container = document.getElementById('container');
+
+createTree(container, data); */
+
+
+// Show descendants in a tree
+/* let treeElem = document.querySelector('ul');
+
+console.log(treeElem)
+
+for (let i = 0; i < treeElem.querySelectorAll('li').length; i++) {
+  if (treeElem.querySelectorAll('li')[i].children.length) {
+    let text = document.createTextNode(`[${treeElem.querySelectorAll('li')[i].querySelectorAll('li').length}] `);
+    treeElem.querySelectorAll('li')[i].childNodes[0].after(text);
+  }
+} */
+
+/* let liElems = document.getElementsByTagName('li')
+
+for (let li of liElems) {
+  let descentantsCount = li.getElementsByTagName('li').length;
+
+  if (!descentantsCount) continue;
+
+  li.firstChild.data += '[' + descentantsCount + ']'
+} */
+
+
+// Create a calendar
+
+
+
+
 
 // event loop from JSConf of youtube （21:55 starts talk about render and he 
 // refers to an example about blocking at 7:45)
