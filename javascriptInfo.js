@@ -4651,7 +4651,74 @@ for (let li of liElems) {
 
 
 // Create a calendar
+function createCalendar(elem, year, month) {
+  let table = document.createElement('table');
 
+  let weekdays = ['MO', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'];
+
+  for (let i = 0; i < 1; i++) {
+    let trElem = document.createElement('tr')
+    weekdays.forEach((val, index) => {
+      let tdElem = document.createElement('th')
+      tdElem.textContent = val
+
+      trElem.append(tdElem)
+    })
+    table.append(trElem)
+  }
+
+  // 一个月的第一天是星期几
+  let firstDayOfWeek = new Date(`${year}.${month}`).getDay()
+  console.log(firstDayOfWeek)
+
+
+  // 第一行是需要填充几个数字
+  let offset = firstDayOfWeek === 0 ? 1 : 8 - firstDayOfWeek;
+
+
+  // generate empty td before firstDayOfWeek (starts from 0 sunday to 6 saturday)
+  for (let i = 0; i < 1; i++) {
+    let trElem = document.createElement('tr')
+    for (let i = 1; i < firstDayOfWeek; i++) {
+      let tdElem = document.createElement('td');
+      tdElem.textContent = "";
+      trElem.append(tdElem);
+    }
+    table.append(trElem)
+
+    for (let i = 1; i <= offset; i++) {
+      let tdElem = document.createElement('td');
+      tdElem.textContent = i;
+      trElem.append(tdElem);
+    }
+    table.append(trElem)
+  }
+
+
+  let date = new Date(`${year}.${month + 1}`)
+  date.setDate(date.getDate() - 1)
+
+  let numOfDaysPerMonth = date.getDate()
+  console.log(numOfDaysPerMonth)
+
+  // 除了第一行外还需要几行
+  let leftLinesNum = (numOfDaysPerMonth - offset) / 7
+
+  for (let i = 0; i < leftLinesNum; i++) {
+    let trElem = document.createElement('tr')
+    for (let i = offset + 1; i <= offset + 7; i++) {
+      let tdElem = document.createElement('td');
+      tdElem.textContent = i <= numOfDaysPerMonth ? i : '';
+      trElem.append(tdElem);
+    }
+    offset += 7;
+    table.append(trElem)
+  }
+
+  elem.append(table)
+}
+
+createCalendar(calendar, 2012, 8);
 
 
 
