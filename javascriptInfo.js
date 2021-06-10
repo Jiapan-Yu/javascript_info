@@ -4565,7 +4565,7 @@ while (
 } while (content) */
 
 
-let data = {
+/* let data = {
   "Fish": {
     "trout": {},
     "salmon": {}
@@ -4581,7 +4581,7 @@ let data = {
       "magnolia": {}
     }
   }
-};
+}; */
 
 /* function createTree(container, data) {
   let keyValArr = Object.entries(data);
@@ -4651,7 +4651,7 @@ for (let li of liElems) {
 
 
 // Create a calendar
-function createCalendar(elem, year, month) {
+/* function createCalendar(elem, year, month) {
   let table = document.createElement('table');
 
   let weekdays = ['MO', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'];
@@ -4718,7 +4718,24 @@ function createCalendar(elem, year, month) {
   elem.append(table)
 }
 
-createCalendar(calendar, 2012, 8);
+createCalendar(calendar, 2012, 8); */
+
+
+
+
+// Element size and scrolling
+/* offsetWidth offsetHeight
+offsetParent */
+
+//tasks
+/* let scrollBottom = scrollHeight - scrollTop - clientHeight;
+let scrollBottom = scrollHeight - scrollTop - clientHeight; // if there’s no scroll
+let scrollBottom = scrollHeight - scrollTop - clientHeight + paddingTop; // the element is fully scrolled down. This is a wrong answer. */
+
+/* getComputedStyle(elem).width  &  elem.clientWidth
+content width  &  content width + paddingLeft + paddingRight
+如果有纵向滚动条，则 width = content width + scrollbar width  &  
+with unit  &  no unit */
 
 
 
