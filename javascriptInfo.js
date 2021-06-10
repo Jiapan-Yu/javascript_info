@@ -4734,7 +4734,7 @@ createCalendar(calendar, 2012, 8); */
 // }
 
 // 在点击一次 stop 后，第过一秒立刻点击 start 会马上又过一秒，而不是等一秒，不知道为什么？
-function update() {
+/* function update() {
   let clockDiv = document.getElementById("clock");
   let now = new Date();
 
@@ -4760,7 +4760,37 @@ function clockStop() {
   id = null;
 }
 
-clockStart();
+clockStart(); */
+
+
+// Insert the HTML in the list
+// document.getElementById("one").insertAdjacentHTML("afterend", "<li>2</li><li>3</li>")
+
+
+// Sort the table
+function sortTable() {
+  console.log("sort the table by the name column")
+  let trs = persons.querySelectorAll('tr');
+  
+  let arr = Array.from(trs);
+
+  arr.sort((a, b) => {
+    if (a.children[0].textContent > b.children[0].textContent) return 1;
+    
+    if (a.children[0].textContent < b.children[0].textContent) return -1;
+
+    return 0;
+  })
+
+  // console.log(arr)
+  // let html = "";
+  // for (let i = 0; i < arr.length; i++) {
+  //   html += arr[i].outerHTML;
+  // }
+  // persons.innerHTML = html;
+
+  persons.append(...arr); // 直接 append 即可
+}
 
 
 
