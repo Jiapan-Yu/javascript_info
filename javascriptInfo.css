@@ -187,3 +187,14 @@ th {
   font-weight: bold;
   background-color: #E6E6E6;
 }
+
+/* Modifying the document: Colored clock with setInterval */
+#clock .hour {
+  color: red;
+}
+#clock .min {
+  color: green;
+}
+#clock .second {
+  color: blue;
+}

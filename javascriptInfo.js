@@ -4721,6 +4721,47 @@ for (let li of liElems) {
 createCalendar(calendar, 2012, 8); */
 
 
+// Colored clock with setInterval
+// window.onload = function() { // 为什么 document.onload 不行？
+//   let clockDiv = document.getElementById("clock");
+
+//   let now = new Date();
+//   console.log(new Date().getHours())
+//   let spans = clockDiv.querySelectorAll("span");
+//   spans[0].textContent = now.getHours() < 10 ? "0" + now.getHours() : now.getHours();
+//   spans[1].textContent = now.getMinutes() < 10 ? "0" + now.getMinutes() : now.getMinutes();
+//   spans[2].textContent = now.getSeconds() < 10 ? "0" + now.getSeconds() : now.getSeconds();
+// }
+
+// 在点击一次 stop 后，第过一秒立刻点击 start 会马上又过一秒，而不是等一秒，不知道为什么？
+function update() {
+  let clockDiv = document.getElementById("clock");
+  let now = new Date();
+
+  let spans = clockDiv.querySelectorAll("span");
+  spans[0].textContent = now.getHours() < 10 ? "0" + now.getHours() : now.getHours();
+  spans[1].textContent = now.getMinutes() < 10 ? "0" + now.getMinutes() : now.getMinutes();
+  spans[2].textContent = now.getSeconds() < 10 ? "0" + now.getSeconds() : now.getSeconds();
+}
+
+let id;
+
+function clockStart() {
+  if (!id) {
+    id = setInterval(() => update(), 1000)
+  }
+
+  update();
+}
+
+function clockStop() {
+  console.log("stop clock")
+  clearInterval(id);
+  id = null;
+}
+
+clockStart();
+
 
 
 // Element size and scrolling
