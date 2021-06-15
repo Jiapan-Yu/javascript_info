@@ -4842,15 +4842,15 @@ function positionAt(anchor, position, elem) {
 
   switch(position) {
     case "top":
-      elem.style.top = anchorRectCoords.top - elemRectCoords.height + 'px';
+      elem.style.top = anchorRectCoords.top - elemRectCoords.height + window.pageYOffset + 'px';
       elem.style.left = anchorRectCoords.left + 'px';
       break;
     case "right":
-      elem.style.top = anchorRectCoords.top + 'px';
+      elem.style.top = anchorRectCoords.top + window.pageYOffset + 'px';
       elem.style.left = anchorRectCoords.right + 'px';
       break;
     case "bottom":
-      elem.style.top = anchorRectCoords.bottom + 'px';
+      elem.style.top = anchorRectCoords.bottom + window.pageYOffset + 'px';
       elem.style.left = anchorRectCoords.left + 'px';
       break;
     default: {}
@@ -4873,6 +4873,8 @@ function showNote(anchor, position, html) {
 
 // test it
 let blockquote = document.querySelector('blockquote');
+
+window.scroll(0, 10); // 只有第一次加载的时候才有效果。另外可以结合 vue 的 popState 来理解
 
 showNote(blockquote, "top", "note above");
 showNote(blockquote, "right", "note at the right");
