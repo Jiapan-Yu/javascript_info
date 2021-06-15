@@ -4841,16 +4841,24 @@ function positionAt(anchor, position, elem) {
   } */
 
   switch(position) {
-    case "top":
+    case "top-out":
       elem.style.top = anchorRectCoords.top - elemRectCoords.height + window.pageYOffset + 'px';
       elem.style.left = anchorRectCoords.left + 'px';
       break;
-    case "right":
+    case "right-out":
       elem.style.top = anchorRectCoords.top + window.pageYOffset + 'px';
       elem.style.left = anchorRectCoords.right + 'px';
       break;
-    case "bottom":
+    case "bottom-out":
       elem.style.top = anchorRectCoords.bottom + window.pageYOffset + 'px';
+      elem.style.left = anchorRectCoords.left + 'px';
+      break;
+    case "bottom-in":
+      elem.style.top = anchorRectCoords.bottom + window.pageYOffset - elemRectCoords.height + 'px';
+      elem.style.left = anchorRectCoords.left + 'px';
+      break;
+    case "top-in":
+      elem.style.top = anchorRectCoords.top + window.pageYOffset + 'px';
       elem.style.left = anchorRectCoords.left + 'px';
       break;
     default: {}
@@ -4876,9 +4884,11 @@ let blockquote = document.querySelector('blockquote');
 
 window.scroll(0, 10); // 只有第一次加载的时候才有效果。另外可以结合 vue 的 popState 来理解
 
-showNote(blockquote, "top", "note above");
-showNote(blockquote, "right", "note at the right");
-showNote(blockquote, "bottom", "note below");
+showNote(blockquote, "top-out", "note top-out");
+showNote(blockquote, "right-out", "note right-out");
+showNote(blockquote, "bottom-out", "note bottom-out");
+showNote(blockquote, "top-in", "note top-in");
+showNote(blockquote, "bottom-in", "note bottom-in");
 
 
 
