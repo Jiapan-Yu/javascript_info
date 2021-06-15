@@ -136,7 +136,7 @@ p {
 /* BFC from MDN */
 /* Creating a new BFC to avoid the margin collapsing between two neighbor div */
 /* "neighbor div" 可以是相邻的也可以是嵌套的 */
-.blue, .red-inner {
+/* .blue, .red-inner {
   height: 50px;
   margin: 10px 0;
 }
@@ -149,13 +149,12 @@ p {
   overflow: hidden;
   margin: 15px 0;
   width: 200px;
-  /* display: inline-block; */
   background: red;
-}
+} */
 
 
 /* javascript.info: Animated circle with callback */
-.message-ball {
+/* .message-ball {
   font-size: 20px;
   line-height: 200px;
   text-align: center;
@@ -167,12 +166,12 @@ p {
   transform: translateX(-50%) translateY(-50%);
   background-color: red;
   border-radius: 50%;
-}
+} */
 
 
 
 /* Modifying the document: Create a calendar */
-table {
+/* table {
   border-collapse: collapse;
 }
 
@@ -186,10 +185,10 @@ th {
 th {
   font-weight: bold;
   background-color: #E6E6E6;
-}
+} */
 
 /* Modifying the document: Colored clock with setInterval */
-#clock .hour {
+/* #clock .hour {
   color: red;
 }
 #clock .min {
@@ -197,4 +196,36 @@ th {
 }
 #clock .second {
   color: blue;
+} */
+
+
+
+/* Coordinates: Show a note near the element */
+.note {
+  position: fixed;
+  z-index: 1000;
+  padding: 5px;
+  border: 1px solid black;
+  background: white;
+  text-align: center;
+  font: italic 14px serif;
+}
+
+blockquote {
+  background: #f9f9f9;
+  border-left: 10px solid #ccc;
+  margin: 0 0 0 100px;
+  padding: .5em 10px;
+  quotes: "\201C""\201D""\2018""\2019";
+  display: inline-block;
+  white-space: pre;
+}
+
+blockquote:before {
+  color: #ccc;
+  content: open-quote;
+  font-size: 4em;
+  line-height: .1em;
+  margin-right: .25em;
+  vertical-align: -.4em;
 }
