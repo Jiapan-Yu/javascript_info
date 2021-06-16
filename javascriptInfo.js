@@ -4768,7 +4768,7 @@ clockStart(); */
 
 
 // Sort the table
-function sortTable() {
+/* function sortTable() {
   console.log("sort the table by the name column")
   let trs = persons.querySelectorAll('tr');
   
@@ -4790,7 +4790,18 @@ function sortTable() {
   // persons.innerHTML = html;
 
   persons.append(...arr); // 直接 append 即可
-}
+} */
+
+// 参照官方答案后的解答
+/* function sortTable() {
+  console.log("%c ----------", "color: red")
+  let rowsArray = Array.from(persons.rows).sort((tr, anotherTr) => {
+    return tr.children[0].textContent.localeCompare(anotherTr.children[0].textContent);
+  });
+  rowsArray.forEach(row => row.children[0].textContent += '1')
+  persons.append(...rowsArray)
+  console.log(persons.rows)
+} */
 
 
 
