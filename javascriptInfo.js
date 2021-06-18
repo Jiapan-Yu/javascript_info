@@ -4880,7 +4880,7 @@ function positionAt(anchor, position, elem) {
  * Shows a note with the given html at the given position
  * relative to the anchor element.
  */
-function showNote(anchor, position, html) {
+/* function showNote(anchor, position, html) {
 
   let note = document.createElement('div');
   note.className = "note";
@@ -4899,7 +4899,37 @@ showNote(blockquote, "top-out", "note top-out");
 showNote(blockquote, "right-out", "note right-out");
 showNote(blockquote, "bottom-out", "note bottom-out");
 showNote(blockquote, "top-in", "note top-in");
-showNote(blockquote, "bottom-in", "note bottom-in");
+showNote(blockquote, "bottom-in", "note bottom-in"); */
+
+
+
+// Mouse events
+// 在每个 li 上 return false 怎么样？
+/* ul.onmousedown = function() {
+  return false;
+}
+
+ul.onclick = function(event) {
+  let targetElem = event.target;
+
+  if(targetElem.tagName != 'LI') return;
+
+  if (event.ctrlKey || event.metaKey) {
+    console.log('with ctrl key pressed')
+
+    targetElem.classList.toggle("selected")
+  } else {
+    for (let li of ul.children) {
+      li.classList.remove("selected")
+    }
+
+    targetElem.classList.add("selected")
+  }
+} */
+
+
+
+// Moving the mouse: mouseover/out, mouseenter/leave
 
 
 
