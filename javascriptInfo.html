@@ -17,9 +17,19 @@
     let thumb = slider.querySelector('.thumb');
     thumb.onmousedown = function (e) {
       console.log("thumb mouse down");
+      let shiftX = e.pageX - thumb.offsetLeft;
 
       function moveAt(pageX, pageY) {
-        thumb.style.left = pageX + 'px';
+        let left = pageX - slider.offsetLeft - shiftX;
+        if (left < 0) {
+          thumb.style.left = 0;
+          return;
+        }
+        if (left > slider.offsetWidth - thumb.offsetWidth) {
+          thumb.style.left = slider.offsetWidth - thumb.offsetWidth + 'px';
+          return;
+        }
+        thumb.style.left = left + 'px';
       }
 
       function onMouseMove(e) {
@@ -29,10 +39,10 @@
 
       document.addEventListener('mousemove', onMouseMove);
 
-      thumb.onmouseup = function() {
-        console.log("thumb mouse up");
+      document.onmouseup = function() {
+        console.log("document mouse up");
         document.removeEventListener('mousemove', onMouseMove);
-        thumb.onmouseup = null;
+        document.onmouseup = null;
       };
     };
 
