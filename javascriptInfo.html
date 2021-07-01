@@ -14,6 +14,31 @@
 
   <script>
     // ...your code...
+    let thumb = slider.querySelector('.thumb');
+    thumb.onmousedown = function (e) {
+      console.log("thumb mouse down");
+
+      function moveAt(pageX, pageY) {
+        thumb.style.left = pageX + 'px';
+      }
+
+      function onMouseMove(e) {
+        console.log("document mouse move");
+        moveAt(e.pageX, e.pageY);
+      }
+
+      document.addEventListener('mousemove', onMouseMove);
+
+      thumb.onmouseup = function() {
+        console.log("thumb mouse up");
+        document.removeEventListener('mousemove', onMouseMove);
+        thumb.onmouseup = null;
+      };
+    };
+
+    thumb.ondragstart = function() {
+      return false;
+    }
   </script>
 
 </body>
