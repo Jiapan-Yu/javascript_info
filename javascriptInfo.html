@@ -39,8 +39,9 @@
 
       document.addEventListener('mousemove', onMouseMove);
 
-      document.onmouseup = function() {
+      document.onmouseup = function(e) {
         console.log("document mouse up");
+        if (e.pageX < 0) return;
         document.removeEventListener('mousemove', onMouseMove);
         document.onmouseup = null;
       };
