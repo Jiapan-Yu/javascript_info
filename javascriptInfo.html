@@ -15,41 +15,42 @@
   <script>
     // ...your code...
     let thumb = slider.querySelector('.thumb');
-    thumb.onmousedown = function (e) {
-      console.log("thumb mouse down");
-      let shiftX = e.pageX - thumb.offsetLeft;
 
-      function moveAt(pageX, pageY) {
-        let left = pageX - slider.offsetLeft - shiftX;
-        if (left < 0) {
-          thumb.style.left = 0;
-          return;
-        }
-        if (left > slider.offsetWidth - thumb.offsetWidth) {
-          thumb.style.left = slider.offsetWidth - thumb.offsetWidth + 'px';
-          return;
-        }
-        thumb.style.left = left + 'px';
-      }
+    thumb.onmousedown = function(event) {
+      event.preventDefault(); // prevent selection start (browser action)
 
-      function onMouseMove(e) {
-        console.log("document mouse move");
-        moveAt(e.pageX, e.pageY);
-      }
+      let shiftX = event.clientX - thumb.getBoundingClientRect().left;
+      // shiftY not needed, the thumb moves only horizontally
 
       document.addEventListener('mousemove', onMouseMove);
+      document.addEventListener('mouseup', onMouseUp);
 
-      document.onmouseup = function(e) {
-        console.log("document mouse up");
-        if (e.pageX < 0) return;
+      function onMouseMove(event) {
+        let newLeft = event.clientX - shiftX - slider.getBoundingClientRect().left;
+
+        // the pointer is out of slider => lock the thumb within the bounaries
+        if (newLeft < 0) {
+          newLeft = 0;
+        }
+        let rightEdge = slider.offsetWidth - thumb.offsetWidth;
+        if (newLeft > rightEdge) {
+          newLeft = rightEdge;
+        }
+
+        thumb.style.left = newLeft + 'px';
+      }
+
+      function onMouseUp() {
+        document.removeEventListener('mouseup', onMouseUp);
         document.removeEventListener('mousemove', onMouseMove);
-        document.onmouseup = null;
-      };
+      }
+
     };
 
     thumb.ondragstart = function() {
       return false;
-    }
+    };
+
   </script>
 
 </body>
