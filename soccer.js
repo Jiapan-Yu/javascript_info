@@ -1,68 +1,116 @@
-// Your code
-document.onmousedown = function (e) {
-  let target = e.target;
-  let rootElem = document.querySelector('html');
-  
-  let maximumRight = rootElem.clientWidth - target.offsetWidth;
-  
-  let maximumBottom;
-  maximumBottom = rootElem.clientHeight - target.offsetHeight;
+let isDragging = false;
 
-  if (target.classList.contains("draggable")) {
-    console.log("target: ", target);
-    let targetRect = target.getBoundingClientRect();
-    let shiftX = e.pageX - targetRect.left;
-    let shiftY = e.pageY - targetRect.top;
+document.addEventListener('mousedown', function(event) {
 
-    function onMouseMove(e) {
-      console.log("mousemove");
-      let left = e.pageX - shiftX;
-      let top = e.pageY - shiftY;
+  let dragElement = event.target.closest('.draggable');
 
-      if (top < 0) {
-        top = 0;
-      }
+  if (!dragElement) return;
 
-      if (top > maximumBottom) {
-        // top = e.pageY - shiftY;
-        // console.log("reached the bottom: ", rootElem.clientHeight + e.pageY - shiftY - maximumBottom)
-        console.log("rootElem.clientHeight: ", rootElem.clientHeight)
-        console.log("e.pageY: ", e.pageY)
-        console.log("shiftY: ", shiftY)
-        console.log("maximumBottom: ", maximumBottom)
-        console.log(e.pageY - shiftY - maximumBottom)
-        // window.scroll(0, rootElem.clientHeight + e.pageY - shiftY - maximumBottom);
+  event.preventDefault();
 
-        // 不知道为什么 e.pageY 的值会突然跳跃
-        top = e.pageY - shiftY - maximumBottom + maximumBottom
-        target.scrollIntoView();
-      }
+  dragElement.ondragstart = function() {
+      return false;
+  };
 
-      if (left < 0) {
-        left = 0;
-      }
+  let coords, shiftX, shiftY;
 
-      if (left > maximumRight) {
-        left = maximumRight;
-      }
+  startDrag(dragElement, event.clientX, event.clientY);
 
-      
+  function onMouseUp(event) {
+    finishDrag();
+  };
 
-      target.style.position = "absolute";
-      target.style.left = left + "px";
-      target.style.top = top + "px";
+  function onMouseMove(event) {
+    moveAt(event.clientX, event.clientY);
+  }
+
+  // on drag start:
+  //   remember the initial shift
+  //   move the element position:fixed and a direct child of body
+  function startDrag(element, clientX, clientY) {
+    if(isDragging) {
+      return;
     }
 
-    document.addEventListener("mousemove", onMouseMove);
+    isDragging = true;
 
-    document.onmouseup = function (e) {
-      document.removeEventListener("mousemove", onMouseMove);
-      document.onmouseup = null;
-    };
+    document.addEventListener('mousemove', onMouseMove);
+    element.addEventListener('mouseup', onMouseUp);
+
+    shiftX = clientX - element.getBoundingClientRect().left;
+    shiftY = clientY - element.getBoundingClientRect().top;
+
+    element.style.position = 'fixed';
+
+    moveAt(clientX, clientY);
+  };
+
+  // switch to absolute coordinates at the end, to fix the element in the document
+  function finishDrag() {
+    if(!isDragging) {
+      return;
+    }
+
+    isDragging = false;
+
+    dragElement.style.top = parseInt(dragElement.style.top) + window.pageYOffset + 'px';
+    dragElement.style.position = 'absolute';
+
+    document.removeEventListener('mousemove', onMouseMove);
+    dragElement.removeEventListener('mouseup', onMouseUp);
   }
-};
 
-document.ondragstart = function() {
-  return false;
-};
+  function moveAt(clientX, clientY) {
+    // new window-relative coordinates
+    let newX = clientX - shiftX;
+    let newY = clientY - shiftY;
 
+    // check if the new coordinates are below the bottom window edge
+    let newBottom = newY + dragElement.offsetHeight; // new bottom
+
+    // below the window? let's scroll the page
+    if (newBottom > document.documentElement.clientHeight) {
+      // window-relative coordinate of document end
+      let docBottom = document.documentElement.getBoundingClientRect().bottom;
+
+      // scroll the document down by 10px has a problem
+      // it can scroll beyond the end of the document
+      // Math.min(how much left to the end, 10)
+      let scrollY = Math.min(docBottom - newBottom, 10);
+
+      // calculations are imprecise, there may be rounding errors that lead to scrolling up
+      // that should be impossible, fix that here
+      if (scrollY < 0) scrollY = 0;
+
+      window.scrollBy(0, scrollY);
+
+      // a swift mouse move make put the cursor beyond the document end
+      // if that happens -
+      // limit the new Y by the maximally possible (right at the bottom of the document)
+      newY = Math.min(newY, document.documentElement.clientHeight - dragElement.offsetHeight);
+    }
+
+    // check if the new coordinates are above the top window edge (similar logic)
+    if (newY < 0) {
+      // scroll up
+      let scrollY = Math.min(-newY, 10);
+      if (scrollY < 0) scrollY = 0; // check precision errors
+
+      window.scrollBy(0, -scrollY);
+      // a swift mouse move can put the cursor beyond the document start
+      newY = Math.max(newY, 0); // newY may not be below 0
+    }
+
+
+    // limit the new X within the window boundaries
+    // there's no scroll here so it's simple
+    if (newX < 0) newX = 0;
+    if (newX > document.documentElement.clientWidth - dragElement.offsetWidth) {
+      newX = document.documentElement.clientWidth - dragElement.offsetWidth;
+    }
+
+    dragElement.style.left = newX + 'px';
+    dragElement.style.top = newY + 'px';
+  }
+
+});
