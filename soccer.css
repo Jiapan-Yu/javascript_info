@@ -4,6 +4,7 @@ html, body {
 }
 
 #field {
+  background: url(field.svg);
   width: 800px;
   height: 500px;
   float: left;

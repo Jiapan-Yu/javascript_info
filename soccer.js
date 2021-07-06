@@ -4,14 +4,9 @@ document.onmousedown = function (e) {
   let rootElem = document.querySelector('html');
   
   let maximumRight = rootElem.clientWidth - target.offsetWidth;
-  console.log("rootElem.scrollTop: ", rootElem.scrollTop);
   
   let maximumBottom;
-  if (rootElem.scrollTop === 0) { // field 下面还有空间
-    maximumBottom = rootElem.clientHeight - target.offsetHeight;
-  } else {
-    maximumBottom = field.getBoundingClientRect().bottom + rootElem.scrollTop - target.offsetHeight;
-  }
+  maximumBottom = rootElem.clientHeight - target.offsetHeight;
 
   if (target.classList.contains("draggable")) {
     console.log("target: ", target);
@@ -29,7 +24,18 @@ document.onmousedown = function (e) {
       }
 
       if (top > maximumBottom) {
-        top = maximumBottom - 1;
+        // top = e.pageY - shiftY;
+        // console.log("reached the bottom: ", rootElem.clientHeight + e.pageY - shiftY - maximumBottom)
+        console.log("rootElem.clientHeight: ", rootElem.clientHeight)
+        console.log("e.pageY: ", e.pageY)
+        console.log("shiftY: ", shiftY)
+        console.log("maximumBottom: ", maximumBottom)
+        console.log(e.pageY - shiftY - maximumBottom)
+        // window.scroll(0, rootElem.clientHeight + e.pageY - shiftY - maximumBottom);
+
+        // 不知道为什么 e.pageY 的值会突然跳跃
+        top = e.pageY - shiftY - maximumBottom + maximumBottom
+        target.scrollIntoView();
       }
 
       if (left < 0) {
