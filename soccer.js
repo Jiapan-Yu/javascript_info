@@ -1,6 +1,7 @@
 let isDragging = false;
 
 document.addEventListener('mousedown', function(event) {
+  console.log("isDragging: ", isDragging);
 
   let dragElement = event.target.closest('.draggable');
 
@@ -17,10 +18,12 @@ document.addEventListener('mousedown', function(event) {
   startDrag(dragElement, event.clientX, event.clientY);
 
   function onMouseUp(event) {
+    console.log("element mouseup")
     finishDrag();
   };
 
   function onMouseMove(event) {
+    console.log("document mousemove")
     moveAt(event.clientX, event.clientY);
   }
 
@@ -47,6 +50,7 @@ document.addEventListener('mousedown', function(event) {
 
   // switch to absolute coordinates at the end, to fix the element in the document
   function finishDrag() {
+    // 这个判断是多余的吧
     if(!isDragging) {
       return;
     }
@@ -76,17 +80,28 @@ document.addEventListener('mousedown', function(event) {
       // scroll the document down by 10px has a problem
       // it can scroll beyond the end of the document
       // Math.min(how much left to the end, 10)
+      console.log("docBottom: ", docBottom);
+      console.log("newBottom: ", newBottom);
+      console.log("docBottom - newBottom: ", docBottom - newBottom);
       let scrollY = Math.min(docBottom - newBottom, 10);
 
       // calculations are imprecise, there may be rounding errors that lead to scrolling up
       // that should be impossible, fix that here
-      if (scrollY < 0) scrollY = 0;
+      // 当 mouse cursor 滑出 documentElement.clientHeight 后上下滑影不影响 scrollbar 的滑动？不影响。当 docBottom - newBottom < 0 时就不影响，即 docBottom (向下滚动逐渐减小) 小于 “document.documentElement.clientHeight + 鼠标指针相对初始位置的偏移量（图片到底部时产生）” 时再向下滑动就不会影响。
+      console.log("scrollY: ", scrollY);
+      if (scrollY < 0) {
+        scrollY = 0;
+      }
 
       window.scrollBy(0, scrollY);
 
       // a swift mouse move make put the cursor beyond the document end
       // if that happens -
       // limit the new Y by the maximally possible (right at the bottom of the document)
+      // 因为此时 position: fixed; 所以 newY 最大只能为 document.documentElement.clientHeight - dragElement.offsetHeight
+      // console.log("newY: ", newY);
+      // console.log(document.documentElement.clientHeight - dragElement.offsetHeight);
+      // 保证图片滑到底部后，mouse cursor 继续下滑 newY 的值不变
       newY = Math.min(newY, document.documentElement.clientHeight - dragElement.offsetHeight);
     }
 
@@ -94,10 +109,12 @@ document.addEventListener('mousedown', function(event) {
     if (newY < 0) {
       // scroll up
       let scrollY = Math.min(-newY, 10);
+      // 下面一行是多余的吧
       if (scrollY < 0) scrollY = 0; // check precision errors
 
       window.scrollBy(0, -scrollY);
       // a swift mouse move can put the cursor beyond the document start
+      // 下面一行可以直接是 newY = 0; 吧
       newY = Math.max(newY, 0); // newY may not be below 0
     }
 
