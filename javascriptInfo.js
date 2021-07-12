@@ -4933,6 +4933,83 @@ ul.onclick = function(event) {
 
 
 
+// Keyboard: keydown and keyup
+// 效果跟官方答案基本一样，但是思路大不相同。效果基本一样的原因
+// 主要在于（官方答案）：比如一根手指依次快速滑过 E W Q，当 W keydown 时 E 
+// keyup 还没有触发，同样的当 Q keydown 时 W keyup 还没有触发。
+// 我的答案里 Date.now() - firstKeyDownTime < 100 刚好模拟了这个情况
+/* function runOnKeys(func, ...codes) {
+  console.log("codes: ", codes)
+  
+  if (codes.includes("KeyQ") && codes.includes("KeyW")) {
+    func();
+  }
+}
+
+let firstKeyDownTime;
+let firstEvent;
+function onKeyDown(e) {
+  console.log("e.code: ", e.code);
+  if (!firstKeyDownTime){
+    firstKeyDownTime = Date.now();
+    firstEvent = e;
+  } else {
+    if (Date.now() - firstKeyDownTime < 100) {
+      console.log("considered simultaneously")
+      runOnKeys(
+        () => alert("Hello!"),
+        firstEvent.code,
+        e.code
+      );
+    }
+    firstKeyDownTime = Date.now(); // 如果第一次不是press Q 或者 W 且同时 press E W Q
+    firstEvent = e;
+  }
+}
+document.addEventListener("keydown", onKeyDown); */
+
+// 官方答案
+function runOnKeys(func, ...codes) {
+  let pressed = new Set();
+
+  document.addEventListener('keydown', function(event) {
+    console.log("keydown event.code: ", event.code);
+    pressed.add(event.code);
+
+    for (let code of codes) { // are all keys in the set?
+      if (!pressed.has(code)) {
+        return;
+      }
+    }
+
+    // yes, they are
+
+    // during the alert, if the visitor releases the keys,
+    // JavaScript does not get the "keyup" event
+    // and pressed set will keep assuming that the key is pressed
+    // so, to evade "sticky" keys, we reset the status
+    // if the user wants to run the hotkey again - let them press all keys again
+    pressed.clear();
+
+    func();
+  });
+
+  document.addEventListener('keyup', function(event) {
+    console.log("keyup event.code: ", event.code);
+    console.log("pressed: ", pressed);
+    pressed.delete(event.code);
+  });
+
+}
+
+runOnKeys(
+  () => alert("Hello!"),
+  "KeyQ",
+  "KeyW"
+);
+
+
+
 
 // event loop from JSConf of youtube （21:55 starts talk about render and he 
 // refers to an example about blocking at 7:45)
