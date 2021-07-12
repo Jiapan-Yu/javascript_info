@@ -4933,10 +4933,6 @@ ul.onclick = function(event) {
 
 
 
-// Drag'n'Drop with mouse events
-
-
-
 
 // event loop from JSConf of youtube （21:55 starts talk about render and he 
 // refers to an example about blocking at 7:45)
