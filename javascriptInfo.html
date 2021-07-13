@@ -1,303 +1,42 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-  <meta charset="UTF-8" />
-  <link rel="stylesheet" href="./javascriptInfo.css" type="text/css">
-  <title>javascript.info learning</title>
+  <meta charset="utf-8">
+  <style>
+    div {
+      font-size: 16px;
+      margin: 1em 0;
+    }
+  </style>
 </head>
 
 <body>
 
-  <!-- Browser default actions -->
-  <!-- <p>Right-click here for the document context menu</p>
-  <button id="elem">Right-click here for the button context menu</button> -->
+<h1>Scroll me</h1>
 
-  <!-- <a href="https://w3.org" onclick="handler(event)">the browser will go to w3.org</a> -->
+<script>
+  // ... your code ...
+  // 1. listen to scroll event on window
+  // 2. per line for per time string in a div
+  // 3. at the beginning, generate enough time strings lines to cause overflow
+  for (let i = 0; i < 10; i++) {
+    let timeStringDiv = document.createElement("div");
+    timeStringDiv.textContent = "Date: " + new Date();
+    document.body.append(timeStringDiv);
+  }
 
-  <!-- <fieldset id="contents">
-    <legend>#contents</legend>
-    <p>
-      How about to read <a href="https://wikipedia.org">Wikipedia</a> or visit <a href="https://w3.org"><i>W3.org</i></a>
-      and learn about modern standards?
-    </p>
-  </fieldset> -->
+  window.addEventListener("scroll", function(event) {
+    console.log("scroll event");
+    let hiddenHeight = document.documentElement.getBoundingClientRect().bottom - document.documentElement.clientHeight;
+    console.log("hiddenHeight: ", hiddenHeight)
+    if (hiddenHeight < 50) {
+      let timeStringDiv = document.createElement("div");
+      timeStringDiv.textContent = "Date: " + new Date();
+      document.body.append(timeStringDiv);
+    }
+  });
 
-  <!-- <p><img id="largeImg" src="https://en.js.cx/gallery/img1-lg.jpg" alt="Large image"></p> -->
-  <!-- <ul id="thumbs" hidden> -->
-    <!-- the browser shows a small built-in tooltip on hover with the text from "title" attribute -->
-    <!-- <li>
-      <a href="https://en.js.cx/gallery/img2-lg.jpg" title="Image 2"><img
-          src="https://en.js.cx/gallery/img2-thumb.jpg"></a>
-    </li>
-    <li>
-      <a href="https://en.js.cx/gallery/img3-lg.jpg" title="Image 3"><img
-          src="https://en.js.cx/gallery/img3-thumb.jpg"></a>
-    </li>
-    <li>
-      <a href="https://en.js.cx/gallery/img4-lg.jpg" title="Image 4"><img
-          src="https://en.js.cx/gallery/img4-thumb.jpg"></a>
-    </li>
-    <li>
-      <a href="https://en.js.cx/gallery/img5-lg.jpg" title="Image 5"><img
-          src="https://en.js.cx/gallery/img5-thumb.jpg"></a>
-    </li>
-    <li>
-      <a href="https://en.js.cx/gallery/img6-lg.jpg" title="Image 6"><img
-          src="https://en.js.cx/gallery/img6-thumb.jpg"></a>
-    </li> -->
-  <!-- </ul> -->
+</script>
 
-
-
-  <!-- Event delegation -->
-  <!-- <div id="menu">
-    <button data-action="save">Save</button>
-    <button data-action="load">Load</button>
-    <button data-action="search">Search</button>
-  </div> -->
-
-  <!-- Counter: <input type="button" value="1" data-counter>
-  One more counter: <input type="button" value="2" data-counter> -->
-
-  <!-- <button data-toggle-id="subscribe-mail">
-    Show the subscription form
-  </button>
-  <form id="subscribe-mail" hidden>
-    Your mail: <input type="email">
-  </form> -->
-
-  <!-- <div id="container">
-    <div class="pane">
-      <h3>Horse</h3>
-      <p>The horse is one of two extant subspecies of Equus ferus. It is an odd-toed ungulate mammal belonging to the
-        taxonomic family Equidae. The horse has evolved over the past 45 to 55 million years from a small multi-toed
-        creature, Eohippus, into the large, single-toed animal of today.</p>
-      <button class="remove-button" data-animal="horse">[x]</button>
-    </div>
-    <div class="pane">
-      <h3>Donkey</h3>
-      <p>The donkey or ass (Equus africanus asinus) is a domesticated member of the horse family, Equidae. The wild
-        ancestor of the donkey is the African wild ass, E. africanus. The donkey has been used as a working animal for
-        at least 5000 years.</p>
-      <button class="remove-button" data-animal="donkey">[x]</button>
-    </div>
-    <div class="pane">
-      <h3>Cat</h3>
-      <p>The domestic cat (Latin: Felis catus) is a small, typically furry, carnivorous mammal. They are often called
-        house cats when kept as indoor pets or simply cats when there is no need to distinguish them from other felids
-        and felines. Cats are often valued by humans for companionship and for their ability to hunt vermin.
-      </p>
-      <button class="remove-button" data-animal="cat">[x]</button>
-    </div>
-  </div> -->
-
-
-  <!-- <ul class="tree" id="tree">
-    <li>Animals
-      <ul>
-        <li>Mammals
-          <ul>
-            <li>Cows</li>
-            <li>Donkeys</li>
-            <li>Dogs</li>
-            <li>Tigers</li>
-          </ul>
-        </li>
-        <li>Other
-          <ul>
-            <li>Snakes</li>
-            <li>Birds</li>
-            <li>Lizards</li>
-          </ul>
-        </li>
-      </ul>
-    </li>
-    <li>Fishes
-      <ul>
-        <li>Aquarium
-          <ul>
-            <li>Guppy</li>
-            <li>Angelfish</li>
-          </ul>
-        </li>
-        <li>Sea
-          <ul>
-            <li>Sea trout</li>
-          </ul>
-        </li>
-      </ul>
-    </li>
-  </ul> -->
-
-
-
-  <!-- Introduction to browser events -->
-  <!-- <input type="button" id="hideSelfBtn" value="Click to hide"> -->
-
-
-
-  <!-- Dispatching custom events -->
-  <!-- <button id="elem" onclick="alert('Click!');">Autoclick</button> -->
-
-
-  <!-- <h1 id="elem">Hello from the script!</h1> -->
-
-
-
-  <!-- d3 from codecademy -->
-  <!-- <h3>Love, Maybe by Audre Lorde</h3>
-  <div id="viz"></div> -->
-
-
-  <!-- box-shadow property from MDN -->
-  <!-- <div><p>Hello Word</p></div> -->
-
-
-  <!-- BFC from MDN -->
-  <!-- <div class="blue"></div>
-  <div class="red-outer">
-    <div class="red-inner" onclick="startLoop()" style="cursor: pointer;">red inner</div>
-    <button class="info" onclick="handleBtnOnClick()">click me</button>
-  </div> -->
-
-  <!-- javascript.info: Animated circle with callback -->
-  <!-- <button onclick="go()">Click me</button> -->
-  <!-- <button onclick="thumb()">Click e</button> -->
-
-  <div id="container">
-    <!-- <ul>
-      <li>Fish
-        <ul>
-          <li>trout</li>
-          <li>salmon</li>
-        </ul>
-      </li>
-      <li>Tree
-        <ul>
-          <li>Huge
-            <ul>
-              <li>sequoia</li>
-              <li>oak</li>
-            </ul>
-          </li>
-          <li>Flowering
-            <ul>
-              <li>apple tree</li>
-              <li>magnolia</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul> -->
-  </div>
-
-  <div id="calendar">
-    <!-- <table>
-        <tr>
-          <th>MO</th>
-          <th>TU</th>
-          <th>WE</th>
-          <th>TH</th>
-          <th>FR</th>
-          <th>SA</th>
-          <th>SU</th>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>4</td>
-          <td>5</td>
-          <td>6</td>
-          <td>7</td>
-          <td>8</td>
-          <td>9</td>
-        </tr>
-        <tr>
-          <td>10</td>
-          <td>11</td>
-          <td>12</td>
-          <td>13</td>
-          <td>14</td>
-          <td>15</td>
-          <td>16</td>
-        </tr>
-    </table> -->
-  </div>
-
-  <!-- <div id="clock">
-    <span class="hour"></span>:<span class="min"></span>:<span class="second"></span>
-  </div>
-  <input type="button" onclick="clockStart()" value="start" >
-  <input type="button" onclick="clockStop()" value="stop" > -->
-
-  <!-- <ul id="ul">
-    <li id="one">1</li>
-    <li id="two">4</li>
-  </ul> -->
-
-  <!-- <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Surname</th>
-        <th>Age</th>
-      </tr>
-    </thead>
-    <tbody id="persons">
-      <tr>
-        <td>John</td>
-        <td>Smith</td>
-        <td>10</td>
-      </tr>
-      <tr>
-        <td>Pete</td>
-        <td>Brown</td>
-        <td>15</td>
-      </tr>
-      <tr>
-        <td>Ann</td>
-        <td>Lee</td>
-        <td>5</td>
-      </tr>
-      <tr>
-        <td>Joshua</td>
-        <td>Lee</td>
-        <td>5</td>
-      </tr>
-    </tbody>
-  </table>
-  <input type="button" onclick="sortTable()" value="sort" > -->
-
-  <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit sint atque dolorum fuga ad incidunt voluptatum error fugiat animi amet! Odio temporibus nulla id unde quaerat dignissimos enim nisi rem provident molestias sit tempore omnis recusandae
-    esse sequi officia sapiente.</p>
-
-  <blockquote>
-    Teacher: Why are you late?
-    Student: There was a man who lost a hundred dollar bill.
-    Teacher: That's nice. Were you helping him look for it?
-    Student: No. I was standing on it.
-  </blockquote>
-
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit sint atque dolorum fuga ad incidunt voluptatum error fugiat animi amet! Odio temporibus nulla id unde quaerat dignissimos enim nisi rem provident molestias sit tempore omnis recusandae
-    esse sequi officia sapiente.</p> -->
-
-
-  <!-- Click on a list item to select it.
-  <br>
-
-  <ul id="ul">
-    <li>Christopher Robin</li>
-    <li>Winnie-the-Pooh</li>
-    <li>Tigger</li>
-    <li>Kanga</li>
-    <li>Rabbit. Just rabbit.</li>
-  </ul> -->
-
-
-  <!-- <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script> -->
-  <!-- <script src="https://d3js.org/d3.v5.min.js"></script> -->
-  <script src="javascriptInfo.js"></script>
-  <!-- <script src="extended-clock.js"></script> -->
 </body>
-
 </html>
