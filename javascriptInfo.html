@@ -15,27 +15,18 @@
 <h1>Scroll me</h1>
 
 <script>
-  // ... your code ...
-  // 1. listen to scroll event on window
-  // 2. per line for per time string in a div
-  // 3. at the beginning, generate enough time strings lines to cause overflow
-  for (let i = 0; i < 10; i++) {
-    let timeStringDiv = document.createElement("div");
-    timeStringDiv.textContent = "Date: " + new Date();
-    document.body.append(timeStringDiv);
+  function populate() {
+    while (true) {
+      let hiddenHeight = document.documentElement.getBoundingClientRect().bottom - document.documentElement.clientHeight;
+      if (hiddenHeight > 100) break;
+
+      document.body.insertAdjacentHTML("beforeend", `<p>Date: ${new Date()}</p>`);
+    }
   }
 
-  window.addEventListener("scroll", function(event) {
-    console.log("scroll event");
-    let hiddenHeight = document.documentElement.getBoundingClientRect().bottom - document.documentElement.clientHeight;
-    console.log("hiddenHeight: ", hiddenHeight)
-    if (hiddenHeight < 50) {
-      let timeStringDiv = document.createElement("div");
-      timeStringDiv.textContent = "Date: " + new Date();
-      document.body.append(timeStringDiv);
-    }
-  });
+  window.addEventListener("scroll", populate);
 
+  populate();
 </script>
 
 </body>
