@@ -1,33 +1,53 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
 <head>
-  <meta charset="utf-8">
   <style>
-    div {
-      font-size: 16px;
-      margin: 1em 0;
+    body,
+    html {
+      height: 100%;
+      width: 100%;
+      padding: 0;
+      margin: 0;
     }
+
+    #matrix {
+      width: 400px;
+      margin: auto;
+      overflow: auto;
+      text-align: justify;
+    }
+
+    #arrowTop {
+      height: 9px;
+      width: 14px;
+      color: green;
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      cursor: pointer;
+    }
+
+    #arrowTop::before {
+      content: '▲';
+    }
+
   </style>
+  <meta charset="utf-8">
 </head>
 
 <body>
 
-<h1>Scroll me</h1>
+  <div id="matrix">
+    <script>
+      for (let i = 0; i < 2000; i++) document.writeln(i)
+    </script>
+  </div>
 
-<script>
-  function populate() {
-    while (true) {
-      let hiddenHeight = document.documentElement.getBoundingClientRect().bottom - document.documentElement.clientHeight;
-      if (hiddenHeight > 100) break;
+  <div id="arrowTop"></div>
 
-      document.body.insertAdjacentHTML("beforeend", `<p>Date: ${new Date()}</p>`);
-    }
-  }
-
-  window.addEventListener("scroll", populate);
-
-  populate();
-</script>
+  <script>
+    // ... your code ...
+  </script>
 
 </body>
 </html>
