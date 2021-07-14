@@ -170,10 +170,20 @@
      */
     function isVisible(elem) {
       // todo: your code
+      // return document.documentElement.clientHeight > elem.getBoundingClientRect().top && elem.getBoundingClientRect().bottom > 0;
+
+      
+      // “preload” images that are one page below/after the current position
+      let windowHeight = document.documentElement.clientHeight;
+      return elem.getBoundingClientRect().bottom + windowHeight > 0 && elem.getBoundingClientRect().top < 
+      2 * windowHeight;
+      
+      // (pageYOffset < elem.getBoundingClientRect().bottom) // 使用 TS 写，或许就有 getBoundingClientRect 提示
     }
 
     function showVisible() {
       for (let img of document.querySelectorAll('img')) {
+
         let realSrc = img.dataset.src;
         if (!realSrc) continue;
 
