@@ -43,23 +43,16 @@
     </script>
   </div>
 
-  <div id="arrowTop"></div>
+  <div id="arrowTop" hidden></div>
 
   <script>
     // ... your code ...
-    arrowTop.style.display = "none";
-
-    window.addEventListener("scroll", function(e) {
-      if (window.pageYOffset > document.documentElement.clientHeight) {
-        arrowTop.style.display = "";
-      } else {
-        arrowTop.style.display = "none";
-      }
-    });
-
-    arrowTop.addEventListener("click", function(){
-      window.scroll(0, 0);
-    });
+    arrowTop.onclick = function() {
+      window.scroll(pageXOffset, 0);
+    };
+    window.onscroll = function() {
+      arrowTop.hidden = pageYOffset < document.documentElement.clientHeight;
+    };
   </script>
 
 </body>
