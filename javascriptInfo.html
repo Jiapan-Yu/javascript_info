@@ -47,6 +47,19 @@
 
   <script>
     // ... your code ...
+    arrowTop.style.display = "none";
+
+    window.addEventListener("scroll", function(e) {
+      if (window.pageYOffset > document.documentElement.clientHeight) {
+        arrowTop.style.display = "";
+      } else {
+        arrowTop.style.display = "none";
+      }
+    });
+
+    arrowTop.addEventListener("click", function(){
+      window.scroll(0, 0);
+    });
   </script>
 
 </body>
