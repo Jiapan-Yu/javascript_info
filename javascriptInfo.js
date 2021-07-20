@@ -5015,6 +5015,14 @@ runOnKeys(
 
 
 // Form properties and methods
+Array.from(genres.options).filter(option => option.selected).map(v => {
+  console.log("value:", v.value, "text:", v.text);
+  v.selected = false;
+});
+
+let op = new Option("Classic", "classic", true, true);
+
+genres.append(op);
 
 
 
