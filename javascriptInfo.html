@@ -1,20 +1,33 @@
 <!doctype html>
 <body>
-<form name="my">
-  <input name="one" value="1">
-  <input name="two" value="2">
-</form>
+  <form name="formA" action="/cgi-bin/test" method="post">
+    <p>Press "Info" for form details, or "Set" to change those details.</p>
+    <p>
+      <button type="button" onclick="getFormInfo();">Info</button>
+      <button type="button" onclick="setFormInfo(this.form);">Set</button>
+      <button type="reset">Reset</button>
+    </p>
 
-<script>
-  // get the form
-  let form = document.forms.my; // <form name="my"> element
+    <textarea id="form-info" rows="15" cols="20"></textarea>
+  </form>
 
-  // get the element
-  let elem = form.elements.one; // <input name="one"> element
-  // according to "https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement#accessing_the_forms_elements"
-  // i can also do the following
-  // let elem = form.one;
+  <script>
+    function getFormInfo() {
+      // Get a reference to the form via its name
+      var f = document.forms["formA"];
+      // The form properties we're interested in
+      var properties = ['elements', 'length', 'name', 'autocomplete', 'acceptCharset', 'action', 'enctype', 'method', 'target'];
+      // Iterate over the properties, turning them into a string that we can display to the user
+      var info = properties.map(function (property) { return property + ": " + f[property] }).join("\n");
 
-  alert(elem.value); // 1
-</script>
+      // Set the form's <textarea> to display the form's properties
+      document.forms["formA"].elements['form-info'].value = info; // document.forms["formA"]['form-info'].value would also work
+    }
+
+    function setFormInfo(f) { // Argument should be a form element reference.
+      f.action = "a-different-url.cgi";
+      // f.name = "a-different-name";
+    }
+  </script>
+
 </body>
