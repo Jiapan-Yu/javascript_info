@@ -5044,6 +5044,9 @@ textAreaElem.addEventListener('blur', function (e) {
 });
 
 
+// Edit TD on click
+let table = document.getElementById('bagua-table');
+
 
 
 
