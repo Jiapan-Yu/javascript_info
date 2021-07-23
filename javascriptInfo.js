@@ -5015,14 +5015,33 @@ runOnKeys(
 
 
 // Form properties and methods
-Array.from(genres.options).filter(option => option.selected).map(v => {
+/* Array.from(genres.options).filter(option => option.selected).map(v => {
   console.log("value:", v.value, "text:", v.text);
   v.selected = false;
 });
 
 let op = new Option("Classic", "classic", true, true);
 
-genres.append(op);
+genres.append(op); */
+
+
+
+// Focusing: focus/blur
+view.setAttribute('tabindex', '0');
+let textAreaElem = document.createElement('textarea');
+let viewElem = view;
+viewElem.addEventListener('focus', function (e) {
+  textAreaElem.classList.add('edit');
+  textAreaElem.value = viewElem.innerHTML;
+  textAreaElem.autofocus = true;
+
+  viewElem.replaceWith(textAreaElem);
+  textAreaElem.focus(); // 需要放在 “viewElem.replaceWith(textAreaElem)” 的后面才能在第二次点击后获得焦点
+});
+textAreaElem.addEventListener('blur', function (e) {
+  textAreaElem.replaceWith(viewElem);
+  viewElem.innerHTML = textAreaElem.value;
+});
 
 
 
