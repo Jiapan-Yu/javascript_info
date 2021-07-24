@@ -5027,7 +5027,7 @@ genres.append(op); */
 
 
 // Focusing: focus/blur
-view.setAttribute('tabindex', '0');
+/* view.setAttribute('tabindex', '0');
 let textAreaElem = document.createElement('textarea');
 let viewElem = view;
 viewElem.addEventListener('focus', function (e) {
@@ -5041,11 +5041,57 @@ viewElem.addEventListener('focus', function (e) {
 textAreaElem.addEventListener('blur', function (e) {
   textAreaElem.replaceWith(viewElem);
   viewElem.innerHTML = textAreaElem.value;
-});
+}); */
 
 
 // Edit TD on click
 let table = document.getElementById('bagua-table');
+
+let isEditing = false;
+let textAreaElem = document.createElement('textarea');
+let tdDup = null;
+table.addEventListener('click', function (e) {
+  let td = e.target.closest('td');
+
+  if (!td) return;
+  if(isEditing) return;
+
+  tdDup = td;
+
+  isEditing = true;
+
+  let tdRect = td.getBoundingClientRect();
+  
+  textAreaElem.className = 'area';
+  textAreaElem.value = td.innerHTML;
+  console.log("getComputedStyle(td): ", getComputedStyle(td).backgroundColor);
+  let borderSpace = getComputedStyle(table).borderSpacing.split(" ").reduce((acc, v) => {
+    return acc + parseFloat(v);
+  }, 0);
+  textAreaElem.style.height = td.getBoundingClientRect().height - borderSpace + 'px';
+  td.replaceWith(textAreaElem);
+  textAreaElem.focus();
+
+  // create the two buttons
+  let btnsDiv = document.createElement('div');
+  btnsDiv.className = 'btns';
+  btnsDiv.innerHTML = `<input type="button" value="OK"><input type="button" value="CANCEL">`;
+  table.append(btnsDiv);
+  btnsDiv.style.top = tdRect.bottom + 'px';
+  btnsDiv.style.left = tdRect.left + 'px';
+
+  btnsDiv.addEventListener('click', function (e) {
+    if (e.target.value === 'OK') {
+      console.log("pressed ok btn");
+      tdDup.innerHTML = textAreaElem.value;
+      textAreaElem.replaceWith(tdDup);
+    } else {
+      textAreaElem.replaceWith(tdDup);
+    }
+    isEditing = false;
+    btnsDiv.remove();
+  });
+});
 
 
 

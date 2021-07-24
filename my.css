@@ -1,0 +1,10 @@
+.btns {
+  position: absolute;
+}
+
+.area {
+  padding: 0;
+  border: none;
+  outline: none;
+  resize: none;
+}
