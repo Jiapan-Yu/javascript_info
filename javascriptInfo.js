@@ -5069,6 +5069,7 @@ table.addEventListener('click', function (e) {
     return acc + parseFloat(v);
   }, 0);
   textAreaElem.style.height = td.getBoundingClientRect().height - borderSpace + 'px';
+  textAreaElem.style.width = td.getBoundingClientRect().width + 'px';
   td.replaceWith(textAreaElem);
   textAreaElem.focus();
 
