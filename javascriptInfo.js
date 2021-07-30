@@ -5095,7 +5095,7 @@ table.addEventListener('click', function (e) {
 }); */
 
 
-let table = document.getElementById('bagua-table');
+/* let table = document.getElementById('bagua-table');
 
 let editingTd;
 
@@ -5149,7 +5149,36 @@ function finishTdEdit(td, isOk) {
   }
   td.classList.remove('edit-td');
   editingTd = null;
+} */
+
+
+
+// Events: change, input, cut, copy, paste
+let calculator = document.forms.namedItem('calculator');
+
+let moneyBefore = document.getElementById('money-before');
+let moneyAfter = document.getElementById('money-after');
+
+let resultElm = document.getElementById('height-after')
+
+function calculate() {
+  let initial = calculator.elements.namedItem('money').value;
+  let years = calculator.elements.namedItem('months').value / 12;
+  let interest = calculator.elements.namedItem('interest').value / 100;
+
+  let result = Math.round(initial * (1 + interest * years));
+
+  moneyBefore.textContent = calculator.elements.namedItem('money').value;
+  moneyAfter.textContent = result;
+
+  resultElm.style.height = result * 100 / initial + 'px';
 }
+
+calculator.oninput = function () {
+  calculate();
+};
+
+calculate();
 
 
 
