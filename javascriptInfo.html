@@ -24,9 +24,16 @@
     log('initial readyState:' + document.readyState);
 
     document.addEventListener('readystatechange', () => log('readyState:' + document.readyState));
+    // document.readyState 为 interactive 后再加下面一行将不会执行监听事件
     document.addEventListener('DOMContentLoaded', () => log('DOMContentLoaded'));
 
     window.onload = () => log('window onload');
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.3.0/lodash.js"></script>
+
+  <script>
+    events.insertAdjacentHTML('beforeend', `<div>[${Math.floor(performance.now())}] "Library loaded, inline script executed"</div>`);
   </script>
 
   <iframe src="iframe.html?speed=1&cache=0" style="visibility:hidden" onload="log('iframe onload')"></iframe>
