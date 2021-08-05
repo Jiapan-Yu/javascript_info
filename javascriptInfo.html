@@ -34,6 +34,15 @@
 
   <script>
     events.insertAdjacentHTML('beforeend', `<div>[${Math.floor(performance.now())}] "Library loaded, inline script executed"</div>`);
+
+    let users = [
+      { 'user': 'fred', 'age': 48 },
+      { 'user': 'barney', 'age': 36 },
+      { 'user': 'fred', 'age': 40 },
+      { 'user': 'barney', 'age': 34 }
+    ];
+
+    console.log(_.sortBy(users, function (o) { return o.user; }));
   </script>
 
   <iframe src="iframe.html?speed=1&cache=0" style="visibility:hidden" onload="log('iframe onload')"></iframe>
