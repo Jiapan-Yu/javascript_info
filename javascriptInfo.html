@@ -8,6 +8,24 @@
   <script>
     function preloadImages(sources, callback) {
       /* your code */
+      let m = 0;
+      for (let i = 0; i < sources.length; i++) {
+        let img = document.createElement('img');
+        img.src = sources[i];
+        img.onload = function () {
+          m++;
+          if (m == 3) {
+            callback();
+          }
+        };
+        img.onerror = function (err) {
+          m++;
+          if (m == 3) {
+            callback();
+          }
+          console.log("err");
+        };
+      }
     }
 
     // ---------- The test ----------
