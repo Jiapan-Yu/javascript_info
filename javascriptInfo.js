@@ -5027,7 +5027,7 @@ genres.append(op); */
 
 
 // Focusing: focus/blur
-/* view.setAttribute('tabindex', '0');
+view.setAttribute('tabindex', '0');
 let textAreaElem = document.createElement('textarea');
 let viewElem = view;
 viewElem.addEventListener('focus', function (e) {
@@ -5041,144 +5041,8 @@ viewElem.addEventListener('focus', function (e) {
 textAreaElem.addEventListener('blur', function (e) {
   textAreaElem.replaceWith(viewElem);
   viewElem.innerHTML = textAreaElem.value;
-}); */
+});
 
-
-// Edit TD on click
-/* let table = document.getElementById('bagua-table');
-
-let isEditing = false;
-let textAreaElem = document.createElement('textarea');
-let tdDup = null;
-table.addEventListener('click', function (e) {
-  let td = e.target.closest('td');
-
-  if (!td) return;
-  if(isEditing) return;
-
-  tdDup = td;
-
-  isEditing = true;
-
-  let tdRect = td.getBoundingClientRect();
-  
-  textAreaElem.className = 'area';
-  textAreaElem.value = td.innerHTML;
-  console.log("getComputedStyle(td): ", getComputedStyle(td).backgroundColor);
-  let borderSpace = getComputedStyle(table).borderSpacing.split(" ").reduce((acc, v) => {
-    return acc + parseFloat(v);
-  }, 0);
-  textAreaElem.style.height = td.getBoundingClientRect().height - borderSpace + 'px';
-  textAreaElem.style.width = td.getBoundingClientRect().width + 'px';
-  td.replaceWith(textAreaElem);
-  textAreaElem.focus();
-
-  // create the two buttons
-  let btnsDiv = document.createElement('div');
-  btnsDiv.className = 'btns';
-  btnsDiv.innerHTML = `<input type="button" value="OK"><input type="button" value="CANCEL">`;
-  table.append(btnsDiv);
-  btnsDiv.style.top = tdRect.bottom + 'px';
-  btnsDiv.style.left = tdRect.left + 'px';
-
-  btnsDiv.addEventListener('click', function (e) {
-    if (e.target.value === 'OK') {
-      console.log("pressed ok btn");
-      tdDup.innerHTML = textAreaElem.value;
-      textAreaElem.replaceWith(tdDup);
-    } else {
-      textAreaElem.replaceWith(tdDup);
-    }
-    isEditing = false;
-    btnsDiv.remove();
-  });
-}); */
-
-
-/* let table = document.getElementById('bagua-table');
-
-let editingTd;
-
-table.onclick = function(event) {
-
-  // 3 possible targets
-  let target = event.target.closest('.edit-cancel,.edit-ok,td');
-
-  if (!table.contains(target)) return;
-
-  if (target.className == 'edit-cancel') {
-    finishTdEdit(editingTd.elem, false);
-  } else if (target.className == 'edit-ok') {
-    finishTdEdit(editingTd.elem, true);
-  } else if (target.nodeName == 'TD') {
-    if (editingTd) return; // already editing
-
-    makeTdEditable(target);
-  }
-
-};
-
-function makeTdEditable(td) {
-  editingTd = {
-    elem: td,
-    data: td.innerHTML
-  };
-
-  td.classList.add('edit-td'); // td is in edit state, CSS also styles the area inside
-
-  let textArea = document.createElement('textarea');
-  textArea.style.width = td.clientWidth + 'px';
-  textArea.style.height = td.clientHeight + 'px';
-  textArea.className = 'edit-area';
-
-  textArea.value = td.innerHTML;
-  td.innerHTML = '';
-  td.appendChild(textArea);
-  textArea.focus();
-
-  td.insertAdjacentHTML("beforeEnd",
-    '<div class="edit-controls"><button class="edit-ok">OK</button><button class="edit-cancel">CANCEL</button></div>'
-  );
-}
-
-function finishTdEdit(td, isOk) {
-  if (isOk) {
-    td.innerHTML = td.firstChild.value;
-  } else {
-    td.innerHTML = editingTd.data;
-  }
-  td.classList.remove('edit-td');
-  editingTd = null;
-} */
-
-
-
-// Events: change, input, cut, copy, paste
-let calculator = document.forms.namedItem('calculator');
-
-let moneyBefore = document.getElementById('money-before');
-let moneyAfter = document.getElementById('money-after');
-
-let resultElm = document.getElementById('height-after')
-
-function calculate() {
-  let initial = calculator.elements.namedItem('money').value;
-  let years = calculator.elements.namedItem('months').value / 12;
-  let interest = calculator.elements.namedItem('interest').value / 100;
-
-  let result = Math.round(initial * (1 + interest * years));
-
-  moneyBefore.textContent = calculator.elements.namedItem('money').value;
-  moneyAfter.textContent = result;
-
-  resultElm.style.height = result * 100 / initial + 'px';
-}
-
-calculator.oninput = function () {
-  calculate();
-};
-
-calculate();
 
 
 
