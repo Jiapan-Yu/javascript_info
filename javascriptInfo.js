@@ -5183,6 +5183,21 @@ calculate(); */
 
 
 // Event loop: microtasks and macrotasks
+let i = 0;
+let progressBar = document.getElementById('progress-bar');
+function count() {
+  do {
+    i++;
+  } while (i % 1000 != 0);
+
+  progressBar.innerHTML = i;
+
+  if (i < 1e6) {
+    setTimeout(count);
+  }
+}
+
+count();
 
 
 
