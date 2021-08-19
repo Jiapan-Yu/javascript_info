@@ -5183,7 +5183,7 @@ calculate(); */
 
 
 // Event loop: microtasks and macrotasks
-let i = 0;
+/* let i = 0;
 let progressBar = document.getElementById('progress-bar');
 function count() {
   do {
@@ -5197,7 +5197,30 @@ function count() {
   }
 }
 
-count();
+count(); */
+
+
+
+// Selection and Range
+let range = new Range();
+
+range.setStart(p, 0);
+range.setEnd(p, 2);
+
+console.log(range);
+
+document.getSelection().addRange(range);
+
+
+/* let range = new Range();
+
+range.setStart(p.firstChild, 2);
+range.setEnd(p.querySelector('b').firstChild, 3);
+
+console.log(range.toString()); // ample: italic and bol
+
+// use this range for selection (explained later)
+window.getSelection().addRange(range); */
 
 
 
