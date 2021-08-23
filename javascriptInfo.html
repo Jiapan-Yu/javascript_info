@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <link rel="stylesheet" href="./javascriptInfo.css" type="text/css">
+  <link rel="stylesheet" href="./prism.css" type="text/css">
   <title>javascript.info learning</title>
 </head>
 
@@ -310,11 +311,19 @@
   <!-- <div id="progress-bar"></div> -->
 
 
-  <p id="p">Example: <i>italic</i> and <b>bold</b></p>
+  <!-- <div>Selectable <div id="elem">Unselectable</div> Selectable</div> -->
+
+
+  <div contentEditable id="elem">Click and <b>edit</b>, please</div>
+
+  <pre class="language-javascript"><code>
+    let hello = "world";
+  </code></pre>
 
 
   <!-- <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script> -->
   <!-- <script src="https://d3js.org/d3.v5.min.js"></script> -->
+  <script src="prism.js"></script>
   <script src="javascriptInfo.js"></script>
   <!-- <script src="extended-clock.js"></script> -->
 </body>

@@ -5223,6 +5223,24 @@ console.log(range.toString()); // ample: italic and bol
 window.getSelection().addRange(range); */
 
 
+// Selection
+// elem.onselectstart = () => false;
+
+
+
+// Mutation observer
+let observer = new MutationObserver(mutationRecords => {
+  console.log(mutationRecords); // console.log(the changes)
+});
+
+// observe everything except attributes
+observer.observe(elem, {
+  childList: true, // observe direct children
+  subtree: true, // and lower descendants too
+  characterDataOldValue: true // pass old data to callback
+});
+
+
 
 
 // event loop from JSConf of youtube （21:55 starts talk about render and he 
