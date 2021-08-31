@@ -5202,14 +5202,14 @@ count(); */
 
 
 // Selection and Range
-let range = new Range();
+/* let range = new Range();
 
 range.setStart(p, 0);
 range.setEnd(p, 2);
 
 console.log(range);
 
-document.getSelection().addRange(range);
+document.getSelection().addRange(range); */
 
 
 /* let range = new Range();
@@ -5229,7 +5229,7 @@ window.getSelection().addRange(range); */
 
 
 // Mutation observer
-let observer = new MutationObserver(mutationRecords => {
+/* let observer = new MutationObserver(mutationRecords => {
   console.log(mutationRecords); // console.log(the changes)
 });
 
@@ -5238,7 +5238,11 @@ observer.observe(elem, {
   childList: true, // observe direct children
   subtree: true, // and lower descendants too
   characterDataOldValue: true // pass old data to callback
-});
+}); */
+
+
+
+// Regular expressions
 
 
 
